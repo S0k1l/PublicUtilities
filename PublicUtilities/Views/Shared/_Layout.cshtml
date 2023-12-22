@@ -21,13 +21,16 @@
             </div>
             <div id="nav-items">
                 <div id="nav-item-t">
-                    <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index" id="nav-text-seccondary">Home</a>
+                    <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index" id="nav-text-seccondary">Головна</a>
                 </div>
-                <div id="nav-item-t">
+@*                 <div id="nav-item-t">
                     <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Privacy" id="nav-text-seccondary">Privacy</a>
+                </div> *@
+                <div id="nav-item">
+                    <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index" id="nav-text-seccondary">Увійти</a>
                 </div>
                 <div id="nav-item">
-                    <a class="nav-link " asp-area="" asp-controller="Account" asp-action="Registration" id="nav-text-seccondary">Зареєструватися</a>
+                    <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index" id="nav-text-seccondary">Зареєструватися</a>
                 </div>
             </div>
         </nav>
@@ -38,9 +41,40 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - PublicUtilities - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="footer new-footer">
+        <div class="new-footer-frame">
+            <div class="new-footer-frame-col">
+                <div class="new-footer-text-header">Місто Тернопіль</div>
+                <div class="new-footer-text-frame">
+                    <div class="new-footer-text">Платежі</div>
+                    <div class="new-footer-text">Показники лічильника</div>
+                    <div class="new-footer-text">Заяви</div>
+                    <div class="new-footer-text">Зворотній зв'язок</div>
+                </div>
+            </div>
+            <div class="new-footer-frame-col">
+                <div class="new-footer-text-header">Додаткові ресурси</div>
+                <div class="new-footer-text-frame">
+                    <div class="new-footer-text">Вивіз сміття</div>
+                    <div class="new-footer-text">Тарифи</div>
+                    <div class="new-footer-text">Сповіщення</div>
+                    <div class="new-footer-text">Про нас</div>
+                </div>
+            </div>
+            <div class="new-footer-frame-col">
+                <div class="new-footer-text-header">Соціальні мережі</div>
+                <div class="new-footer-text-frame">
+                    <div class="new-footer-text">Facebook</div>
+                    <div class="new-footer-text">Twitter</div>
+                    <div class="new-footer-text">Instagram</div>
+                </div>
+            </div>
+            <div class="new-footer-frame-col">
+                <div class="new-footer-text-header">Конфіденційність</div>
+                <div class="new-footer-text-frame">
+                    <div class="new-footer-text">Конфіденційність</div>
+                </div>
+            </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
