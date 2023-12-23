@@ -29,12 +29,17 @@
                 <div id="nav-item">
                     <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index" id="nav-text-seccondary">Увійти</a>
                 </div>
-                <div id="nav-item">
-                    <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index" id="nav-text-seccondary">Зареєструватися</a>
-                </div>
-            </div>
+                <a class="nav-link " asp-area="" asp-controller="Account" asp-action="Registration" id="nav-item">
+                    <div id="nav-text-seccondary">Зареєструватися</div>
+                </a>
+            </a>
         </nav>
     </header>
+    <div id="frame">
+        <div class="text-wrapper">Місто Тернопіль</div>
+        <div class="div">Комунальні Послуги</div>
+        <div class="text-wrapper-2">Обслуговування Клієнтів: (000) xxx-yyyy</div>
+    </div>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

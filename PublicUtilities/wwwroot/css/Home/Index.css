@@ -1,62 +1,9 @@
 ﻿@import '../Colors.css';
 
-
-/*----------=MAIN TEXT=----------*/
-.frame {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-    padding: 10px;
-    position: relative;
-    margin-left:27%;
-    margin-top: 10px;
-}
-
-.text-wrapper {
-    margin-top: -1px;
-    font-family: "Open Sans-ExtraBold", Helvetica;
-    font-weight: 800;
-    font-size: 30px;
-    letter-spacing: -0.15px;
-    line-height: normal;
-    position: relative;
-    width: fit-content;
-    color: var(--Bright-Gray);
-    text-align: center;
-}
-
-.div {
-    font-family: "Open Sans-Bold", Helvetica;
-    font-weight: 800;
-    font-size: 50px;
-    letter-spacing: -0.25px;
-    line-height: 60px;
-    white-space: nowrap;
-    position: relative;
-    width: fit-content;
-    color: var(--Bright-Gray);
-    text-align: center;
-}
-
-.text-wrapper-2 {
-    position: relative;
-    width: fit-content;
-    font-family: "Open Sans-Bold", Helvetica;
-    font-weight: 700;
-    color: var(--Bright-Gray);
-    font-size: 16px;
-    text-align: center;
-    letter-spacing: -0.4px;
-    line-height: 50px;
-    white-space: nowrap;
-}
-
 /*----------=MAIN BUTTON=----------*/
 .frame-2 {
     display: grid;
-    margin-top: 85px;
+    margin-top: 65px;
     margin-left: -25px;
     align-items: flex-start;
     grid-template-columns: auto auto auto auto;
@@ -339,9 +286,9 @@
     transition: 100ms ease-in-out;
 }
 
-.news-block:hover .news-block-text-more {
-    font-size: 18px;
-}
+    .news-block:hover .news-block-text-more {
+        font-size: 18px;
+    }
 
 .news-btn {
     display: inline-flex;
@@ -375,7 +322,7 @@
     letter-spacing: -0.511px;
 }
 
-.news-btn:hover .news-btn-text {
-    color: var(--Anti-Flash-White);
-    text-shadow: 0px -4px 5px rgba(0, 0, 0, 0.10);
-}
+    .news-btn:hover .news-btn-text {
+        color: var(--Anti-Flash-White);
+        text-shadow: 0px -4px 5px rgba(0, 0, 0, 0.10);
+    }
