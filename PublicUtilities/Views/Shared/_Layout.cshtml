@@ -20,19 +20,16 @@
                 <div class="green-box"></div>
             </div>
             <div id="nav-items">
-                <div id="nav-item-t">
-                    <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index" id="nav-text-seccondary">Головна</a>
-                </div>
-@*                 <div id="nav-item-t">
-                    <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Privacy" id="nav-text-seccondary">Privacy</a>
-                </div> *@
-                <div id="nav-item">
-                    <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index" id="nav-text-seccondary">Увійти</a>
-                </div>
+                <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index" id="nav-item-t">
+                    <div id="nav-text-seccondary">Головна</div>
+                </a>
+                <a class="nav-link " asp-area="" asp-controller="Account" asp-action="Login" id="nav-item">
+                    <div id="nav-text-seccondary">Увійти</div>
+                </a>
                 <a class="nav-link " asp-area="" asp-controller="Account" asp-action="Registration" id="nav-item">
                     <div id="nav-text-seccondary">Зареєструватися</div>
                 </a>
-            </a>
+            </div>
         </nav>
     </header>
     <div id="frame">

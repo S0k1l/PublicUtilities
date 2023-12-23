@@ -10,7 +10,9 @@
                     <stop offset="1" stop-color="white" />
                 </linearGradient>
             </defs>
+        <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index" id="nav-item">
             <text x="-15" y="30" fill="blue" class="frame-location-text">Комунальні послунги</text>
+        </a>
         </svg>
         <svg style="margin-left: -40px" xmlns="http://www.w3.org/2000/svg" width="142" height="53" viewBox="0 0 142 53" fill="none">
             <path d="M0.0500488 0H123.275L141.1 26.35L123.275 52.7H0.0500488V0Z" fill="url(#paint0_linear_103_80)" />
@@ -73,8 +75,11 @@
                 <span class="text-danger"></span>
             </div>
         </div>
-        <div class="main-text-link">Вже зареєстровані? Тоді увійдіть</div>
-        <div class="main-btn-frame">
+        <a class="nav-link main-text-link" asp-area="" asp-controller="Account" asp-action="Login">
+            Вже зареєстровані? Тоді увійдіть
+        </a>
+@*         <div class="main-text-link">Вже зареєстровані? Тоді увійдіть</div>
+ *@        <div class="main-btn-frame">
             <div class="main-btn-sigin">Зареєструватися</div>
             <div class="main-btn-cancel">Назад</div>
         </div>

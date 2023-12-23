@@ -1,7 +1,7 @@
 ﻿@import '../Colors.css';
 
 /*----------=REGISTRATION HEADER=----------*/
-#reg-header {
+#log-header {
     margin-left: -100px;
     display: flex;
     width: 1488px;
@@ -10,20 +10,21 @@
     background: var(--Arsenic);
 }
 
-.reg-header-frame {
+.log-header-frame {
     display: flex;
+
     align-items: center;
     width: 400px;
     gap: 7.786px;
 }
 
-.reg-header-greenbox {
+.log-header-greenbox {
     width: 17.13px;
     height: 58.398px;
     background: var(--green-crayola);
 }
 
-.reg-header-text {
+.log-header-text {
     color: var(--Bright-Gray);
     text-shadow: 0px 1.557px 3.893px #000;
     font-family: Open Sans;
@@ -84,7 +85,7 @@
     background: var(--Lotion);
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.10);
 }
-    /*TEXT*/
+/*TEXT*/
 .main-text-frame {
     display: flex;
     flex-direction: column;
@@ -110,13 +111,13 @@
     font-weight: 400;
     line-height: normal;
 }
-    /*LINE*/
+/*LINE*/
 .mian-frame-line {
     width: 900px;
     height: 1.1px;
     background: var(--bright-navy-blue-50-t);
 }
-    /*INPUT*/
+/*INPUT*/
 .main-frame-input {
     display: flex;
     flex-direction: column;
@@ -124,7 +125,7 @@
     align-items: flex-start;
     gap: 7px 70px;
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto;
 }
 
 .main-input {
@@ -132,7 +133,6 @@
     gap: 7px;
     flex-direction: column;
     align-items: flex-start;
-
 }
 
 .main-input-header {
@@ -140,7 +140,6 @@
     padding: 0px 7.75px;
     align-items: flex-start;
     gap: 7.75px;
-
     color: var(--Granite-Gray);
     font-family: Open Sans;
     font-size: 16px;
@@ -154,12 +153,10 @@
     width: 310px;
     height: 40px;
     padding: 0 10px;
-
     border-radius: 3.875px;
     border: 1.55px solid var(--Granite-Gray, #676866);
     background: var(--White, #FFF);
     box-shadow: 0px 0px 3.1px 0px rgba(0, 0, 0, 0.10) inset;
-
     color: var(--Black);
     font-family: Open Sans;
     font-size: 16px;
@@ -168,9 +165,10 @@
     line-height: normal;
     letter-spacing: -0.232px;
 }
-    /*TEXT LINK*/
+/*TEXT LINK*/
 .main-text-link {
-    margin-top: -20px;
+    margin-left: -5px;
+    margin-top: -10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -183,11 +181,12 @@
     line-height: normal;
     transition: 100ms ease-in-out;
 }
+
     .main-text-link:hover {
         text-decoration-line: underline;
     }
 
-    /*BUTTONS*/
+/*BUTTONS*/
 .main-btn-frame {
     margin-top: -10px;
     display: flex;
@@ -240,7 +239,7 @@
     transition: 100ms ease-in-out;
 }
 
-.main-btn-cancel:hover {
-    background: var(--AuroMetalSaurus);
-    color: var(--Lotion);
-}
+    .main-btn-cancel:hover {
+        background: var(--AuroMetalSaurus);
+        color: var(--Lotion);
+    }
