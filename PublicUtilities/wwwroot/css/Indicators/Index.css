@@ -1,7 +1,11 @@
 ﻿@import '../Colors.css';
 
+p{
+    margin-bottom:0;
+}
+
 /*----------=REGISTRATION HEADER=----------*/
-#log-header {
+#ind-header {
     margin-left: -100px;
     display: flex;
     width: 1488px;
@@ -10,20 +14,20 @@
     background: var(--Arsenic);
 }
 
-.log-header-frame {
+.ind-header-frame {
     display: flex;
     align-items: center;
     width: 400px;
     gap: 7.786px;
 }
 
-.log-header-greenbox {
+.ind-header-greenbox {
     width: 17.13px;
     height: 58.398px;
     background: var(--green-crayola);
 }
 
-.log-header-text {
+.ind-header-text {
     color: var(--Bright-Gray);
     text-shadow: 0px 1.557px 3.893px #000;
     font-family: Open Sans;
@@ -256,27 +260,6 @@ details[open] > summary::after {
     line-height: normal;
 }
 
-/*TEXT LINK*/
-.main-text-link {
-    margin-left: -5px;
-    margin-top: -10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 7.75px;
-    color: var(--Bright-Navy-Blue);
-    font-family: Open Sans;
-    font-size: 15.5px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    transition: 100ms ease-in-out;
-}
-
-    .main-text-link:hover {
-        text-decoration-line: underline;
-    }
-
 /*BUTTONS*/
 .main-btn-frame {
     display: flex;
@@ -308,28 +291,4 @@ details[open] > summary::after {
 
     .main-btn-submit:hover {
         background: var(--AuroMetalSaurus);
-    }
-
-
-.main-btn-cancel {
-    display: flex;
-    padding: 11.625px 15.5px;
-    justify-content: center;
-    align-items: center;
-    gap: 7.75px;
-    border-radius: 5px;
-    border: 2px solid var(--AuroMetalSaurus);
-    color: var(--AuroMetalSaurus, #718183);
-    font-family: Open Sans;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: -0.511px;
-    transition: 100ms ease-in-out;
-}
-
-    .main-btn-cancel:hover {
-        background: var(--AuroMetalSaurus);
-        color: var(--Lotion);
     }

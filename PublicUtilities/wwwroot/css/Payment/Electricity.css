@@ -1,0 +1,216 @@
+﻿@import '../Colors.css';
+
+p {
+    margin-bottom: 0;
+}
+
+/*----------=REGISTRATION HEADER=----------*/
+#pay-header {
+    margin-left: -100px;
+    display: flex;
+    width: 1488px;
+    padding: 0px 1112.591px 0px 142.492px;
+    align-items: center;
+    background: var(--Arsenic);
+}
+
+.pay-header-frame {
+    display: flex;
+    align-items: center;
+    width: 400px;
+    gap: 7.786px;
+}
+
+.pay-header-greenbox {
+    width: 17.13px;
+    height: 58.398px;
+    background: var(--green-crayola);
+}
+
+.pay-header-text {
+    color: var(--Bright-Gray);
+    text-shadow: 0px 1.557px 3.893px #000;
+    font-family: Open Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.4px;
+}
+
+/*----------=LOCATION=----------*/
+#frame-location {
+    width: 1488px;
+    margin-top: 40px;
+    margin-left: -100px;
+    display: flex;
+    padding: 0px 140px;
+    align-items: flex-start;
+    background: #EEE;
+}
+
+.frame-location-frame {
+    width: 141.714px;
+    height: 52.948px;
+    flex-shrink: 0;
+}
+
+.frame-location-text {
+    fill: #177AE3;
+    font-family: Open Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.498px;
+}
+
+/*----------=CHOOSE=----------*/
+.choose-frame {
+    display: flex;
+    width: 1488px;
+    margin-left: -100px;
+    height: 55px;
+    padding: 0px 160px;
+    align-items: center;
+    gap: 23.25px;
+    flex-shrink: 0;
+    background: var(--Chinese-White);
+}
+
+.choose-green-btn {
+    display: flex;
+    padding: 7.75px 15.5px;
+    justify-content: center;
+    align-items: center;
+    gap: 7.75px;
+    border-radius: 7.75px;
+    background: var(--green-crayola);
+    color: var(--White);
+    font-family: Open Sans;
+    font-size: 15.5px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.31px;
+}
+
+.choose-gray-btn {
+    display: flex;
+    padding: 7.75px 15.5px;
+    justify-content: center;
+    align-items: center;
+    gap: 7.75px;
+    border-radius: 7.75px;
+    background: var(--Bright-Gray);
+    color: var(--Bright-Navy-Blue);
+    font-family: Open Sans;
+    font-size: 15.5px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.31px;
+    transition: 100ms ease-in-out;
+}
+
+    .choose-gray-btn:hover {
+        background: var(--Granite-Gray);
+        color: var(--Bright-Gray);
+    }
+
+/*----------=MAIN FRAME=----------*/
+.mian-frame {
+    margin-left: -100px;
+    display: flex;
+    width: 1488px;
+    padding: 31px 200px;
+    flex-direction: column;
+    align-items: center;
+    gap: 7.75px;
+    background: var(--Bright-Gray);
+}
+
+.mian-frame-frame {
+    display: flex;
+    padding: 44.175px 0px;
+    flex-direction: column;
+    align-items: center;
+    gap: 34.875px;
+    align-self: stretch;
+    border-radius: 10px;
+    background: var(--Lotion);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.10);
+}
+/*TEXT*/
+.main-text-frame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 34.875px;
+}
+
+.main-text-frame-header {
+    color: var(--Granite-Gray);
+    font-family: Open Sans;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.main-text-frame-text {
+    color: var(--Granite-Gray);
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+/*LINE*/
+.mian-frame-line {
+    width: 900px;
+    height: 1.1px;
+    background: var(--bright-navy-blue-50-t);
+}
+
+/*BUTTONS*/
+.main-btn-frame {
+    display: flex;
+    padding: 10px 24px 20px 24px;
+    flex-direction: column;
+    align-items: center;
+    gap: 7.75px;
+    align-self: stretch;
+}
+
+.main-btn-frame {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 34.875px;
+}
+
+.main-btn-submit {
+    display: flex;
+    padding: 11.625px 23.25px;
+    justify-content: center;
+    align-items: center;
+    gap: 7.75px;
+    border-radius: 3.875px;
+    background: var(--green-crayola);
+    color: var(--White, #FFF);
+    font-family: Open Sans;
+    font-size: 17.05px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.511px;
+    transition: 100ms ease-in-out;
+}
+
+    .main-btn-submit:hover {
+        background: var(--Bright-Gray);
+        color: var(--Granite-Gray);
+    }
