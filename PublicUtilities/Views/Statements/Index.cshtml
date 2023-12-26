@@ -1,0 +1,76 @@
+﻿<head>
+    <link rel="stylesheet" href="~/css/Statements/Index.css" />
+</head>
+
+<div id="frame-location">
+    <svg style="z-index: 2" xmlns="http://www.w3.org/2000/svg" width="170" height="53" viewBox="0 0 143 53" fill="none">
+        <path d="M0.934875 0.0260391H124.74L142.648 26.5L124.74 52.974H0.934875V0.0260391Z" fill="url(#paint0_linear_53_35)" />
+        <defs>
+            <linearGradient id="paint0_linear_53_35" x1="0.934876" y1="26.5" x2="142.648" y2="26.5" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#EDEDED" />
+                <stop offset="1" stop-color="white" />
+            </linearGradient>
+        </defs>
+        <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index" id="nav-item">
+            <text x="-15" y="30" fill="blue" class="frame-location-text">Комунальні послунги</text>
+        </a>
+    </svg>
+    <svg style="z-index: 1; margin-left: -50px;" xmlns="http://www.w3.org/2000/svg" width="142" height="53" viewBox="0 0 142 53" fill="none">
+        <path d="M0.0500488 0H123.275L141.1 26.35L123.275 52.7H0.0500488V0Z" fill="url(#paint0_linear_103_80)" />
+        <defs>
+            <linearGradient id="paint0_linear_103_80" x1="0.0500494" y1="26.35" x2="141.1" y2="26.35" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#EDEDED" />
+                <stop offset="1" stop-color="white" />
+            </linearGradient>
+        </defs>
+        <text x="50" y="30" fill="blue" class="frame-location-text">Мої заяви</text>
+    </svg>
+</div>
+<div id="pay-header">
+    <div class="pay-header-frame">
+        <div class="pay-header-greenbox"></div>
+        <div class="pay-header-text">Мої заяви</div>
+    </div>
+</div>
+<div class="mian-frame">
+    <div class="mian-frame-frame">
+        <div class="main-text-frame">
+            <p class="main-text-frame-header">Вітаємо на сторнці “Мої заяви”</p>
+            <p class="main-text-frame-text">
+                На даній сторінці ви можете подавати нові заяви та переглядати вже подані. 
+                Ви побачите інформацію про тип заяви, її поточний статус та дату подання, 
+                а також матимете можливість переглянути її докладніше.
+            </p>
+        </div>
+        <div class="mian-frame-line"></div>
+        <div class="main-btn-frame">
+            <div class="main-statements-type-btn">Заява про підключення/відключення послуг</div>
+            <div class="main-statements-type-btn">Заява про припинення або перенесення платежів</div>
+            <div class="main-statements-type-btn">Заява про перерахунок та корекцію рахунків</div>
+            <div class="main-statements-type-btn">Заява щодо якості послуг</div>
+            <div class="main-statements-type-btn">Заява про ремонт/обслуговування</div>
+            <div class="main-statements-type-btn">Заява про видачу дозволів</div>
+            <div class="main-statements-type-btn">Заява про відновлення/покращення сервісу</div>
+            <div class="main-statements-type-btn">Заява про інші питання</div>
+        </div>
+        <div class="mian-frame-line" style="height: 1.1px"></div>
+        <div class="main-table-frame">
+            <table>
+                <tr>
+                    <th>Тип</th>
+                    <th>Статус</th>
+                    <th>Дата подання</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>Ремонт/Обслуговування</td>
+                    <td>Зареєстровано</td>
+                    <td>26.02.2023</td>
+                    <td style="width:150px; padding: 0 10px 0 0">
+                        <div class="main-table-btn">Переглянути</div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
