@@ -3,6 +3,7 @@
 }
 <head>
     <link rel="stylesheet" href="~/css/Home/Index.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
 </head>
 
 <div class="frame-2">
@@ -71,27 +72,26 @@
         <div class="frame-3-grid-item">Тарифи</div>
         <div class="frame-3-grid-item">Сповіщення</div>
         <div class="frame-3-grid-item">Про нас</div>
-
     </div>
 </div>
-<div id="frame-location">
-    <div class="frame-location-frame">
-        <svg xmlns="http://www.w3.org/2000/svg" width="180" height="53" viewBox="0 0 143 53" fill="none">
-            <path d="M0.934875 0.0260391H124.74L142.648 26.5L124.74 52.974H0.934875V0.0260391Z" fill="url(#paint0_linear_53_35)" />
-            <defs>
-                <linearGradient id="paint0_linear_53_35" x1="0.934876" y1="26.5" x2="142.648" y2="26.5" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#EDEDED" />
-                    <stop offset="1" stop-color="white" />
-                </linearGradient>
-            </defs>
+<div id="frame-location" style="margin-top: -10px">
+    <svg style="z-index: 2" xmlns="http://www.w3.org/2000/svg" width="170" height="53" viewBox="0 0 143 53" fill="none">
+        <path d="M0.934875 0.0260391H124.74L142.648 26.5L124.74 52.974H0.934875V0.0260391Z" fill="url(#paint0_linear_53_35)" />
+        <defs>
+            <linearGradient id="paint0_linear_53_35" x1="0.934876" y1="26.5" x2="142.648" y2="26.5" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#EDEDED" />
+                <stop offset="1" stop-color="white" />
+            </linearGradient>
+        </defs>
+        <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index" id="nav-item">
             <text x="-15" y="30" fill="blue" class="frame-location-text">Комунальні послунги</text>
-        </svg>
-    </div>
+        </a>
+    </svg>
 </div>
-<div class="news-header">
-    <div class="news-header-frame">
-        <div class="news-header-greenbox"></div>
-        <div class="news-header-text">
+<div id="page-name-header">
+    <div class="page-name-header-frame">
+        <div class="page-name-header-greenbox"></div>
+        <div class="page-name-header-text">
             Новини та оновлення
         </div>
     </div>
