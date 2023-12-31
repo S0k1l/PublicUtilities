@@ -1,0 +1,36 @@
+﻿@import '../Colors.css';
+
+li {
+    color: var(--Granite-Gray, #676866);
+    text-align: justify;
+    font-family: Open Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+ul {
+    list-style-type: disc;
+    margin-top:10px;
+}
+
+.mrgn{
+    margin: 10px 0;
+}
+
+/*----------=MAIN FRAME=----------*/
+/*TEXT*/
+.main-text-frame-text {
+    color: var(--Granite-Gray);
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.schedule{
+    width: 80%;
+}
