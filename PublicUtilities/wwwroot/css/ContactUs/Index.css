@@ -12,10 +12,10 @@ li {
 
 ul {
     list-style-type: disc;
-    margin-top:10px;
+    margin-top: 10px;
 }
 
-.mrgn{
+.mrgn {
     margin: 10px 0;
 }
 
@@ -31,6 +31,7 @@ ul {
     line-height: normal;
 }
 
-.schedule{
+.contact-us {
+    display:flex;
     width: 80%;
 }
