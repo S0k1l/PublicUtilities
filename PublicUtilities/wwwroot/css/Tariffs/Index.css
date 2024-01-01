@@ -1,55 +1,16 @@
 ﻿@import '../Colors.css';
 
-p {
-    margin-bottom: 0;
-}
-
 /*----------=MAIN FRAME=----------*/
 /*TEXT*/
 .main-text-frame-text {
-    width: 812.2px;
     color: var(--Granite-Gray);
-    text-align: left;
-    text-indent: 50px;
+    text-align: center;
     font-family: Open Sans;
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
 }
-/*BUTTONS*/
-.main-btn-frame {
-    display: grid;
-    grid-template-columns: auto auto;
-    width: 890px;
-    align-items: flex-start;
-    gap: 15.5px;
-}
-
-.main-statements-type-btn {
-    display: flex;
-    padding: 15.5px;
-    justify-content: center;
-    align-items: center;
-    gap: 7.75px;
-    border-radius: 10px;
-    background: var(--Bright-Gray);
-    color: var(--Granite-Gray);
-    font-family: Open Sans;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: -0.186px;
-    transition: 100ms ease-in-out;
-}
-
-    .main-statements-type-btn:hover {
-        background: var(--green-crayola);
-        color: var(--Anti-Flash-White);
-    }
-
-/*TABLE*/
 
 /*TABLE*/
 .main-table-frame {
@@ -111,7 +72,7 @@ td {
 }
 
     .main-table-btn:hover {
-        background:var(--AuroMetalSaurus);
+        background: var(--AuroMetalSaurus);
         color: var(--Lotion);
     }
 
