@@ -30,7 +30,13 @@ namespace PublicUtilities.Controllers
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user != null)
             {
-                ModelState.AddModelError("", "Користувач з тикою електроною почтою вже існує");
+                ModelState.AddModelError("Email", "Користувач з тикою електроною почтою вже існує");
+                return View(model);
+            }
+
+            if(model.PhoneNumber.Length != 10)
+            {
+                ModelState.AddModelError("PhoneNumber", "Номер телефону введений не правильно");
                 return View(model);
             }
 

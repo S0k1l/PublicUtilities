@@ -10,6 +10,7 @@ namespace PublicUtilities.ViewModels
         public string Email { get; set; }
        
         [Required(ErrorMessage = "Будь ласка, заповніть поле \"Номер телефону\"")]
+        [MaxLength(10)]
         [Phone]
         public string PhoneNumber { get; set; }
 
