@@ -7,6 +7,15 @@ html {
     min-height:100%;
 }
 
+.field-validation-error {
+    padding: 0 7.75px;
+    font-family: Open Sans;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
 @media (min-width: 768px) {
   html {
     font-size: 16px;

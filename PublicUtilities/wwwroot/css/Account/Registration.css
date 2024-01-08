@@ -93,7 +93,7 @@
 
 .main-btn-sigin {
     display: flex;
-    padding: 11.625px 23.25px;
+    padding: 9.625px 23.25px;
     justify-content: center;
     align-items: center;
     gap: 7.75px;
@@ -119,7 +119,7 @@
 
 .main-btn-cancel {
     display: flex;
-    padding: 11.625px 15.5px;
+    padding: 9.625px 15.5px;
     justify-content: center;
     align-items: center;
     gap: 7.75px;

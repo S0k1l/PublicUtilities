@@ -1,6 +1,13 @@
-﻿<head>
+﻿@using PublicUtilities.ViewModels
+@model RegisterViewModel
+
+@Html.ValidationMessageFor(model => model.Email, "", new { @class = "field-validation-error" })
+
+
+<head>
     <link rel="stylesheet" href="~/css/Account/Registration.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+
 </head>
 <div id="frame-location">
         <svg style="z-index: 2" xmlns="http://www.w3.org/2000/svg" width="170" height="53" viewBox="0 0 143 53" fill="none">
@@ -32,7 +39,7 @@
         <div class="page-name-header-text">Реєстрація</div>
     </div>
 </div>
-<div class="mian-frame">
+<form asp-area="" asp-controller="Account" asp-action="Registration" method="post" class="mian-frame">
     <div class="mian-frame-frame">
         <div class="main-text-frame">
             <div class="main-text-frame-header">Вітаємо на сторнці реєстрації</div>
@@ -42,47 +49,62 @@
         <div class="main-frame-input">
             <div class="main-input">
                 <label class="main-input-header">Електрона пошта</label>
-                <input class="main-input-field" />
-                <span class="text-danger"></span>
+                <input asp-for="Email" class=" main-input-field" />
+                <span asp-validation-for="Email" class=" text-danger"></span>
             </div>
             <div class="main-input">
                 <label class="main-input-header">Номер телефону</label>
-                <input class="main-input-field" />
-                <span class="text-danger"></span>
+                <input asp-for="PhoneNumber" class="main-input-field" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
             <div class="main-input">
                 <label class="main-input-header">Пaроль</label>
-                <input class="main-input-field" />
-                <span class="text-danger"></span>
+                <input asp-for="Password" class="main-input-field" />
+                <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="main-input">
                 <label class="main-input-header">Повторіть пароль</label>
-                <input class="main-input-field" />
-                <span class="text-danger"></span>
+                <input asp-for="ConfirmPassword" class="main-input-field" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="main-input">
+                <label class="main-input-header">Прізвище</label>
+                <input asp-for="Surname" class="main-input-field" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="main-input">
+                <label class="main-input-header">Ім'я</label>
+                <input asp-for="Name" class="main-input-field" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="main-input">
+                <label class="main-input-header">По батькові</label>
+                <input asp-for="Patronymic" class="main-input-field" />
+                <span asp-validation-for="Patronymic" class="text-danger"></span>
             </div>
             <div class="main-input">
                 <label class="main-input-header">Вулиця проживання</label>
-                <input class="main-input-field" />
-                <span class="text-danger"></span>
+                <input asp-for="Street" class="main-input-field" />
+                <span asp-validation-for="Street" class="text-danger"></span>
             </div>
             <div class="main-input">
-                <label class="main-input-header">Бцдинок проживання</label>
-                <input class="main-input-field" />
-                <span class="text-danger"></span>
+                <label class="main-input-header">Будинок проживання</label>
+                <input asp-for="Building" class="main-input-field" />
+                <span asp-validation-for="Building" class="text-danger"></span>
             </div>
             <div class="main-input">
                 <label class="main-input-header">Квартира проживання</label>
-                <input class="main-input-field" />
-                <span class="text-danger"></span>
+                <input asp-for="Apartment" class="main-input-field" />
+                <span asp-validation-for="Apartment" class="text-danger"></span>
             </div>
         </div>
         <a class="nav-link main-text-link" asp-area="" asp-controller="Account" asp-action="Login">
             Вже зареєстровані? Тоді увійдіть
         </a>
-@*         <div class="main-text-link">Вже зареєстровані? Тоді увійдіть</div>
- *@        <div class="main-btn-frame">
-            <div class="main-btn-sigin">Зареєструватися</div>
+@*         <div class="main-text-link">Вже зареєстровані? Тоді увійдіть</div>*@     
+        <div class="main-btn-frame">
+            <input type="submit" class="main-btn-sigin" value="Зареєстуватися"/>
             <div class="main-btn-cancel">Назад</div>
         </div>
     </div>
-</div>
+</form>
