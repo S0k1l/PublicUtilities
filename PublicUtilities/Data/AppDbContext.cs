@@ -26,6 +26,9 @@ namespace PublicUtilities.Data
             modelBuilder.Entity<Indicators>()
                 .Property(e => e.Price)
                 .HasColumnType("decimal(18,2)");
+            modelBuilder.Entity<Utilities>()
+                .Property(e => e.Price)
+                .HasColumnType("decimal(18,2)");
 
             modelBuilder.Entity<UsersStatements>()
                    .HasKey(pc => new { pc.AppUserId, pc.StatementsId });

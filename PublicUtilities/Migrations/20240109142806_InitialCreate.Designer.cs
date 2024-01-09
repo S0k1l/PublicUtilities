@@ -12,7 +12,7 @@ using PublicUtilities.Data;
 namespace PublicUtilities.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240107174807_InitialCreate")]
+    [Migration("20240109142806_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -487,9 +487,8 @@ namespace PublicUtilities.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Price")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 

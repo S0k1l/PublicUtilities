@@ -16,6 +16,7 @@ namespace PublicUtilities.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
         }
+
         [HttpGet]
         public IActionResult Registration()
         {
@@ -75,6 +76,7 @@ namespace PublicUtilities.Controllers
             }
             return View(model);
         }
+
         [HttpGet]
         public IActionResult Login()
         {
