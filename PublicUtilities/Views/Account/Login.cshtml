@@ -1,4 +1,7 @@
-﻿<head>
+﻿@using PublicUtilities.ViewModels
+@model LoginViewModel
+
+<head>
     <link rel="stylesheet" href="~/css/Account/Login.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -33,7 +36,7 @@
         <div class="page-name-header-text">Вхід</div>
     </div>
 </div>
-<div class="mian-frame">
+<form asp-area="" asp-controller="Account" asp-action="Login" method="post" class="mian-frame">
     <div class="mian-frame-frame">
         <div class="main-text-frame">
             <div class="main-text-frame-header">Вітаємо на сторнці входу</div>
@@ -43,21 +46,21 @@
         <div class="main-frame-input">
             <div class="main-input">
                 <label class="main-input-header">Електрона пошта</label>
-                <input class="main-input-field" />
-                <span class="text-danger"></span>
+                <input asp-for="Email" class="main-input-field" />
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="main-input">
                 <label class="main-input-header">Пароль</label>
-                <input class="main-input-field" />
-                <span class="text-danger"></span>
+                <input asp-for ="Password" class="main-input-field" />
+                <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <a class="nav-link main-text-link" asp-area="" asp-controller="Account" asp-action="Registration">
                 В перше на сайті? Тоді зареєструйтесь
             </a>
         </div>
-      <div class="main-btn-frame">
-            <div class="main-btn-sigin">Увійти</div>
+        <div class="main-btn-frame">
+            <input type="submit" class="main-btn-sigin" value="Увійти"/>
             <div class="main-btn-cancel">Назад</div>
         </div>
     </div>
-</div>
+</form>

@@ -84,6 +84,36 @@ namespace PublicUtilities.Controllers
         }
 
         [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            var user = await _userManager.FindByEmailAsync(model.Email);
+
+            if (user == null)
+            {
+                ModelState.AddModelError("Email", "Користувача з такою електронною поштою не існує");
+                return View(model);
+            }
+
+            var passwordCheck = await _userManager.CheckPasswordAsync(user, model.Password);
+
+            if (!passwordCheck)
+            {
+                ModelState.AddModelError("Password", "Неправильно введений пароль");
+                return View(model);
+            }
+
+            var result = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
