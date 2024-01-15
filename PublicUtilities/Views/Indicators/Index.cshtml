@@ -1,8 +1,41 @@
-﻿<head>
-    <link rel="stylesheet" href="~/css/Indicators/Index.css" />
-    <link rel="stylesheet" href="~/css/site.csss" />
-</head>
+﻿@using PublicUtilities.ViewModels
+@model ICollection<IndicatorsViewModel>
 
+@if (!string.IsNullOrEmpty(ViewBag.AlertMessage))
+{
+    <div id="myAlert" class="alert">
+        <svg class="alert-img" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+            <g clip-path="url(#clip0_174_565)">
+                <path d="M11.3037 0.0536537C8.38867 0.351505 5.73242 1.60639 3.67187 3.66205C-1.2207 8.54487 -1.2207 16.455 3.67187 21.3378C5.6543 23.3154 8.07129 24.5019 10.9619 24.9121C11.543 24.9951 13.4619 24.9902 14.0625 24.9072C16.8945 24.5165 19.3799 23.2958 21.333 21.333C23.5986 19.0527 24.8633 16.1523 24.9853 12.9394C25.1123 9.46772 23.8037 6.13764 21.3281 3.66205C19.4092 1.73822 16.9775 0.522404 14.2334 0.11713C13.6377 0.0292396 11.9043 -0.00982285 11.3037 0.0536537ZM14.3066 1.89936C16.5723 2.30951 18.501 3.31537 20.0928 4.90717C22.1387 6.95307 23.2422 9.6142 23.2422 12.4999C23.2422 16.6064 20.9521 20.288 17.2461 22.1386C15.7715 22.8759 14.1943 23.2421 12.5 23.2421C9.61914 23.2421 6.94824 22.1337 4.90723 20.0927C3.29102 18.4765 2.29004 16.5283 1.87012 14.1845C1.74805 13.4863 1.74805 11.5136 1.87012 10.8154C2.29004 8.47162 3.29102 6.52338 4.90723 4.90717C6.65039 3.16401 8.75976 2.1435 11.3037 1.80658C11.9043 1.72846 13.667 1.78217 14.3066 1.89936Z" fill="#curentcolor" />
+                <path d="M12.0947 6.61123C11.5479 6.7626 11.167 7.21181 11.167 7.70498C11.167 8.34463 11.6699 8.82803 12.3828 8.87685C13.1836 8.92568 13.8184 8.42275 13.8184 7.73428C13.8135 6.94814 12.9346 6.37197 12.0947 6.61123Z" fill="#curentcolor" />
+                <path d="M12.1143 10.4541C11.7725 10.5127 11.4844 10.6738 11.3428 10.8838L11.2305 11.0547L11.2402 14.3604L11.2549 17.6709L11.4209 17.8418C11.6846 18.1104 12.0117 18.2324 12.5 18.2373C12.876 18.2373 12.9492 18.2227 13.2422 18.0762C13.8135 17.793 13.7695 18.1201 13.7695 14.292V10.9912L13.6182 10.8203C13.3545 10.5176 12.6904 10.3564 12.1143 10.4541Z" fill="#curentcolor" />
+            </g>
+            <defs>
+                <clipPath id="clip0_174_565">
+                    <rect width="25" height="25" fill="white" />
+                </clipPath>
+            </defs>
+        </svg>
+        @ViewBag.AlertMessage
+    </div>
+    <script>
+        // Display the alert
+        document.getElementById("myAlert").style.display = "flex";
+
+        // Set a timeout to hide the alert after 3 seconds
+        setTimeout(function () {
+            document.getElementById("myAlert").style.display = "none";
+        }, 3000);
+
+    </script>
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/Indicators/Index.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="~/js/Indictors/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
 <div id="frame-location">
     <svg style="z-index: 2" xmlns="http://www.w3.org/2000/svg" width="170" height="53" viewBox="0 0 143 53" fill="none">
         <path d="M0.934875 0.0260391H124.74L142.648 26.5L124.74 52.974H0.934875V0.0260391Z" fill="url(#paint0_linear_53_35)" />
@@ -45,75 +78,49 @@
         </div>
         <div class="mian-frame-line"></div>
         <div class="main-frame-input">
-            <div class="main-details-frame">
-                <details>
-                    <summary>Вода</summary>
-                    <div class="main-details-first-row">
-                        <p class="main-details-first-row-text">Поточні</p>
-                        <p class="main-details-first-row-text">Попередні</p>
-                        <p class="main-details-first-row-text">Різниця</p>
-                    </div>
-                    <div class="details-line-frame">
-                        <div class="details-line"></div>
-                    </div>
-                    <div>
-                        <div class="main-details-seccond-row">
-                            <input class="main-details-input-field" />
-                            <p class="main-details-text-field"></p>
-                            <p class="main-details-text-field"></p>
+            @foreach (var item in @Model)
+            {
+                <div class="main-details-frame">
+                    <details>
+                        <summary>@item.PlacesOfResidence</summary>
+                        <div class="summary-frame">
+                            @foreach (var indicators in item.UserIndicators)
+                            {
+                                @*  *@
+                                <form asp-action="Index" asp-controller="Indicators" method="post" class="main-details-frame-2">
+                                    <input value="@item.PlacesOfResidenceId" name="placesOfResidenceId" hidden />
+                                    <input value="@indicators.UtilitiesId" name="utilitiesId" hidden />
+                                    <details>
+                                        <summary class="summary-2">@indicators.UtilitiesType</summary>
+                                        <div class="main-details-first-row">
+                                            <p class="main-details-first-row-text">Поточні</p>
+                                            <p class="main-details-first-row-text">Попередні</p>
+                                            <p class="main-details-first-row-text">Різниця</p>
+                                        </div>
+                                        <div class="details-line-frame">
+                                            <div class="details-line"></div>
+                                        </div>
+                                        <div>
+                                            <div class="main-details-seccond-row">
+                                                <input asp-for="@indicators.Indicator" name="indicator" id="num1_@indicators.Id" required
+                                                min="@indicators.Indicator" type="number" class="main-details-input-field"
+                                                onkeypress="return isNumberKey(event)" oninput="updateResult(@indicators.Id)" />
+                                                <input class="main-details-text-field" id="num2_@indicators.Id"
+                                                value="@indicators.Indicator" readonly/>
+                                                <div id="result_@indicators.Id" class="main-details-text-field"></div>
+                                            </div>
+                                        </div>
+                                        <div class="main-btn-frame">
+                                            <button type="submit" class="main-btn-submit">Подати</button>
+                                        </div>
+
+                                    </details>
+                                </form>
+                            }                                        
                         </div>
-                    </div>
-                    <div class="main-btn-frame">
-                        <div class="main-btn-submit">Подати</div>
-                    </div>
-                </details>
-            </div>
-            <div class="main-details-frame">
-                <details>
-                    <summary>Газ</summary>
-                    <div class="main-details-first-row">
-                        <p class="main-details-first-row-text">Поточні</p>
-                        <p class="main-details-first-row-text">Попередні</p>
-                        <p class="main-details-first-row-text">Різниця</p>
-                    </div>
-                    <div class="details-line-frame">
-                        <div class="details-line"></div>
-                    </div>
-                    <div>
-                        <div class="main-details-seccond-row">
-                            <input class="main-details-input-field" />
-                            <p class="main-details-text-field"></p>
-                            <p class="main-details-text-field"></p>
-                        </div>
-                    </div>
-                    <div class="main-btn-frame">
-                        <div class="main-btn-submit">Подати</div>
-                    </div>
-                </details>
-            </div>
-            <div class="main-details-frame">
-                <details>
-                    <summary>Електроенергія</summary>
-                    <div class="main-details-first-row">
-                        <p class="main-details-first-row-text">Поточні</p>
-                        <p class="main-details-first-row-text">Попередні</p>
-                        <p class="main-details-first-row-text">Різниця</p>
-                    </div>
-                    <div class="details-line-frame">
-                        <div class="details-line"></div>
-                    </div>
-                    <div>
-                        <div class="main-details-seccond-row">
-                            <input class="main-details-input-field" />
-                            <p class="main-details-text-field"></p>
-                            <p class="main-details-text-field"></p>
-                        </div>
-                    </div>
-                    <div class="main-btn-frame">
-                        <div class="main-btn-submit">Подати</div>
-                    </div>
-                </details>
-            </div>
+                    </details>
+                </div>
+            }           
         </div>
     </div>
 </div>

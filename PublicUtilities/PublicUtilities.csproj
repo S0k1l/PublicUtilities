@@ -7,18 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="wwwroot\js\Indictors\**" />
-    <Content Remove="wwwroot\js\Indictors\**" />
-    <EmbeddedResource Remove="wwwroot\js\Indictors\**" />
-    <None Remove="wwwroot\js\Indictors\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Remove="wwwroot\Images\Background.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="wwwroot\Images\Background.jpg" />
+    <None Include="wwwroot\js\Indictors\script.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,11 +28,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Interface\" />
-    <Folder Include="Repository\" />
   </ItemGroup>
 
 </Project>
