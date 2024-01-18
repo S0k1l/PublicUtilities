@@ -1,0 +1,174 @@
+﻿@using PublicUtilities.ViewModels
+@model List<StatisticViewModel>
+
+<head>
+    <link rel="stylesheet" href="~/css/Statistic/Index.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var viewModel = @Html.Raw(Json.Serialize(@Model));
+        var datasets = [];
+        viewModel.forEach(function (statistic) {
+            var color = 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ', 1)'
+
+            var dataset = {
+                label: statistic.placesOfResidence,
+                data: statistic.indicator,
+                price: statistic.price,
+                backgroundColor: color,
+                borderColor: color,
+                pointRadius: 2,
+                borderWidth: 1,
+                tension: 0.1,
+            };
+
+            datasets.push(dataset);
+        });
+
+        var data = {
+            labels: viewModel[0].date,
+            datasets: datasets,
+        };
+
+        var options = {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            return `${context.dataset.label},`;
+                        },
+                            afterLabel: function (context) {
+                            const dataPoint = context.dataIndex;
+                            return `Показник: ${context.formattedValue} м^3,\n` 
+                            + `Ціна: ${context.dataset.price[dataPoint]} грн,`;
+                        },
+                    },
+                    bodyFont: {
+                        size: 12,
+                        family: 'Open Sans',
+                        style: 'normal',
+                    },
+                },
+                legend: {
+                    labels: {
+                        font: {
+                            size: 12,
+                            family: 'Open Sans',
+                            style: 'normal',
+                        }
+                    }
+                }
+            }
+        };
+
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: options
+        });
+    });
+</script>
+
+
+<div id="frame-location">
+    <svg style="z-index: 2" xmlns="http://www.w3.org/2000/svg" width="170" height="53" viewBox="0 0 143 53" fill="none">
+        <path d="M0.934875 0.0260391H124.74L142.648 26.5L124.74 52.974H0.934875V0.0260391Z" fill="url(#paint0_linear_53_35)" />
+        <defs>
+            <linearGradient id="paint0_linear_53_35" x1="0.934876" y1="26.5" x2="142.648" y2="26.5" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#EDEDED" />
+                <stop offset="1" stop-color="white" />
+            </linearGradient>
+        </defs>
+        <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index" id="nav-item">
+            <text x="-15" y="30" fill="blue" class="frame-location-text">Комунальні послунги</text>
+        </a>
+    </svg>
+    <svg style="z-index: 1; margin-left: -55px" xmlns="http://www.w3.org/2000/svg" width="172" height="53" viewBox="0 0 142 53" fill="none">
+        <path d="M0.0500488 0H123.275L141.1 26.35L123.275 52.7H0.0500488V0Z" fill="url(#paint0_linear_103_80)" />
+        <defs>
+            <linearGradient id="paint0_linear_103_80" x1="0.0500494" y1="26.35" x2="141.1" y2="26.35" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#EDEDED" />
+                <stop offset="1" stop-color="white" />
+            </linearGradient>
+        </defs>
+        <text x="40" y="30" fill="blue" class="frame-location-text">Статистика</text>
+    </svg>
+    <svg style="margin-left: -80px" xmlns="http://www.w3.org/2000/svg" width="142" height="53" viewBox="0 0 142 53" fill="none">
+        <path d="M0.0500488 0H123.275L141.1 26.35L123.275 52.7H0.0500488V0Z" fill="url(#paint0_linear_103_80)" />
+        <defs>
+            <linearGradient id="paint0_linear_103_80" x1="0.0500494" y1="26.35" x2="141.1" y2="26.35" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#EDEDED" />
+                <stop offset="1" stop-color="white" />
+            </linearGradient>
+        </defs>
+        <text x="80" y="30" fill="blue" class="frame-location-text">Вода</text>
+    </svg>
+</div>
+<div id="page-name-header">
+    <div class="page-name-header-frame">
+        <div class="page-name-header-greenbox"></div>
+        <div class="page-name-header-text">Статистика</div>
+    </div>
+</div>
+<div class="choose-frame">
+    <div class="choose-green-btn">Вода</div>
+    <a class="nav-link choose-gray-btn" asp-area="" asp-controller="Statistic" asp-action="Gas">Газ</a>
+    <a class="nav-link choose-gray-btn" asp-area="" asp-controller="Statistic" asp-action="Electricity">Електроенергія</a>
+
+</div>
+<div class="mian-frame">
+    <div class="mian-frame-frame">
+        <div class="main-text-frame">
+            <p class="main-text-frame-header">Вітаємо на сторнці статистики</p>
+            <p class="main-text-frame-text">
+                На цій сторінці ви можете переглянути свою статистику щодо споживання води.
+            </p>
+        </div>
+        <div class="mian-frame-line"></div>
+        <div class="graph-div">
+            <p class="main-text-frame-text">
+                <b>Графік</b>
+            </p>
+            <div class="graph">
+                <canvas id="myChart" width="800" height="250"></canvas>
+            </div>
+        </div>
+        <div class="mian-frame-line"></div>
+        @foreach (var item in Model)
+        {
+            <p class="main-frame-text"><b>@item.PlacesOfResidence</b></p>
+            int count = item.Price.Count();
+            <div class="main-table-frame">
+                <table class="rounded">
+                    <thead>
+                        <tr>
+                            <th>Показник</th>
+                            <th>Дата</th>
+                            <th>Ціна</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < count; i++)
+                        {
+                            <tr>
+                                <td>@item.Indicator[i]</td>
+                                <td>@item.Date[i]</td>
+                                <td>@item.Price[i]</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>

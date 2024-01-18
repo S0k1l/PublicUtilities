@@ -103,7 +103,7 @@
                                         <div>
                                             <div class="main-details-seccond-row">
                                                 <input asp-for="@indicators.Indicator" name="indicator" id="num1_@indicators.Id" required
-                                                min="@indicators.Indicator" type="number" class="main-details-input-field"
+                                                min="0" type="number" class="main-details-input-field"
                                                 onkeypress="return isNumberKey(event)" oninput="updateResult(@indicators.Id)" />
                                                 <input class="main-details-text-field" id="num2_@indicators.Id"
                                                 value="@indicators.Indicator" readonly/>

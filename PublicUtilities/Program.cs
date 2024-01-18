@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddScoped<IIndicatorsRepository, IndicatorsRepository>();
+builder.Services.AddScoped<IStatisticRepository, StatisticRepository>();
 
 builder.Services.AddControllersWithViews();
 
