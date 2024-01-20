@@ -29,6 +29,7 @@ namespace PublicUtilities.Data
                 {
                     var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
 
+                    //Utilities=-------------------------------
                     var waterUtilities = new Utilities
                     {
                         Name = "Вода",
@@ -49,6 +50,9 @@ namespace PublicUtilities.Data
                         Price = 2.64m,
                         Date = DateTime.Now,
                     };
+
+                    var indicators = GanareteIndocatorsForYear(waterUtilities, gasUtilities, electricityUtilities);
+                    var indicators2 = GanareteIndocatorsForYear(waterUtilities, gasUtilities, electricityUtilities); ;
 
                     var newUser = new AppUser
                     {
@@ -74,33 +78,7 @@ namespace PublicUtilities.Data
                                             Text = "Text",
                                         }
                                     },
-                                    Indicators = new List<Indicators>
-                                    {
-                                         new Indicators
-                                         {
-                                             Indicator = "456",
-                                             Date = DateTime.Now,
-                                             Price = 1203.84m,
-                                             Paid = false,
-                                             Utilities = electricityUtilities
-                                         },
-                                         new Indicators
-                                         {
-                                             Indicator = "82",
-                                             Date = DateTime.Now,
-                                             Price = 2122.16m,
-                                             Paid = false,
-                                             Utilities = waterUtilities
-                                         },
-                                         new Indicators
-                                         {
-                                             Indicator = "108",
-                                             Date = DateTime.Now,
-                                             Price = 859.68m,
-                                             Paid = false,
-                                             Utilities = gasUtilities
-                                         }
-                                    }
+                                    Indicators = indicators,
                                 }
                             },
                             new UsersPlacesOfResidence
@@ -110,33 +88,7 @@ namespace PublicUtilities.Data
                                     Apartment = "29",
                                     House = "1",
                                     Streets = new Streets{ Name = "Львівська"},
-                                    Indicators = new List<Indicators>
-                                    {
-                                         new Indicators
-                                         {
-                                             Indicator = "450",
-                                             Date = DateTime.Now,
-                                             Price = 1188m,
-                                             Paid = false,
-                                             Utilities = electricityUtilities
-                                         },
-                                         new Indicators
-                                         {
-                                             Indicator = "80",
-                                             Date = DateTime.Now,
-                                             Price = 2070.4m,
-                                             Paid = false,
-                                             Utilities = waterUtilities
-                                         },
-                                         new Indicators
-                                         {
-                                             Indicator = "100",
-                                             Date = DateTime.Now,
-                                             Price = 796m,
-                                             Paid = false,
-                                             Utilities = gasUtilities
-                                         }
-                                    }
+                                    Indicators = indicators2,
                                 }
                             }
                         },
@@ -158,6 +110,8 @@ namespace PublicUtilities.Data
 
                     await userManager.CreateAsync(newUser, "1fakeMail@mail.com");
                     await userManager.AddToRoleAsync(newUser, UserRoles.User);
+
+                    var indicators3 = GanareteIndocatorsForYear(waterUtilities,gasUtilities,electricityUtilities);
 
                     var newUser2 = new AppUser
                     {
@@ -183,33 +137,7 @@ namespace PublicUtilities.Data
                                             Text = "Text",
                                         }
                                     },
-                                    Indicators = new List<Indicators>
-                                    {
-                                        new Indicators
-                                        {
-                                            Indicator = "400",
-                                            Date = DateTime.Now,
-                                            Price = 1056m,
-                                            Paid = false,
-                                            Utilities = electricityUtilities
-                                        },
-                                        new Indicators
-                                        {
-                                            Indicator = "90",
-                                            Date = DateTime.Now,
-                                            Price = 2329.2m,
-                                            Paid = false,
-                                            Utilities = waterUtilities
-                                        },
-                                        new Indicators
-                                        {
-                                            Indicator = "110",
-                                            Date = DateTime.Now,
-                                            Price = 875.6m,
-                                            Paid = false,
-                                            Utilities = gasUtilities
-                                        }
-                                    }
+                                    Indicators = indicators3,
                                 }
                             },
                         },
@@ -256,6 +184,87 @@ namespace PublicUtilities.Data
                     context.SaveChanges();
                 }
             }
+        }
+
+        private static List<Indicators> GanareteIndocatorsForYear(Utilities waterUtilities, Utilities gasUtilities, Utilities electricityUtilities)
+        {
+            var newIndicators = new List<Indicators>();
+            Random rand = new Random();
+            int idicator;
+
+            //waterUtilities
+            for (int i = 11; i >= 1; i--)
+            {
+                idicator = rand.Next(5, 5);
+                newIndicators.Add(new Indicators
+                {
+                    Indicator = idicator.ToString(),
+                    Date = DateTime.Now.AddMonths(-i),
+                    Price = idicator * waterUtilities.Price,
+                    Paid = true,
+                    Utilities = waterUtilities
+                });
+            }
+
+            idicator = rand.Next(5, 5);
+            newIndicators.Add(new Indicators
+            {
+                Indicator = idicator.ToString(),
+                Date = DateTime.Now,
+                Price = idicator * waterUtilities.Price,
+                Paid = false,
+                Utilities = waterUtilities,
+            });
+
+            //gasUtilities
+            for (int i = 11; i >= 1; i--)
+            {
+                idicator = rand.Next(21, 31);
+                newIndicators.Add(new Indicators
+                {
+                    Indicator = idicator.ToString(),
+                    Date = DateTime.Now.AddMonths(-i),
+                    Price = idicator * gasUtilities.Price,
+                    Paid = true,
+                    Utilities = gasUtilities
+                });
+            }
+
+            idicator = rand.Next(21, 31);
+            newIndicators.Add(new Indicators
+            {
+                Indicator = idicator.ToString(),
+                Date = DateTime.Now,
+                Price = idicator * gasUtilities.Price,
+                Paid = false,
+                Utilities = gasUtilities
+            });
+
+            //electricityUtilities
+            for (int i = 11; i >= 1; i--)
+            {
+                idicator = rand.Next(332, 382);
+                newIndicators.Add(new Indicators
+                {
+                    Indicator = idicator.ToString(),
+                    Date = DateTime.Now.AddMonths(-i),
+                    Price = idicator * electricityUtilities.Price,
+                    Paid = true,
+                    Utilities = electricityUtilities
+                });
+            }
+
+            idicator = rand.Next(332, 382);
+            newIndicators.Add(new Indicators
+            {
+                Indicator = idicator.ToString(),
+                Date = DateTime.Now,
+                Price = idicator * electricityUtilities.Price,
+                Paid = false,
+                Utilities = electricityUtilities
+            });
+
+            return newIndicators;
         }
     }
 }

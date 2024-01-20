@@ -10,16 +10,18 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
+        var model = @Html.Raw(Json.Serialize(@Model));
+        console.log(model);
         var ctx = document.getElementById('myChart').getContext('2d');
-        var viewModel = @Html.Raw(Json.Serialize(@Model));
-        var datasets = [];
-        viewModel.forEach(function (statistic) {
-            var color = 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ', 1)'
 
+        var datasets = [];
+
+        for (var i = 0; i < model.length; i++) {
+            var color = 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ', 1)'
+            var dataPoints = model[i].dataPoints;
             var dataset = {
-                label: statistic.placesOfResidence,
-                data: statistic.indicator,
-                price: statistic.price,
+                label: model[i].placesOfResidence,
+                data: [],
                 backgroundColor: color,
                 borderColor: color,
                 pointRadius: 2,
@@ -27,58 +29,62 @@
                 tension: 0.1,
             };
 
+            for (var j = 0; j < dataPoints.length; j++) {
+                dataset.data.push({
+                    x: dataPoints[j].date,
+                    y: dataPoints[j].indicator,
+                    price: dataPoints[j].price,
+                });
+            }
+            console.log(dataset);
             datasets.push(dataset);
-        });
+        }
 
-        var data = {
-            labels: viewModel[0].date,
-            datasets: datasets,
-        };
-
-        var options = {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
+        var config = {
+            type: 'line',
+            data: {
+                datasets: datasets
             },
-            plugins: {
-                tooltip: {
-                    callbacks: {
-                        label: function (context) {
-                            return `${context.dataset.label},`;
-                        },
-                            afterLabel: function (context) {
-                            const dataPoint = context.dataIndex;
-                            return `Показник: ${context.formattedValue} м^3,\n` 
-                            + `Ціна: ${context.dataset.price[dataPoint]} грн,`;
-                        },
-                    },
-                    bodyFont: {
-                        size: 12,
-                        family: 'Open Sans',
-                        style: 'normal',
-                    },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 },
-                legend: {
-                    labels: {
-                        font: {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                return `${context.dataset.label},`;
+                            },
+                            afterLabel: function (context) {
+                                const dataPoint = context.dataIndex;
+                                return `Показник: ${context.formattedValue} м^3,\n`
+                                    + `Ціна: ${context.dataset.data[dataPoint].price} грн,`;
+                            },
+                        },
+                        bodyFont: {
                             size: 12,
                             family: 'Open Sans',
                             style: 'normal',
+                        },
+                    },
+                    legend: {
+                        labels: {
+                            font: {
+                                size: 12,
+                                family: 'Open Sans',
+                                style: 'normal',
+                            }
                         }
                     }
                 }
             }
         };
 
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: data,
-            options: options
-        });
+        var myChart = new Chart(ctx, config);
     });
 </script>
-
 
 <div id="frame-location">
     <svg style="z-index: 2" xmlns="http://www.w3.org/2000/svg" width="170" height="53" viewBox="0 0 143 53" fill="none">
@@ -147,7 +153,6 @@
         @foreach (var item in Model)
         {
             <p class="main-frame-text"><b>@item.PlacesOfResidence</b></p>
-            int count = item.Price.Count();
             <div class="main-table-frame">
                 <table class="rounded">
                     <thead>
@@ -158,12 +163,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @for (int i = 0; i < count; i++)
+                        @{
+                            var newItem = item.DataPoints.OrderByDescending(i => DateTime.Parse(i.Date)).ToList();
+                        }
+                        @foreach (var statistic in newItem)
                         {
                             <tr>
-                                <td>@item.Indicator[i]</td>
-                                <td>@item.Date[i]</td>
-                                <td>@item.Price[i]</td>
+                                <td>@statistic.Indicator</td>
+                                <td>@statistic.Date</td>
+                                <td>@statistic.Price</td>
                             </tr>
                         }
                     </tbody>

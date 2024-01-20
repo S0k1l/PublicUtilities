@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PublicUtilities.Interface;
+using System.Runtime.Intrinsics.Arm;
 
 namespace PublicUtilities.Controllers
 {
@@ -26,6 +27,7 @@ namespace PublicUtilities.Controllers
             if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
 
             var model = await _statisticRepository.GetUserStatisticByUtilitiesType(User.Identity.Name, "Газ");
+
             return View(model);
         }
 
