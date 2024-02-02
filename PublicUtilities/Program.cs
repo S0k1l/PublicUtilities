@@ -2,18 +2,22 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PublicUtilities.Data;
+using PublicUtilities.Helpers;
 using PublicUtilities.Interface;
 using PublicUtilities.Models;
 using PublicUtilities.Repository;
+using PublicUtilities.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IIndicatorsRepository, IndicatorsRepository>();
 builder.Services.AddScoped<IStatisticRepository, StatisticRepository>();
+builder.Services.AddScoped<IStatementsRepository, StatementsRepository>();
+builder.Services.AddScoped<IPhotoService, PhotoService>();
 
-builder.Services.AddControllersWithViews();
-
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));

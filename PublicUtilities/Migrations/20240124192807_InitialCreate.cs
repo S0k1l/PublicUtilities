@@ -83,20 +83,6 @@ namespace PublicUtilities.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "StatementsTypes",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SignatureCount = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_StatementsTypes", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Streets",
                 columns: table => new
                 {
@@ -231,31 +217,24 @@ namespace PublicUtilities.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Statements",
+                name: "StatementsTypes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SignatureCount = table.Column<int>(type: "int", nullable: false),
                     DepartmentId = table.Column<int>(type: "int", nullable: false),
-                    StatementsTypeId = table.Column<int>(type: "int", nullable: false),
-                    Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StatementUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    isPhotoNeeded = table.Column<bool>(type: "bit", nullable: false),
+                    isStreetNeeded = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Statements", x => x.Id);
+                    table.PrimaryKey("PK_StatementsTypes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Statements_Departments_DepartmentId",
+                        name: "FK_StatementsTypes_Departments_DepartmentId",
                         column: x => x.DepartmentId,
                         principalTable: "Departments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Statements_StatementsTypes_StatementsTypeId",
-                        column: x => x.StatementsTypeId,
-                        principalTable: "StatementsTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -282,25 +261,25 @@ namespace PublicUtilities.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UsersStatements",
+                name: "Statements",
                 columns: table => new
                 {
-                    AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    StatementsId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StatementsTypeId = table.Column<int>(type: "int", nullable: false),
+                    Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StatementUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UsersStatements", x => new { x.AppUserId, x.StatementsId });
+                    table.PrimaryKey("PK_Statements", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UsersStatements_AspNetUsers_AppUserId",
-                        column: x => x.AppUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_UsersStatements_Statements_StatementsId",
-                        column: x => x.StatementsId,
-                        principalTable: "Statements",
+                        name: "FK_Statements_StatementsTypes_StatementsTypeId",
+                        column: x => x.StatementsTypeId,
+                        principalTable: "StatementsTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -380,6 +359,30 @@ namespace PublicUtilities.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "UsersStatements",
+                columns: table => new
+                {
+                    AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    StatementsId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UsersStatements", x => new { x.AppUserId, x.StatementsId });
+                    table.ForeignKey(
+                        name: "FK_UsersStatements_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UsersStatements_Statements_StatementsId",
+                        column: x => x.StatementsId,
+                        principalTable: "Statements",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -440,14 +443,14 @@ namespace PublicUtilities.Migrations
                 column: "StreetsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Statements_DepartmentId",
-                table: "Statements",
-                column: "DepartmentId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Statements_StatementsTypeId",
                 table: "Statements",
                 column: "StatementsTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StatementsTypes_DepartmentId",
+                table: "StatementsTypes",
+                column: "DepartmentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UsersPlacesOfResidence_PlacesOfResidenceId",
@@ -512,10 +515,10 @@ namespace PublicUtilities.Migrations
                 name: "Streets");
 
             migrationBuilder.DropTable(
-                name: "Departments");
+                name: "StatementsTypes");
 
             migrationBuilder.DropTable(
-                name: "StatementsTypes");
+                name: "Departments");
         }
     }
 }

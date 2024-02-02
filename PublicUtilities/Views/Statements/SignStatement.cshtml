@@ -1,0 +1,117 @@
+﻿@using PublicUtilities.Data.Enum
+@using PublicUtilities.ViewModels
+@model StatementDetailsViewModel
+
+<head>
+    <link rel="stylesheet" href="~/css/Statements/StatementDetails.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+<div id="frame-location">
+    <svg style="z-index: 4" xmlns="http://www.w3.org/2000/svg" width="170" height="53" viewBox="0 0 143 53" fill="none">
+        <path d="M0.934875 0.0260391H124.74L142.648 26.5L124.74 52.974H0.934875V0.0260391Z" fill="url(#paint0_linear_53_35)" />
+        <defs>
+            <linearGradient id="paint0_linear_53_35" x1="0.934876" y1="26.5" x2="142.648" y2="26.5" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#EDEDED" />
+                <stop offset="1" stop-color="white" />
+            </linearGradient>
+        </defs>
+        <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index" id="nav-item">
+            <text x="-15" y="30" fill="blue" class="frame-location-text">Комунальні послунги</text>
+        </a>
+    </svg>
+    <svg style="z-index: 3; margin-left: -50px;" xmlns="http://www.w3.org/2000/svg" width="142" height="53" viewBox="0 0 142 53" fill="none">
+        <path d="M0.0500488 0H123.275L141.1 26.35L123.275 52.7H0.0500488V0Z" fill="url(#paint0_linear_103_80)" />
+        <defs>
+            <linearGradient id="paint0_linear_103_80" x1="0.0500494" y1="26.35" x2="141.1" y2="26.35" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#EDEDED" />
+                <stop offset="1" stop-color="white" />
+            </linearGradient>
+        </defs>
+        <a class="nav-link " asp-area="" asp-controller="Statements" asp-action="MyStatements" id="nav-item">
+            <text x="50" y="30" fill="blue" class="frame-location-text">Мої заяви</text>
+        </a>
+    </svg>
+    <svg style="margin-left: -20px; z-index: 2" xmlns="http://www.w3.org/2000/svg" width="142" height="53" viewBox="0 0 142 53" fill="none">
+        <path d="M0.0500488 0H123.275L141.1 26.35L123.275 52.7H0.0500488V0Z" fill="url(#paint0_linear_103_80)" />
+        <defs>
+            <linearGradient id="paint0_linear_103_80" x1="0.0500494" y1="26.35" x2="141.1" y2="26.35" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#EDEDED" />
+                <stop offset="1" stop-color="white" />
+            </linearGradient>
+        </defs>
+        <a class="nav-link " asp-area="" asp-controller="Statements" asp-action="StatementsList" id="nav-item">
+            <text x="35" y="30" fill="blue" class="frame-location-text">Моя заява</text>
+        </a>
+    </svg>
+</div>
+<div id="page-name-header">
+    <div class="page-name-header-frame">
+        <div class="page-name-header-greenbox"></div>
+        <div class="page-name-header-text">Моя заява</div>
+    </div>
+</div>
+<div class="mian-frame" enctype="multipart/form-data">
+
+    <div class="mian-frame-frame">
+        <div class="main-text-frame">
+            <p class="main-text-frame-header">Вітаємо на сторнці "Моя заява"</p>
+            <p class="main-text-frame-text">
+                На даній сторінці ви можете детальніше розглянути свою заяву
+            </p>
+        </div>
+        <div class="mian-frame-line"></div>
+        <div class="main-details-frame">
+            <p class="main-text-frame-text">
+                <b>@Model.StatementsType</b>
+            </p><br />
+            <div class="main-frame-input">
+                @if (Model.Street != null)
+                {
+                    <div class="main-input">
+                        <label class="main-input-header">Вулиця</label>
+                        <input asp-for="Street" class="main-input-field" readonly />
+                        <span asp-validation-for="Street" class="text-danger"></span>
+                    </div>
+                }
+                <div class="main-input">
+                    <label class="main-input-header">Вміст заяви</label>
+                    <textarea asp-for="Text" rows="5" class="main-input-textarea" readonly></textarea>
+                    <span asp-validation-for="Text" class="text-danger"></span>
+                </div>
+                @if (Model.StatementUrl != null)
+                {
+                    <div class="main-input">
+                        <label class="main-input-header">Прикріплене фото</label>
+                        <img class="img-fluid" src="@Model.StatementUrl" alt="">
+                    </div>
+                }
+                <div class="main-input-header">Дата подання: @Model.Date</div>
+                <div class="main-input-header">
+                    Статус:
+                    @switch (Model.Status)
+                    {
+                        case StatementsStatus.Відхилена:
+                            <p style="color:red;">@Model.Status</p>
+                            break;
+                        case StatementsStatus.Розглядається:
+                            <p style="color:deepskyblue;">@Model.Status</p>
+                            break;
+                        case StatementsStatus.Ухвалена:
+                            <p style="color:limegreen;">@Model.Status</p>
+                            break;
+                        default:
+                            <p>@Model.Status</p>
+                            break;
+                    }
+                </div><br />
+
+                <form asp-action="SignStatementPost" asp-route-id="@Model.Id" method="post" class="main-btn-frame">
+                    <input type="submit" class="main-btn-submit" value="Підписати" />
+                    <a asp-action="MyStatements" asp-controller="Statements" class="main-btn-cancel nav-link">Назад</a>
+                </form>
+            </div>
+        </div>
+        <div class="mian-frame-line"></div>
+    </div>
+</div>

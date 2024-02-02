@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using PublicUtilities.Models;
 using System.Diagnostics;
 using System.Net;
+using System.Security;
+using System.Security.Cryptography.Xml;
 
 namespace PublicUtilities.Data
 {
@@ -24,10 +27,262 @@ namespace PublicUtilities.Data
 
                 context.Database.EnsureCreated();
 
+                
+
                 //Users
                 if (!context.Users.Any())
                 {
                     var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
+
+                    //Departments=-------------------------------
+                    var infrastructureAndService = new Departments { Name = "Відділ інфраструктури та обслуговування" };
+                    var administrationAndFinance = new Departments { Name = "Відділ адміністрації та фінансів" };
+                    var ecologyAndEnvironmentalProtection = new Departments { Name = "Відділ екології та охорони довкілля" };
+                    var publicRelationsAndCommunications = new Departments { Name = "Відділ зав’язків з громадськістю та комунікації" };
+
+                    await context.AddRangeAsync(infrastructureAndService, 
+                        administrationAndFinance, 
+                        ecologyAndEnvironmentalProtection,
+                        publicRelationsAndCommunications);
+
+                    //StatementsTypes=-------------------------------
+                    //administrationAndFinance
+                    var receivingTaxBenefitsOrTaxRefunds = new StatementsTypes
+                    {
+                        Type = "Заява про отримання податкових пільг або повернення податків",
+                        SignatureCount = 1,
+                        Department = administrationAndFinance,
+                        isPhotoNeeded = false,
+                        isStreetNeeded = false,
+                    };
+
+                    var financialSupportOrSocialServices = new StatementsTypes
+                    {
+                        Type = "Звернення щодо фінансової підтримки або соціальних послуг",
+                        SignatureCount = 1,
+                        Department = administrationAndFinance,
+                        isPhotoNeeded = false,
+                        isStreetNeeded = false,
+                    };
+
+                    var keepingACertificateOfIncome = new StatementsTypes
+                    {
+                        Type = "Заява про отримання довідки про доходи для отримання соціальних пільг",
+                        SignatureCount = 1,
+                        Department = administrationAndFinance,
+                        isPhotoNeeded = false,
+                        isStreetNeeded = false,
+                    };
+
+                    var financialSupportProgramsForEntrepreneurs = new StatementsTypes
+                    {
+                        Type = "Звернення щодо участі у програмах фінансової підтримки підприємців",
+                        SignatureCount = 1,
+                        Department = administrationAndFinance,
+                        isPhotoNeeded = false,
+                        isStreetNeeded = false,
+                    };
+
+                    var registrationOfANewBusiness = new StatementsTypes
+                    {
+                        Type = "Заява про реєстрацію нового бізнесу чи зміни в існуючому",
+                        SignatureCount = 1,
+                        Department = administrationAndFinance,
+                        isPhotoNeeded = false,
+                        isStreetNeeded = false,
+                    };
+
+                    await context.AddRangeAsync(receivingTaxBenefitsOrTaxRefunds,
+                        financialSupportOrSocialServices,
+                        keepingACertificateOfIncome,
+                        financialSupportProgramsForEntrepreneurs,
+                        registrationOfANewBusiness);
+
+                    //infrastructureAndService
+                    var repairOrMaintenanceOfRoadSurface = new StatementsTypes
+                    {
+                        Type = "Заява про ремонт або утримання дорожнього покриття",
+                        SignatureCount = 20,
+                        Department = infrastructureAndService,
+                        isPhotoNeeded = true,
+                        isStreetNeeded = true,
+                    };
+
+                    var problemsWithWaterSupplyOrDrainage = new StatementsTypes
+                    {
+                        Type = "Звернення щодо проблем з водопостачанням або водовідведенням",
+                        SignatureCount = 20,
+                        Department = infrastructureAndService,
+                        isPhotoNeeded = false,
+                        isStreetNeeded = true,
+                    };
+
+                    var installationOfNewCommunicationLines = new StatementsTypes
+                    {
+                        Type = "Заява про встановлення нових комунікаційних ліній або підключення до існуючих",
+                        SignatureCount = 20,
+                        Department = infrastructureAndService,
+                        isPhotoNeeded = false,
+                        isStreetNeeded = true,
+                    };
+
+                    var installationOrRegistrationOfANewPedestrian = new StatementsTypes
+                    {
+                        Type = "Заява на встановлення або реєстрацію нового пішохідного чи велосипедного шляху",
+                        SignatureCount = 20,
+                        Department = infrastructureAndService,
+                        isPhotoNeeded = false,
+                        isStreetNeeded = true,
+                    };
+
+                    var establishmentOfNewPublicTransportStops = new StatementsTypes
+                    {
+                        Type = "Звернення щодо встановлення нових зупинок громадського транспорту",
+                        SignatureCount = 20,
+                        Department = infrastructureAndService,
+                        isPhotoNeeded = false,
+                        isStreetNeeded = true,
+                    };
+
+                    var arrangementofTheSiteFoPublicRecreation = new StatementsTypes
+                    {
+                        Type = "Заява про облаштування майданчика для громадської рекреації",
+                        SignatureCount = 20,
+                        Department = infrastructureAndService,
+                        isPhotoNeeded = false,
+                        isStreetNeeded = true,
+                    };
+
+                    await context.AddRangeAsync(repairOrMaintenanceOfRoadSurface,
+                        problemsWithWaterSupplyOrDrainage,
+                        installationOfNewCommunicationLines,
+                        installationOrRegistrationOfANewPedestrian,
+                        establishmentOfNewPublicTransportStops,
+                        arrangementofTheSiteFoPublicRecreation);
+
+                    //ecologyAndEnvironmentalProtection
+                    var removalOrPruningOfTreesInACertainArea = new StatementsTypes
+                    {
+                        Type = "Звернення щодо видалення або обрізки дерев на певній території",
+                        SignatureCount = 20,
+                        Department = ecologyAndEnvironmentalProtection,
+                        isPhotoNeeded = false,
+                        isStreetNeeded = true,
+                    };
+
+                    var factsOfEnvironmentalPollution = new StatementsTypes
+                    {
+                        Type = "Повідомлення про факти забруднення навколишнього середовища",
+                        SignatureCount = 20,
+                        Department = ecologyAndEnvironmentalProtection,
+                        isPhotoNeeded = true,
+                        isStreetNeeded = true,
+                    };
+
+                    var obtainingAPermitForGarbageRemoval = new StatementsTypes
+                    {
+                        Type = "Заява про отримання дозволу на винос сміття або відходів",
+                        SignatureCount = 20,
+                        Department = ecologyAndEnvironmentalProtection,
+                        isPhotoNeeded = false,
+                        isStreetNeeded = true,
+                    };
+
+                    var implementationOfEnergyEfficiencyPrograms = new StatementsTypes
+                    {
+                        Type = "Звернення щодо впровадження програм з енергоефективності та використання відновлювальних джерел енергії",
+                        SignatureCount = 20,
+                        Department = ecologyAndEnvironmentalProtection,
+                        isPhotoNeeded = false,
+                        isStreetNeeded = true,
+                    };
+
+                    var removalOrPlantsInACertainArea = new StatementsTypes
+                    {
+                        Type = "Заява про видалення або пересадження рослин на певній території",
+                        SignatureCount = 20,
+                        Department = ecologyAndEnvironmentalProtection,
+                        isPhotoNeeded = false,
+                        isStreetNeeded = true,
+                    };
+
+                    var participationInEnvironmentalLightingProjects = new StatementsTypes
+                    {
+                        Type = "Звернення щодо участі у проектах з екологічного освітлення та енергозбереження",
+                        SignatureCount = 20,
+                        Department = ecologyAndEnvironmentalProtection,
+                        isPhotoNeeded = false,
+                        isStreetNeeded = true,
+                    };
+
+                    await context.AddRangeAsync(removalOrPruningOfTreesInACertainArea,
+                        factsOfEnvironmentalPollution,
+                        obtainingAPermitForGarbageRemoval,
+                        implementationOfEnergyEfficiencyPrograms,
+                        removalOrPlantsInACertainArea,
+                        participationInEnvironmentalLightingProjects);
+
+                    //publicRelationsAndCommunications
+                    var providingInformationAboutTheWorkOfLocalAuthorities = new StatementsTypes
+                    {
+                        Type = "Звернення щодо надання інформації про роботу місцевої влади",
+                        SignatureCount = 1,
+                        Department = publicRelationsAndCommunications,
+                        isPhotoNeeded = false,
+                        isStreetNeeded = false,
+                    };
+
+                    var participationInPublicDiscussionsOrEvents = new StatementsTypes
+                    {
+                        Type = "Заява про участь у громадських обговореннях або заходах",
+                        SignatureCount = 1,
+                        Department = publicRelationsAndCommunications,
+                        isPhotoNeeded = false,
+                        isStreetNeeded = false,
+                    };
+
+                    var ubmissionOfSuggestionsOrComplaints = new StatementsTypes
+                    {
+                        Type = "Подання пропозицій чи скарг щодо якості наданих послуг",
+                        SignatureCount = 1,
+                        Department = publicRelationsAndCommunications,
+                        isPhotoNeeded = false,
+                        isStreetNeeded = false,
+                    };
+
+                    var obtainingPermissionToHoldPublicEvents = new StatementsTypes
+                    {
+                        Type = "Заява на отримання дозволу на проведення громадських заходів чи фестивалів",
+                        SignatureCount = 1,
+                        Department = publicRelationsAndCommunications,
+                        isPhotoNeeded = false,
+                        isStreetNeeded = false,
+                    };
+
+                    var placementOfPublicInformationOnLocalSites = new StatementsTypes
+                    {
+                        Type = "Звернення щодо розміщення громадської інформації на місцевих площадках",
+                        SignatureCount = 1,
+                        Department = publicRelationsAndCommunications,
+                        isPhotoNeeded = false,
+                        isStreetNeeded = false,
+                    };
+
+                    var receivingAGrantForTheImplementationOfAPublicProject = new StatementsTypes
+                    {
+                        Type = "Заява про отримання гранту для реалізації громадського проекту",
+                        SignatureCount = 1,
+                        Department = publicRelationsAndCommunications,
+                        isPhotoNeeded = false,
+                        isStreetNeeded = false,
+                    };
+
+                    await context.AddRangeAsync(providingInformationAboutTheWorkOfLocalAuthorities,
+                        participationInPublicDiscussionsOrEvents,
+                        ubmissionOfSuggestionsOrComplaints,
+                        obtainingPermissionToHoldPublicEvents,
+                        placementOfPublicInformationOnLocalSites,
+                        receivingAGrantForTheImplementationOfAPublicProject);
 
                     //Utilities=-------------------------------
                     var waterUtilities = new Utilities
@@ -101,8 +356,7 @@ namespace PublicUtilities.Data
                                     StatementUrl = "https://res.cloudinary.com/dihwzdmiw/image/upload/v1703158790/viveswvd2bkjzwx6ofej.png",
                                     Status = Enum.StatementsStatus.Зареєстровано,
                                     Date = DateTime.Now,
-                                    Department = new Departments{ Name = "UserDepartment"},
-                                    StatementsType = new StatementsTypes { SignatureCount = 50, Type = "UserStatementsTypes" }
+                                    StatementsType = problemsWithWaterSupplyOrDrainage,
                                 }
                             }
                         }
@@ -150,8 +404,7 @@ namespace PublicUtilities.Data
                                     StatementUrl = "https://res.cloudinary.com/dihwzdmiw/image/upload/v1703158790/viveswvd2bkjzwx6ofej.png",
                                     Status = Enum.StatementsStatus.Зареєстровано,
                                     Date = DateTime.Now,
-                                    Department = new Departments { Name = "UserDepartment" },
-                                    StatementsType = new StatementsTypes { SignatureCount = 50, Type = "UserStatementsTypes" }
+                                    StatementsType = receivingTaxBenefitsOrTaxRefunds,
                                 }
                             }
                         }

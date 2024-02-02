@@ -12,7 +12,7 @@ using PublicUtilities.Data;
 namespace PublicUtilities.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240109142806_InitialCreate")]
+    [Migration("20240124192807_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -379,11 +379,7 @@ namespace PublicUtilities.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DepartmentId")
-                        .HasColumnType("int");
-
                     b.Property<string>("StatementUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("StatementsTypeId")
@@ -392,13 +388,14 @@ namespace PublicUtilities.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
+                    b.Property<string>("Street")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DepartmentId");
 
                     b.HasIndex("StatementsTypeId");
 
@@ -413,6 +410,9 @@ namespace PublicUtilities.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int");
+
                     b.Property<int>("SignatureCount")
                         .HasColumnType("int");
 
@@ -420,7 +420,15 @@ namespace PublicUtilities.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("isPhotoNeeded")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("isStreetNeeded")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("DepartmentId");
 
                     b.ToTable("StatementsTypes");
                 });
@@ -589,21 +597,24 @@ namespace PublicUtilities.Migrations
 
             modelBuilder.Entity("PublicUtilities.Models.Statements", b =>
                 {
-                    b.HasOne("PublicUtilities.Models.Departments", "Department")
-                        .WithMany("Statements")
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("PublicUtilities.Models.StatementsTypes", "StatementsType")
                         .WithMany("Statements")
                         .HasForeignKey("StatementsTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Department");
-
                     b.Navigation("StatementsType");
+                });
+
+            modelBuilder.Entity("PublicUtilities.Models.StatementsTypes", b =>
+                {
+                    b.HasOne("PublicUtilities.Models.Departments", "Department")
+                        .WithMany("StatementsTypes")
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Department");
                 });
 
             modelBuilder.Entity("PublicUtilities.Models.UsersPlacesOfResidence", b =>
@@ -653,7 +664,7 @@ namespace PublicUtilities.Migrations
 
             modelBuilder.Entity("PublicUtilities.Models.Departments", b =>
                 {
-                    b.Navigation("Statements");
+                    b.Navigation("StatementsTypes");
                 });
 
             modelBuilder.Entity("PublicUtilities.Models.PlacesOfResidence", b =>
