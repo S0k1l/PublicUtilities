@@ -443,78 +443,112 @@ namespace PublicUtilities.Data
         {
             var newIndicators = new List<Indicators>();
             Random rand = new Random();
-            int idicator;
+            int idicator = 0;
+            int consumed;
 
             //waterUtilities
             for (int i = 11; i >= 1; i--)
             {
-                idicator = rand.Next(5, 5);
+                consumed = rand.Next(5, 5);
+
+                if (idicator == 0)
+                    idicator = consumed;
+                else
+                    idicator += consumed;
+
                 newIndicators.Add(new Indicators
                 {
                     Indicator = idicator.ToString(),
                     Date = DateTime.Now.AddMonths(-i),
-                    Price = idicator * waterUtilities.Price,
+                    Price = consumed * waterUtilities.Price,
                     Paid = true,
-                    Utilities = waterUtilities
+                    Utilities = waterUtilities,
+                    Consumed = consumed.ToString(),
                 });
             }
 
-            idicator = rand.Next(5, 5);
+            consumed = rand.Next(5, 5);
+            idicator += consumed;
+
             newIndicators.Add(new Indicators
             {
                 Indicator = idicator.ToString(),
                 Date = DateTime.Now,
-                Price = idicator * waterUtilities.Price,
+                Price = consumed * waterUtilities.Price,
                 Paid = false,
                 Utilities = waterUtilities,
+                Consumed = consumed.ToString(),
             });
+
+            idicator = 0;
 
             //gasUtilities
             for (int i = 11; i >= 1; i--)
             {
-                idicator = rand.Next(21, 31);
+                consumed = rand.Next(21, 31);
+
+                if (idicator == 0)
+                    idicator = consumed;
+                else
+                    idicator += consumed;
+
                 newIndicators.Add(new Indicators
                 {
                     Indicator = idicator.ToString(),
                     Date = DateTime.Now.AddMonths(-i),
-                    Price = idicator * gasUtilities.Price,
+                    Price = consumed * gasUtilities.Price,
                     Paid = true,
-                    Utilities = gasUtilities
+                    Utilities = gasUtilities,
+                    Consumed = consumed.ToString(),
                 });
             }
 
-            idicator = rand.Next(21, 31);
+            consumed = rand.Next(21, 31);
+            idicator += consumed;
+
             newIndicators.Add(new Indicators
             {
                 Indicator = idicator.ToString(),
                 Date = DateTime.Now,
-                Price = idicator * gasUtilities.Price,
+                Price = consumed * gasUtilities.Price,
                 Paid = false,
-                Utilities = gasUtilities
+                Utilities = gasUtilities,
+                Consumed = consumed.ToString(),
             });
 
+            idicator = 0;
             //electricityUtilities
             for (int i = 11; i >= 1; i--)
             {
-                idicator = rand.Next(332, 382);
+                consumed = rand.Next(332, 382);
+
+                if (idicator == 0)
+                    idicator = consumed;
+                else
+                    idicator += consumed;
+
                 newIndicators.Add(new Indicators
                 {
                     Indicator = idicator.ToString(),
                     Date = DateTime.Now.AddMonths(-i),
-                    Price = idicator * electricityUtilities.Price,
+                    Price = consumed * electricityUtilities.Price,
                     Paid = true,
-                    Utilities = electricityUtilities
+                    Utilities = electricityUtilities,
+                    Consumed = consumed.ToString(),
                 });
             }
 
-            idicator = rand.Next(332, 382);
+            consumed = rand.Next(332, 382);
+            idicator += consumed;
+
             newIndicators.Add(new Indicators
             {
                 Indicator = idicator.ToString(),
                 Date = DateTime.Now,
-                Price = idicator * electricityUtilities.Price,
+                Price = consumed * electricityUtilities.Price,
                 Paid = false,
-                Utilities = electricityUtilities
+                Utilities = electricityUtilities,
+                Consumed = consumed.ToString(),
             });
 
             return newIndicators;

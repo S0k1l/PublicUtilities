@@ -12,7 +12,7 @@ using PublicUtilities.Data;
 namespace PublicUtilities.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240124192807_InitialCreate")]
+    [Migration("20240205144856_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -260,6 +260,10 @@ namespace PublicUtilities.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Consumed")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
@@ -378,6 +382,9 @@ namespace PublicUtilities.Migrations
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("SignarureCount")
+                        .HasColumnType("int");
 
                     b.Property<string>("StatementUrl")
                         .HasColumnType("nvarchar(max)");

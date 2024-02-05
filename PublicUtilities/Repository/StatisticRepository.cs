@@ -42,6 +42,7 @@ namespace PublicUtilities.Repository
                         Indicator = x.Indicator,
                         Date = x.Date.ToString("Y"),
                         Price = x.Price,
+                        Consumed = x.Consumed,
                     })
                     .Take(12)
                     .ToListAsync();

@@ -31,7 +31,7 @@ namespace PublicUtilities.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(int placesOfResidenceId, int utilitiesId, string indicator)
+        public async Task<IActionResult> Index(int placesOfResidenceId, int utilitiesId, string indicator, string consumed)
         {
             var utilitiesPrice = await _indicatorsRepository.GetUtilitiesPriceById(utilitiesId);
             var price = utilitiesPrice * int.Parse(indicator);
@@ -44,7 +44,9 @@ namespace PublicUtilities.Controllers
                 Date = DateTime.Now,
                 Price = price,
                 Paid = false,
+                Consumed = consumed,
             };
+
             if (_indicatorsRepository.AddIndicator(newIndicartor))
             {
                 return RedirectToAction("Index", new { alert = "Your alert message here" });

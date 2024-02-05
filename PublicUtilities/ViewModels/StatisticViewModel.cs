@@ -14,6 +14,7 @@
     {
         public string Date { get; set; }
         public string Indicator { get; set; }
+        public string Consumed { get; set; }
         public decimal Price { get; set; }
     }
 }

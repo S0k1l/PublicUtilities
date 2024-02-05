@@ -13,6 +13,7 @@ namespace PublicUtilities.Models
         [ForeignKey("UtilitiesId")]
         public Utilities Utilities { get; set; }
         public string Indicator { get; set; }
+        public string Consumed { get; set; }
         public DateTime Date { get; set; }
         public decimal Price { get; set; }
         public bool Paid { get; set; }

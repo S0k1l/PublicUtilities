@@ -32,8 +32,9 @@
             for (var j = 0; j < dataPoints.length; j++) {
                 dataset.data.push({
                     x: dataPoints[j].date,
-                    y: dataPoints[j].indicator,
+                    y: dataPoints[j].consumed,
                     price: dataPoints[j].price,
+                    indicator: dataPoints[j].indicator
                 });
             }
             console.log(dataset);
@@ -59,8 +60,9 @@
                             },
                             afterLabel: function (context) {
                                 const dataPoint = context.dataIndex;
-                                return `Показник: ${context.formattedValue} м^3,\n`
-                                    + `Ціна: ${context.dataset.data[dataPoint].price} грн,`;
+                                return `Спожито: ${context.formattedValue} м^3,\n`
+                                    + `Показник: ${context.dataset.data[dataPoint].indicator} м^3,\n`
+                                    + `Ціна: ${context.dataset.data[dataPoint].price} грн\n`;
                             },
                         },
                         bodyFont: {
@@ -142,7 +144,7 @@
         <div class="mian-frame-line"></div>
         <div class="graph-div">
             <p class="main-text-frame-text">
-                <b>Графік</b>
+                <b>Графік споживання</b>
             </p>
             <div class="graph">
                 <canvas id="myChart" width="800" height="250"></canvas>
@@ -158,6 +160,7 @@
                     <thead>
                         <tr>
                             <th>Показник</th>
+                            <th>Спожито</th>
                             <th>Дата</th>
                             <th>Ціна</th>
                         </tr>
@@ -170,6 +173,7 @@
                         {
                             <tr>
                                 <td>@statistic.Indicator кВт</td>
+                                <td>@statistic.Consumed кВт</td>
                                 <td>@statistic.Date</td>
                                 <td>@statistic.Price грн</td>
                             </tr>

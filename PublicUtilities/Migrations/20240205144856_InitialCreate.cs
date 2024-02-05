@@ -271,7 +271,8 @@ namespace PublicUtilities.Migrations
                     Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StatementUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    SignarureCount = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -293,6 +294,7 @@ namespace PublicUtilities.Migrations
                     PlacesOfResidenceId = table.Column<int>(type: "int", nullable: false),
                     UtilitiesId = table.Column<int>(type: "int", nullable: false),
                     Indicator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Consumed = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Paid = table.Column<bool>(type: "bit", nullable: false)

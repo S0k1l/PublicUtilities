@@ -4,7 +4,8 @@
 
     var result = num1 - num2;
 
-    document.getElementById('result_' + name).innerText = result;
+    var resultInput = document.getElementById('result_' + name);
+    resultInput.value = result;
 }
 
 function isNumberKey(evt) {

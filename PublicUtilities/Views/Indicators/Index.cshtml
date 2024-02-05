@@ -86,7 +86,6 @@
                         <div class="summary-frame">
                             @foreach (var indicators in item.UserIndicators)
                             {
-                                @*  *@
                                 <form asp-action="Index" asp-controller="Indicators" method="post" class="main-details-frame-2">
                                     <input value="@item.PlacesOfResidenceId" name="placesOfResidenceId" hidden />
                                     <input value="@indicators.UtilitiesId" name="utilitiesId" hidden />
@@ -95,7 +94,7 @@
                                         <div class="main-details-first-row">
                                             <p class="main-details-first-row-text">Поточні</p>
                                             <p class="main-details-first-row-text">Попередні</p>
-                                            <p class="main-details-first-row-text">Різниця</p>
+                                            <p class="main-details-first-row-text">Спожито</p>
                                         </div>
                                         <div class="details-line-frame">
                                             <div class="details-line"></div>
@@ -107,7 +106,7 @@
                                                 onkeypress="return isNumberKey(event)" oninput="updateResult(@indicators.Id)" />
                                                 <input class="main-details-text-field" id="num2_@indicators.Id"
                                                 value="@indicators.Indicator" readonly/>
-                                                <div id="result_@indicators.Id" class="main-details-text-field"></div>
+                                                <input id="result_@indicators.Id" name="consumed" placeholder="0" class="main-details-text-field"/>
                                             </div>
                                         </div>
                                         <div class="main-btn-frame">
