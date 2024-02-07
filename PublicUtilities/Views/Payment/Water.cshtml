@@ -1,4 +1,7 @@
-﻿<head>
+﻿@using PublicUtilities.ViewModels
+@model ICollection<PaymentViewModel>
+
+<head>
     <link rel="stylesheet" href="~/css/Payment/Water.css" />
 </head>
 
@@ -52,14 +55,30 @@
         <div class="main-text-frame">
             <p class="main-text-frame-header">Вітаємо на сторнці комунальних платежів</p>
             <p class="main-text-frame-text">
-                На цій сторінці ви можете оплатити рахунки за воду. Вибравши спосіб оплати
+                На цій сторінці ви можете оплатити рахунки за воду
             </p>
         </div>
         <div class="mian-frame-line"></div>
         <div class="main-btn-frame">
-            <div class="main-btn-submit">ПриватБанк</div>
-            <div class="main-btn-submit">МоноБанк</div>
-            <div class="main-btn-submit">ОщадБанк</div>
+            @foreach (var item in Model)
+            {
+                <div class="main-btn-section">
+                    <p class="main-btn-header">@item.PlaceOfResidence</p>
+                    <div class="mian-frame-line"></div>
+                    <div class="main-btn-text-frame">
+                        <p class="main-btn-text">Дата:</p>
+                        <p class="main-btn-text">@item.Date</p>
+                    </div>
+                    <div class="main-btn-text-frame">
+                        <p class="main-btn-text">Сума:</p>
+                        <p class="main-btn-text"><u>@item.Price ₴</u></p>
+                    </div>
+                    <div class="mian-frame-line"></div>
+                    <a asp-action="PaymentType" asp-route-id="@item.Id" asp-route-placeOfResidence="@item.PlaceOfResidence"
+                            asp-route-date="@item.Date" asp-route-price="@item.Price"
+                            class="main-btn-submit nav-link" >Оплатити</a>
+                </div>
+            }
         </div>
     </div>
 </div>

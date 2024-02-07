@@ -34,7 +34,7 @@ namespace PublicUtilities.Controllers
         public async Task<IActionResult> Index(int placesOfResidenceId, int utilitiesId, string indicator, string consumed)
         {
             var utilitiesPrice = await _indicatorsRepository.GetUtilitiesPriceById(utilitiesId);
-            var price = utilitiesPrice * int.Parse(indicator);
+            var price = utilitiesPrice * int.Parse(consumed);
 
             var newIndicartor = new Indicators
             {

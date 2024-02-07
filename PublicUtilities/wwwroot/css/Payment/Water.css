@@ -69,31 +69,66 @@ p {
 }
 /*BUTTONS*/
 .main-btn-frame {
-    display: flex;
-    padding: 10px 24px 20px 24px;
-    flex-direction: column;
-    align-items: center;
-    gap: 7.75px;
-    align-self: stretch;
-}
-
-.main-btn-frame {
     display: grid;
     grid-template-columns: auto auto auto;
     justify-content: center;
     align-items: flex-start;
-    gap: 34.875px;
+    gap: 20px;
 }
 
-.main-btn-submit {
+.main-btn-section {
     display: flex;
-    padding: 11.625px 23.25px;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 20px;
+    background: var(--White);
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.10);
+    width: 300px;
+}
+
+.main-btn-header {
+    color: var(--Granite-Gray);
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.main-btn-text-frame {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px;
+    flex-direction: row;
+}
+
+.main-btn-text {
+    color: var(--Granite-Gray);
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+
+.main-btn-submit {
+    margin-top: 5px;
+    display: flex;
+    padding: 10px 15px;
     justify-content: center;
     align-items: center;
     gap: 7.75px;
     border-radius: 3.875px;
     background: var(--green-crayola);
-    color: var(--White, #FFF);
+    color: var(--White);
     font-family: Open Sans;
     font-size: 17.05px;
     font-style: normal;
@@ -101,9 +136,10 @@ p {
     line-height: normal;
     letter-spacing: -0.511px;
     transition: 100ms ease-in-out;
+    border: none;
 }
 
     .main-btn-submit:hover {
-        background: var(--Bright-Gray);
-        color: var(--Granite-Gray);
+        background: var(--Granite-Gray);
+        color: var(--White);
     }

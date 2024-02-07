@@ -1,9 +1,8 @@
 ﻿@using PublicUtilities.ViewModels
-@model ICollection<PaymentViewModel>
+@model PaymentViewModel
 
 <head>
-    <link rel="stylesheet" href="~/css/Payment/Electricity.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/Payment/Water.css" />
 </head>
 
 <div id="frame-location">
@@ -27,9 +26,11 @@
                 <stop offset="1" stop-color="white" />
             </linearGradient>
         </defs>
-        <text x="-15" y="30" fill="blue" class="frame-location-text">Комунальні Платежі</text>
+        <a class="nav-link " asp-area="" asp-controller="Payment" asp-action="Water" id="nav-item">
+            <text x="-15" y="30" fill="blue" class="frame-location-text">Комунальні послунги</text>
+        </a>
     </svg>
-    <svg style="margin-left: -10px" xmlns="http://www.w3.org/2000/svg" width="142" height="53" viewBox="0 0 142 53" fill="none">
+    <svg style="margin-left: -70px" xmlns="http://www.w3.org/2000/svg" width="142" height="53" viewBox="0 0 142 53" fill="none">
         <path d="M0.0500488 0H123.275L141.1 26.35L123.275 52.7H0.0500488V0Z" fill="url(#paint0_linear_103_80)" />
         <defs>
             <linearGradient id="paint0_linear_103_80" x1="0.0500494" y1="26.35" x2="141.1" y2="26.35" gradientUnits="userSpaceOnUse">
@@ -37,7 +38,7 @@
                 <stop offset="1" stop-color="white" />
             </linearGradient>
         </defs>
-        <text x="10" y="30" fill="blue" class="frame-location-text">Електроенергія</text>
+        <text x="70" y="30" fill="blue" class="frame-location-text">Оплата</text>
     </svg>
 </div>
 <div id="page-name-header">
@@ -46,40 +47,34 @@
         <div class="page-name-header-text">Комунальні Платежі</div>
     </div>
 </div>
-<div class="choose-frame">
-    <a class="nav-link choose-gray-btn" asp-area="" asp-controller="Payment" asp-action="Water">Вода</a>
-    <a class="nav-link choose-gray-btn" asp-area="" asp-controller="Payment" asp-action="Gas">Газ</a>
-    <div class="choose-green-btn">Електроенергія</div>
-</div>
 <div class="mian-frame">
     <div class="mian-frame-frame">
         <div class="main-text-frame">
             <p class="main-text-frame-header">Вітаємо на сторнці комунальних платежів</p>
             <p class="main-text-frame-text">
-                На цій сторінці ви можете оплатити рахунки за електроенергію
+                На цій сторінці ви можете оплатити рахунки. Вибравши спосіб оплати
             </p>
         </div>
         <div class="mian-frame-line"></div>
-        <div class="main-btn-frame">
-            @foreach (var item in Model)
-            {
-                <div class="main-btn-section">
-                    <p class="main-btn-header">@item.PlaceOfResidence</p>
-                    <div class="mian-frame-line"></div>
-                    <div class="main-btn-text-frame">
-                        <p class="main-btn-text">Дата:</p>
-                        <p class="main-btn-text">@item.Date</p>
-                    </div>
-                    <div class="main-btn-text-frame">
-                        <p class="main-btn-text">Сума:</p>
-                        <p class="main-btn-text"><u>@item.Price ₴</u></p>
-                    </div>
-                    <div class="mian-frame-line"></div>
-                    <a asp-action="PaymentType" asp-route-id="@item.Id" asp-route-placeOfResidence="@item.PlaceOfResidence"
-                       asp-route-date="@item.Date" asp-route-price="@item.Price"
-                       class="main-btn-submit nav-link">Оплатити</a>
-                </div>
-            }
-        </div>
+        <form asp-action="PaymentType" method="post" class="main-btn-section" style="min-width: 450px; width: 50%">
+            <p class="main-btn-header">@Model.PlaceOfResidence</p>
+            <div class="mian-frame-line"></div>
+            <div class="main-btn-text-frame">
+                <p class="main-btn-text">Дата:</p>
+                <p class="main-btn-text">@Model.Date</p>
+            </div>
+            <div class="main-btn-text-frame">
+                <p class="main-btn-text">До сплати:</p>
+                <p class="main-btn-text"><u>@Model.Price ₴</u></p>
+            </div>
+            <div class="mian-frame-line"></div>
+            <p class="main-btn-text" style="font-size: 18px">Виберіть тип оплати</p>
+            <div class="main-btn-frame">
+                <button type="submit" class="main-btn-submit">ПриватБанк</button>
+                <button type="submit" class="main-btn-submit">МоноБанк</button>
+                <button type="submit" class="main-btn-submit">ОщадБанк</button>
+            </div>
+        </form>
+
     </div>
 </div>

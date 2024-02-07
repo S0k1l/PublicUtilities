@@ -16,6 +16,7 @@ builder.Services.AddScoped<IIndicatorsRepository, IndicatorsRepository>();
 builder.Services.AddScoped<IStatisticRepository, StatisticRepository>();
 builder.Services.AddScoped<IStatementsRepository, StatementsRepository>();
 builder.Services.AddScoped<IPhotoService, PhotoService>();
+builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 builder.Services.AddDbContext<AppDbContext>(options =>
