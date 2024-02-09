@@ -11,5 +11,6 @@ namespace PublicUtilities.Models
         public PlacesOfResidence PlacesOfResidence { get; set; }
         public string Header { get; set; }
         public string Text { get; set; }
+        public DateTime Date { get; set; }
     }
 }

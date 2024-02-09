@@ -1,6 +1,8 @@
-﻿<head>
-    <link rel="stylesheet" href="~/css/Tariffs/Index.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+﻿@using PublicUtilities.ViewModels
+@model ICollection<NotificationViewModel>
+
+<head>
+    <link rel="stylesheet" href="~/css/Notification/Index.css" />
 </head>
 
 <div id="frame-location">
@@ -16,7 +18,7 @@
             <text x="-15" y="30" fill="blue" class="frame-location-text">Комунальні послунги</text>
         </a>
     </svg>
-    <svg style="z-index: 1; margin-left: -65px;" xmlns="http://www.w3.org/2000/svg" width="142" height="53" viewBox="0 0 142 53" fill="none">
+    <svg style="margin-left: -40px" xmlns="http://www.w3.org/2000/svg" width="142" height="53" viewBox="0 0 142 53" fill="none">
         <path d="M0.0500488 0H123.275L141.1 26.35L123.275 52.7H0.0500488V0Z" fill="url(#paint0_linear_103_80)" />
         <defs>
             <linearGradient id="paint0_linear_103_80" x1="0.0500494" y1="26.35" x2="141.1" y2="26.35" gradientUnits="userSpaceOnUse">
@@ -24,37 +26,39 @@
                 <stop offset="1" stop-color="white" />
             </linearGradient>
         </defs>
-        <text x="63" y="30" fill="blue" class="frame-location-text">Тарифи</text>
+        <text x="40" y="30" fill="blue" class="frame-location-text">Сповіщення</text>
     </svg>
 </div>
 <div id="page-name-header">
     <div class="page-name-header-frame">
         <div class="page-name-header-greenbox"></div>
-        <div class="page-name-header-text">Тарифи</div>
+        <div class="page-name-header-text">Сповіщення</div>
     </div>
 </div>
 <div class="mian-frame">
     <div class="mian-frame-frame">
         <div class="main-text-frame">
-            <p class="main-text-frame-header">Вітаємо на сторінці тарифів</p>
+            <p class="main-text-frame-header">Вітаємо на сторінці  сповіщень</p>
             <p class="main-text-frame-text">
-                На даній сторінці ви можете переглянети тарифи на комунальні послуги
+                На цій сторінці ви можете переглянути свої сповіщення
             </p>
         </div>
         <div class="mian-frame-line"></div>
-        <div class="main-table-frame">
-            <table class="rounded">
-                <tr>
-                    <th>Вода</th>
-                    <th>Газ</th>
-                    <th>Електроенергія</th>
-                </tr>
-                <tr>
-                    <td>25,884грн/м<sup>3</sup></td>
-                    <td>7,96 грн/м<sup>3</sup></td>
-                    <td>2,64 грн/кВт-год</td>
-                </tr>
-            </table>
+        <div class="main-frame">
+            @foreach (var item in Model)
+            {
+                <div class="main-section">
+                    <p class="main-text-header">@item.Street @item.Building @item.Apartment</p>
+                    <div class="mian-frame-line"></div>
+                    <div class="main-section-text-frame">
+                        <p class="main-header">@item.Header</p>
+                        <p class="main-text-date">Дата: @item.Date</p>
+                    </div>
+                    <div class="main-section-text-frame">
+                        <p class="main-text">@item.Text</p>
+                    </div>
+                </div>
+            }
         </div>
     </div>
 </div>

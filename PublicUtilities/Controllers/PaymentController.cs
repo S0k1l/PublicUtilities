@@ -16,6 +16,8 @@ namespace PublicUtilities.Controllers
         [HttpGet]
         public async Task<IActionResult> Water()
         {
+            if (!User.Identity.IsAuthenticated) {return RedirectToAction("Login", "Account"); }
+
             var model = await _paymentRepository.GetUserPaymentByUserName(User.Identity.Name, "Вода");
             return View(model);
         }
@@ -23,6 +25,8 @@ namespace PublicUtilities.Controllers
         [HttpGet]
         public async Task<IActionResult> Gas()
         {
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
+
             var model = await _paymentRepository.GetUserPaymentByUserName(User.Identity.Name, "Газ");
             return View(model);
         }
@@ -30,6 +34,8 @@ namespace PublicUtilities.Controllers
         [HttpGet]
         public async Task<IActionResult> Electricity()
         {
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
+
             var model = await _paymentRepository.GetUserPaymentByUserName(User.Identity.Name, "Електроенергія");
             return View(model);
         }
@@ -37,6 +43,8 @@ namespace PublicUtilities.Controllers
         [HttpGet]
         public IActionResult PaymentType(int id, string placeOfResidence, string price, string date)
         {
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
+
             var model = new PaymentViewModel
             {
                 Id = id,

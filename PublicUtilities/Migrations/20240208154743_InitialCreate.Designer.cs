@@ -12,7 +12,7 @@ using PublicUtilities.Data;
 namespace PublicUtilities.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240205144856_InitialCreate")]
+    [Migration("20240208154743_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -327,6 +327,9 @@ namespace PublicUtilities.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Header")
                         .IsRequired()

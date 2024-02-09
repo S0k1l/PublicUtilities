@@ -330,8 +330,17 @@ namespace PublicUtilities.Data
                                         new Notifications
                                         {
                                             Header = "Header",
-                                            Text = "Text",
-                                        }
+                                            Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+                                            "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+                                            Date = DateTime.Now.AddDays(-10),
+                                        },
+                                        new Notifications
+                                        {
+                                            Header = "Header2",
+                                            Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+                                            "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+                                            Date = DateTime.Now.AddDays(-3),
+                                        },
                                     },
                                     Indicators = indicators,
                                 }
@@ -344,6 +353,16 @@ namespace PublicUtilities.Data
                                     House = "1",
                                     Streets = new Streets{ Name = "Львівська"},
                                     Indicators = indicators2,
+                                    Notifications  = new List<Notifications>
+                                    {
+                                        new Notifications
+                                        {
+                                            Header = "Header3",
+                                            Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+                                            "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+                                            Date = DateTime.Now.AddDays(-7),
+                                        },
+                                    }
                                 }
                             }
                         },
@@ -388,8 +407,24 @@ namespace PublicUtilities.Data
                                         new Notifications
                                         {
                                             Header = "Header",
-                                            Text = "Text",
-                                        }
+                                            Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+                                            "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+                                            Date = DateTime.Now.AddDays(-5),
+                                        },
+                                        new Notifications
+                                        {
+                                            Header = "Header2",
+                                            Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+                                            "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+                                            Date = DateTime.Now,
+                                        },
+                                        new Notifications
+                                        {
+                                            Header = "Header3",
+                                            Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+                                            "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+                                            Date = DateTime.Now.AddDays(-2),
+                                        },
                                     },
                                     Indicators = indicators3,
                                 }
