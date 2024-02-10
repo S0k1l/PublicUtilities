@@ -1,0 +1,97 @@
+﻿@using PublicUtilities.ViewModels
+@model NewsViewModel
+
+<head>
+    <link rel="stylesheet" href="~/css/News/Index.css" />
+</head>
+
+@{
+    int startPage = Model.PageNumber - 5;
+    int endPage = Model.PageNumber + 5;
+
+    if (startPage < 1)
+    {
+        endPage -= (startPage - 1);
+        startPage = 1;
+    }
+
+    if (endPage > Model.TotalPages)
+    {
+        endPage = Model.TotalPages;
+    }
+}
+
+<div id="frame-location">
+    <svg style="z-index: 2" xmlns="http://www.w3.org/2000/svg" width="170" height="53" viewBox="0 0 143 53" fill="none">
+        <path d="M0.934875 0.0260391H124.74L142.648 26.5L124.74 52.974H0.934875V0.0260391Z" fill="url(#paint0_linear_53_35)" />
+        <defs>
+            <linearGradient id="paint0_linear_53_35" x1="0.934876" y1="26.5" x2="142.648" y2="26.5" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#EDEDED" />
+                <stop offset="1" stop-color="white" />
+            </linearGradient>
+        </defs>
+        <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index" id="nav-item">
+            <text x="-15" y="30" fill="blue" class="frame-location-text">Комунальні послунги</text>
+        </a>
+    </svg>
+    <svg style="margin-left: -60px" xmlns="http://www.w3.org/2000/svg" width="142" height="53" viewBox="0 0 142 53" fill="none">
+        <path d="M0.0500488 0H123.275L141.1 26.35L123.275 52.7H0.0500488V0Z" fill="url(#paint0_linear_103_80)" />
+        <defs>
+            <linearGradient id="paint0_linear_103_80" x1="0.0500494" y1="26.35" x2="141.1" y2="26.35" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#EDEDED" />
+                <stop offset="1" stop-color="white" />
+            </linearGradient>
+        </defs>
+        <text x="60" y="30" fill="blue" class="frame-location-text">Новини</text>
+    </svg>
+</div>
+<div id="page-name-header">
+    <div class="page-name-header-frame">
+        <div class="page-name-header-greenbox"></div>
+        <div class="page-name-header-text">Комунальні Платежі</div>
+    </div>
+</div>
+<div class="mian-frame">
+    <div class="mian-frame-frame">
+        @foreach (var item in Model.Items)
+        {
+            <a asp-action="Details" asp-route-id="@item.Id" class="news-box nav-link">
+                <img src="@item.ImageUrl" class="news-image" alt="image" />
+                <div class="new-text-frame">
+                    <p class="news-header"><u>@item.Header</u></p>
+                    <p class="news-date">Опубліковано: @item.Date.ToShortDateString() о @item.Date.ToShortTimeString()</p>
+                    <p class="news-text">@item.Text</p>
+                    <div class="news-block-text-more">Детальніше</div>
+                </div>
+            </a>
+            <div class="mian-frame-line"></div>
+        }
+        <div class="news-pages">
+            @if (Model.PageNumber > 1)
+            {
+                <a class="nav-link" href="@Url.Action("Index", new { page = 1 })">&lt;&lt;</a>
+                <a class="nav-link" href="@Url.Action("Index", new { page = Model.PageNumber - 1 })">&lt;</a>
+            }
+
+            @for (var i = startPage; i <= endPage; i++)
+            {
+                if(i == Model.PageNumber)
+                {
+                    <a href="@Url.Action("Index", new { page = i })" class="active-page nav-link"><u>@i</u></a>
+
+                }
+                else
+                {
+                    <a href="@Url.Action("Index", new { page = i })" class="non-active-page nav-link">@i</a>
+
+                }
+            }
+
+            @if (Model.PageNumber < Model.TotalPages)
+            {
+                <a class="nav-link" href="@Url.Action("Index", new { page = Model.PageNumber + 1 })">&gt;</a>
+                <a class="nav-link" href="@Url.Action("Index", new { page = Model.TotalPages })">&gt;&gt;</a>
+            }
+        </div>
+    </div>
+</div>

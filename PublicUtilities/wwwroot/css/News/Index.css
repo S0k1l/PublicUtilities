@@ -1,0 +1,112 @@
+﻿@import '../Colors.css';
+
+p {
+    margin-bottom: 0;
+}
+
+/*----------=MAIN FRAME=----------*/
+/*TEXT*/
+.main-text-frame-text {
+    color: var(--Granite-Gray);
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.news-box {
+    display: flex;
+    width: 90%;
+    gap: 20px;
+}
+
+.news-image {
+    background: var(--White);
+    border-radius: 10px;
+    padding: 10px;
+    width: 180px;
+    height: 180px;
+}
+
+.new-text-frame {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.news-header {
+    color: var(--Bright-Navy-Blue);
+    text-align: start;
+    font-family: Open Sans;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.news-date {
+    color: var(--Granite-Gray);
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.news-text {
+    color: var(--Granite-Gray);
+    margin-top: 10px;
+    text-align: start;
+    font-family: Open Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-indent: 25px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+}
+
+.news-pages{
+    display: flex;
+    gap: 10px;
+}
+
+.page-arrow, active-page, non-active-page {
+    color: var(--Bright-Navy-Blue);
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.active-page {
+    font-weight: 600;
+}
+
+.news-block-text-more {
+    margin-top:10px;
+    color: var(--Bright-Navy-Blue);
+    font-family: Open Sans;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.682%; /* 26.885px */
+    letter-spacing: -0.341px;
+    transition: 100ms ease-in-out;
+}
+
+.news-box:hover .news-block-text-more {
+    font-size: 20px;
+}
+
+.nav-link{
+    padding: 5px;
+}

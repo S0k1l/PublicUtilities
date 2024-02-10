@@ -1,4 +1,6 @@
-﻿@{
+﻿@model ICollection<News>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 <head>
@@ -98,26 +100,21 @@
 </div>
 <div class="news">
     <div class="news-grid">
-        @for (int i = 0; i < 4; i++)
+        @foreach(var item in Model)
         {
-            <div class="news-block">
+            int point = item.Text.IndexOf('.');
+            <a asp-action="Details" asp-controller="News" asp-route-id="@item.Id" class="news-block nav-link">
                 <div class="news-block-frame">
-                    <img src="/Images/Background.jpg" class="news-block-frame-image" />
+                    <img src="@item.ImageUrl" class="news-block-frame-image" />
                     <div class="news-block-text-frame">
-                        <div class="news-block-text-header">Ти знаєш, що ти - людина – В. Симоненко</div>
-                        <div class="news-block-text-date">Опубліковано: 16 листопада 1962 р.</div>
-                        <div class="news-block-text">
-                            Ти знаєш, що ти — людина.
-                            Ти знаєш про це чи ні?
-                            Усмішка твоя — єдина,
-                        </div>
+                        <p class="news-block-text-header">@item.Header</p>
+                        <p class="news-block-text-date">Опубліковано: @item.Date.ToShortDateString() о @item.Date.ToShortTimeString()</p>
+                        <p class="news-block-text">@item.Text</p>
                         <div class="news-block-text-more">Детальніше</div>
                     </div>
                 </div>
-            </div>
+            </a>
         }
     </div>
-    <div class="news-btn">
-        <div class="news-btn-text">Перегляньте всі новини та оновлення</div>
-    </div>
+    <a asp-action="Index" asp-controller="News" class="news-btn nav-link">Перегляньте всі новини та оновлення</a>
 </div>

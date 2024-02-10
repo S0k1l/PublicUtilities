@@ -12,7 +12,7 @@ using PublicUtilities.Data;
 namespace PublicUtilities.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240208154743_InitialCreate")]
+    [Migration("20240209161629_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

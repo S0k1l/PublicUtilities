@@ -1,0 +1,79 @@
+﻿@import '../Colors.css';
+
+p {
+    margin-bottom: 0;
+}
+
+/*----------=MAIN FRAME=----------*/
+/*TEXT*/
+.main-text-frame-text {
+    color: var(--Granite-Gray);
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.news-box {
+    display: flex;
+    width: 90%;
+    gap: 20px;
+}
+
+.image-container {
+
+}
+
+.news-image {
+    background: var(--White);
+    border-radius: 10px;
+    padding: 10px;
+    width: 40%;
+
+    /*height: 300px;*/
+    float: left;
+    margin: 0 50px 0 0;
+}
+
+.new-text-frame {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.news-header {
+    color: var(--Granite-Gray);
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.news-date {
+    display:flex;
+    flex-direction:column;
+    align-items:end;
+    width:80%;
+    color: var(--Granite-Gray);
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.news-text {
+    color: var(--Granite-Gray);
+    text-align: justify;
+    font-family: Open Sans;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.7em;
+    text-indent: 50px;
+}

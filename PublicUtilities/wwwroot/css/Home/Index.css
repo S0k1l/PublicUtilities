@@ -1,5 +1,9 @@
 ﻿@import '../Colors.css';
 
+p {
+    margin-bottom: 0;
+}
+
 /*----------=MAIN BUTTON=----------*/
 .frame-2 {
 
@@ -183,7 +187,6 @@
 .news-block-text-header {
     display: flex;
     align-items: flex-start;
-    gap: 10px;
     width: 336.35px;
     color: var(--Arsenic);
     font-family: Open Sans;
@@ -215,6 +218,10 @@
     font-weight: 400;
     line-height: 157.682%; /* 18.33px */
     letter-spacing: -0.116px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
 }
 
 .news-block-text-more {
@@ -242,17 +249,6 @@
     border-radius: 5px;
     margin-top: 15px;
     transition: 100ms ease-in-out;
-}
-
-    .news-btn:hover {
-        background: var(--green-crayola);
-    }
-
-.news-btn-text {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 7.75px;
 
     color: var(--Bright-Navy-Blue);
     font-family: Open Sans;
@@ -263,7 +259,8 @@
     letter-spacing: -0.511px;
 }
 
-    .news-btn:hover .news-btn-text {
+    .news-btn:hover {
+        background: var(--green-crayola);
         color: var(--Anti-Flash-White);
         text-shadow: 0px -4px 5px rgba(0, 0, 0, 0.10);
     }
