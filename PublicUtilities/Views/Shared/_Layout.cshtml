@@ -31,15 +31,27 @@
                 </a>
                 @if(SignInManager.IsSignedIn(User))
                 {
-                    <form method="post" style="height: 100%;" asp-controller="Account" asp-action="Logout">
+
+                    <div class="dropdown">
+                        <button class="dropbtn">Мій акаунт</button>
+                        <div class="dropdown-content">
+                            <a asp-action="ManageAccount" asp-controller="Account">Редагувати</a>
+                            <form method="post" style="height: 100%;" asp-controller="Account" asp-action="Logout">
+                                <button style="height: 100%; border: none; width: 100%" class="nav-link " type="submit" id="dropdown-nav-item">
+                                    <div id="nav-text-seccondary">Вийти</div>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    @* <form method="post" style="height: 100%;" asp-controller="Account" asp-action="Logout">
                         <button style="height: 100%; border: none" class="nav-link " type="submit" id="nav-item">
                             <div id="nav-text-seccondary">Вийти</div>
                         </button>
-                    </form>
+                    </form> *@
                 }
                 else 
                 {
-                    <a class="nav-link " asp-area="" asp-controller="Account" asp-action="Login" id="nav-item">
+                    <a class="nav-link dropdown" asp-area="" asp-controller="Account" asp-action="Login" id="nav-item">
                         <div id="nav-text-seccondary">Увійти</div>
                     </a>
                     <a class="nav-link " asp-area="" asp-controller="Account" asp-action="Registration" id="nav-item">

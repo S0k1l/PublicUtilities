@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PublicUtilities.Data;
+using PublicUtilities.Interface;
 using PublicUtilities.Models;
 using PublicUtilities.ViewModels;
 
@@ -10,11 +11,15 @@ namespace PublicUtilities.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly IAccountRepository _accountRepository;
 
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        public AccountController(UserManager<AppUser> userManager, 
+            SignInManager<AppUser> signInManager,
+            IAccountRepository accountRepository)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _accountRepository = accountRepository;
         }
 
         [HttpGet]
@@ -111,6 +116,140 @@ namespace PublicUtilities.Controllers
             }
 
             return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult AddPlaceOfResidence()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddPlaceOfResidence(AddPlaceOfResidenceViewModel model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            var user = await _accountRepository.GetUserByUserName(User.Identity.Name);
+
+            if (user == null) 
+            { 
+                ModelState.AddModelError("", "Користувача не існує"); 
+                return View(model);
+            }
+
+            var placeOfResidence = await _accountRepository.GetPlacesOfResidencer(model.Street, model.Building, model.Apartment);
+
+            if (placeOfResidence == null)
+            {
+                ModelState.AddModelError("", "Такого місця проживання немає в базі даних");
+                return View(model);
+            }
+
+            var userPlaceOfResidence = new UsersPlacesOfResidence
+            {
+                AppUser = user,
+                AppUserId = user.Id,
+                PlacesOfResidence = placeOfResidence,
+                PlacesOfResidenceId = placeOfResidence.Id,
+            };
+
+            if (_accountRepository.AddPlaceOfResidence(userPlaceOfResidence))
+            {
+                return RedirectToAction("ManageAccount");
+            }
+
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ManageAccount()
+        {
+            if (!ModelState.IsValid) return View();
+
+            var user = await _accountRepository.GetUserByUserName(User.Identity.Name);
+
+            if (user == null)
+            {
+                ModelState.AddModelError("", "Користувача не існує");
+                return View();
+            }
+
+            var userPlacesOfResidemce = await _accountRepository.GetUserPlacesOfResidencerById(user.Id);
+
+            var model = new ManageAccountViewModel
+            {
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                Surname = user.Surname,
+                Name = user.Name,
+                Patronymic = user.Patronymic,
+                PlacesOfResidenceViewModel = userPlacesOfResidemce,
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ManageAccount(ManageAccountViewModel model)
+        {
+            if (!ModelState.IsValid) return View(ModelState);
+
+            var user = await _accountRepository.GetUserByUserName(User.Identity.Name);
+
+            if (user == null)
+            {
+                ModelState.AddModelError("", "Користувача не існує");
+                return View();
+            }
+
+            model.PlacesOfResidenceViewModel = await _accountRepository.GetUserPlacesOfResidencerById(user.Id);
+
+            user.UserName = model.Email;
+            user.Email = model.Email;
+            user.PhoneNumber = model.PhoneNumber;
+            user.Surname = model.Surname;
+            user.Name = model.Name;
+            user.Patronymic = model.Patronymic;
+
+            await _userManager.UpdateNormalizedUserNameAsync(user);
+            await _userManager.UpdateNormalizedEmailAsync(user);
+
+            if (!string.IsNullOrEmpty(model.Password))
+            {
+                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var result = await _userManager.ResetPasswordAsync(user, code, model.Password);
+                if (!result.Succeeded) { return BadRequest(model); }
+            }
+            if (_accountRepository.UpdateUserInfo(user)) { return View(model); }
+
+            ModelState.AddModelError("", "Помилка при оновленні даних");
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteUserPlaceOfResidence(int placeOfResidenceId)
+        {
+            var user = await _accountRepository.GetUserByUserName(User.Identity.Name);
+
+            if (user == null)
+            {
+                ModelState.AddModelError("", "Користувача не існує");
+                return View(ModelState);
+            }
+
+            var userPlaceOfResidence = await _accountRepository.GetUserPlacesOfResidence(user.Id, placeOfResidenceId);
+            
+            if (userPlaceOfResidence == null)
+            {
+                ModelState.AddModelError("", "Користувач немає такого місця проживання");
+                return View(ModelState);
+            }
+
+            if (_accountRepository.DeleteUserPlaceOfResidence(userPlaceOfResidence))
+            {
+                return RedirectToAction("ManageAccount");
+            }
+
+            return View(ModelState);
         }
 
         [HttpPost]
