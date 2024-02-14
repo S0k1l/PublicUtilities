@@ -39,7 +39,7 @@
         <div class="page-name-header-text">Реєстрація</div>
     </div>
 </div>
-<form asp-area="" asp-controller="Account" asp-action="Registration" method="post" class="mian-frame">
+<form asp-area="" asp-controller="Account" asp-action="Registration" method="post" class="mian-frame" enctype="multipart/form-data">
     <div class="mian-frame-frame">
         <div class="main-text-frame">
             <div class="main-text-frame-header">Вітаємо на сторінці реєстрації</div>
@@ -97,6 +97,11 @@
                 <input asp-for="Apartment" class="main-input-field" />
                 <span asp-validation-for="Apartment" class="text-danger"></span>
             </div>
+        </div>
+        <div class="main-input">
+            <label class="main-input-header">Прикріпіть документ який підтверджує особу</label>
+            <input asp-for="Image" type="file" class="form-control" placeholder="Фото">
+            <span asp-validation-for="Image" class="text-danger"></span>
         </div>
         <a class="nav-link main-text-link" asp-area="" asp-controller="Account" asp-action="Login">
             Вже зареєстровані? Тоді увійдіть

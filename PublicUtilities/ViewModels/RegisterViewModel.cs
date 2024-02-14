@@ -40,5 +40,8 @@ namespace PublicUtilities.ViewModels
 
         [Required(ErrorMessage = "Будь ласка, заповніть поле \"Квартира проживання\"")]
         public string Apartment { get; set; }
+
+        [Required(ErrorMessage = "Будь ласка, прикріпіть документ який підтверджує особу")]
+        public IFormFile Image { get; set; }
     }
 }

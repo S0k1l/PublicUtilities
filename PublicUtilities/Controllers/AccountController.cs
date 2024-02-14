@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PublicUtilities.Data;
 using PublicUtilities.Interface;
 using PublicUtilities.Models;
+using PublicUtilities.Services;
 using PublicUtilities.ViewModels;
 
 namespace PublicUtilities.Controllers
@@ -12,14 +13,17 @@ namespace PublicUtilities.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IAccountRepository _accountRepository;
+        private readonly IPhotoService _photoService;
 
         public AccountController(UserManager<AppUser> userManager, 
             SignInManager<AppUser> signInManager,
-            IAccountRepository accountRepository)
+            IAccountRepository accountRepository,
+            IPhotoService photoService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _accountRepository = accountRepository;
+            _photoService = photoService;
         }
 
         [HttpGet]
@@ -46,6 +50,9 @@ namespace PublicUtilities.Controllers
                 return View(model);
             }
 
+            var imgResult = await _photoService.AddPhotoAsync(model.Image);
+            var imageUrl = imgResult.Url.ToString();
+
             var newUser = new AppUser()
             {
                 UserName = model.Email,
@@ -54,6 +61,7 @@ namespace PublicUtilities.Controllers
                 Surname = model.Surname,
                 Name = model.Name,
                 Patronymic = model.Patronymic,
+                ImageUrl = imageUrl,
                 UsersPlacesOfResidenceId = new List<UsersPlacesOfResidence>() {
                     new UsersPlacesOfResidence
                     {

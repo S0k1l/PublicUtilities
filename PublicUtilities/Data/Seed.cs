@@ -317,6 +317,7 @@ namespace PublicUtilities.Data
                         Surname = "UserSurname",
                         Name = "UserName",
                         Patronymic = "UserPatronymic",
+                        ImageUrl = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fjurliga.ligazakon.net%2Fru%2Fnews%2F140243_podlinnost-id-karty-mozhno-proverit-po-elementam-zashchity&psig=AOvVaw1qsbE1lOV_cZL3_nqDZfjD&ust=1707985399765000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCJD2rNWzqoQDFQAAAAAdAAAAABAj",
                         UsersPlacesOfResidenceId = new List<UsersPlacesOfResidence>() {
                             new UsersPlacesOfResidence
                             {
@@ -391,6 +392,7 @@ namespace PublicUtilities.Data
                         Surname = "User2Surname",
                         Name = "User2Name",
                         Patronymic = "User2Patronymic",
+                        ImageUrl = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fjurliga.ligazakon.net%2Fru%2Fnews%2F140243_podlinnost-id-karty-mozhno-proverit-po-elementam-zashchity&psig=AOvVaw1qsbE1lOV_cZL3_nqDZfjD&ust=1707985399765000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCJD2rNWzqoQDFQAAAAAdAAAAABAj",
                         UsersPlacesOfResidenceId = new List<UsersPlacesOfResidence>() {
                             new UsersPlacesOfResidence
                             {
