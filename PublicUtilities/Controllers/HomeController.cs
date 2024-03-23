@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PublicUtilities.Data;
 using PublicUtilities.Interface;
 using PublicUtilities.Models;
 using System.Diagnostics;
@@ -18,8 +19,14 @@ namespace PublicUtilities.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
+            if(User.IsInRole(UserRoles.Admin)) { return RedirectToAction("AdminPanel"); }
             var model = await _homeRepository.GetTop4News();
             return View(model);
+        }
+
+        public IActionResult AdminPanel()
+        {
+            return View();
         }
 
         public IActionResult Privacy()

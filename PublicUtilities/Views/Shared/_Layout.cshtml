@@ -1,4 +1,4 @@
-﻿﻿@using Microsoft.AspNetCore.Identity
+﻿@using Microsoft.AspNetCore.Identity
 
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
@@ -20,36 +20,59 @@
         <nav class=" navbar-expand-sm navbar-toggleable-sm navbar-light box-shadow mb-3" id="nav">
             <div id="nav-logo">
                 <div id="nav-frame">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" id="nav-text">PublicUtilities</a>
+                    @if (User.IsInRole(PublicUtilities.Data.UserRoles.User) || !User.Identity.IsAuthenticated)
+                    {
+                        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" id="nav-text">PublicUtilities</a>
+
+                    }
+                    else
+                    {
+                        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="AdminPanel" id="nav-text">PublicUtilities</a>
+
+                    }
                 </div>
                 <div class="green-box"></div>
             </div>
             <div id="nav-items">
-
-                <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index" id="nav-item-t">
-                    <div id="nav-text-seccondary">Головна</div>
-                </a>
-                @if(SignInManager.IsSignedIn(User))
+                @if (User.IsInRole(PublicUtilities.Data.UserRoles.User) || !User.Identity.IsAuthenticated)
                 {
-
-                    <div class="dropdown">
-                        <button class="dropbtn">Мій акаунт</button>
-                        <div class="dropdown-content">
-                            <a asp-action="ManageAccount" asp-controller="Account">Редагувати</a>
-                            <form method="post" style="height: 100%;" asp-controller="Account" asp-action="Logout">
-                                <button style="height: 100%; border: none; width: 100%" class="nav-link " type="submit" id="dropdown-nav-item">
-                                    <div id="nav-text-seccondary">Вийти</div>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                    @* <form method="post" style="height: 100%;" asp-controller="Account" asp-action="Logout">
-                        <button style="height: 100%; border: none" class="nav-link " type="submit" id="nav-item">
-                            <div id="nav-text-seccondary">Вийти</div>
-                        </button>
-                    </form> *@
+                    <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index" id="nav-item-t">
+                        <div id="nav-text-seccondary">Головна</div>
+                    </a>
                 }
-                else 
+                else
+                {
+                    <a class="nav-link " asp-area="" asp-controller="Home" asp-action="AdminPanel" id="nav-item-t">
+                        <div id="nav-text-seccondary">Головна</div>
+                    </a>
+                }
+
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    @if (User.IsInRole(PublicUtilities.Data.UserRoles.User))
+                    {
+                        <div class="dropdown">
+                            <button class="dropbtn">Мій акаунт</button>
+                            <div class="dropdown-content">
+                                <a asp-action="ManageAccount" asp-controller="Account">Редагувати</a>
+                                <form method="post" style="height: 100%;" asp-controller="Account" asp-action="Logout">
+                                    <button style="height: 100%; border: none; width: 100%" class="nav-link " type="submit" id="dropdown-nav-item">
+                                        <div id="nav-text-seccondary">Вийти</div>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <form method="post" style="height: 100%;" asp-controller="Account" asp-action="Logout">
+                            <button style="height: 100%; border: none" class="nav-link " type="submit" id="nav-item">
+                                <div id="nav-text-seccondary">Вийти</div>
+                            </button>
+                        </form>
+                    }
+                }
+                else
                 {
                     <a class="nav-link dropdown" asp-area="" asp-controller="Account" asp-action="Login" id="nav-item">
                         <div id="nav-text-seccondary">Увійти</div>

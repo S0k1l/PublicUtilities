@@ -32,6 +32,7 @@ namespace PublicUtilities.Controllers
             return View();
         }
 
+        //TODO: Check plase of residance is exist 
         [HttpPost]
         public async Task<IActionResult> Registration(RegisterViewModel model)
         {
@@ -120,6 +121,8 @@ namespace PublicUtilities.Controllers
             var result = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
             if (result.Succeeded)
             {
+                if (User.IsInRole(UserRoles.Admin)) { return RedirectToAction("AdminPanel", "Home"); }
+
                 return RedirectToAction("Index", "Home");
             }
 

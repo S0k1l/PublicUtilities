@@ -172,5 +172,12 @@ namespace PublicUtilities.Controllers
 
             return RedirectToAction("MyStatements");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> UsersStatements()
+        {
+            User.HasClaim()
+            return View();
+        }
     }
 }
