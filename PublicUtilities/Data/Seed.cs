@@ -22,7 +22,8 @@ namespace PublicUtilities.Data
                     await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
                 if (!await roleManager.RoleExistsAsync(UserRoles.User))
                     await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
-
+                if (!await roleManager.RoleExistsAsync(UserRoles.Employee))
+                    await roleManager.CreateAsync(new IdentityRole(UserRoles.Employee));
                 var context = serviceScope.ServiceProvider.GetService<AppDbContext>();
 
                 context.Database.EnsureCreated();

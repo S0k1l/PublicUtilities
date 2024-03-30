@@ -176,7 +176,6 @@ namespace PublicUtilities.Controllers
         [HttpGet]
         public async Task<IActionResult> UsersStatements()
         {
-            User.HasClaim()
             return View();
         }
     }

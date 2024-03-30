@@ -1,0 +1,80 @@
+﻿@model ICollection<PublicUtilities.ViewModels.EmployeeViewModel>
+
+<head>
+    <link rel="stylesheet" href="~/css/User/Index.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+</head>
+<div id="frame-location">
+    <svg style="z-index: 2" xmlns="http://www.w3.org/2000/svg" width="170" height="53" viewBox="0 0 143 53" fill="none">
+        <path d="M0.934875 0.0260391H124.74L142.648 26.5L124.74 52.974H0.934875V0.0260391Z" fill="url(#paint0_linear_53_35)" />
+        <defs>
+            <linearGradient id="paint0_linear_53_35" x1="0.934876" y1="26.5" x2="142.648" y2="26.5" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#EDEDED" />
+                <stop offset="1" stop-color="white" />
+            </linearGradient>
+        </defs>
+        <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index" id="nav-item">
+            <text x="-15" y="30" fill="blue" class="frame-location-text">Комунальні послунги</text>
+        </a>
+    </svg>
+    <svg style="margin-left: -40px" xmlns="http://www.w3.org/2000/svg" width="142" height="53" viewBox="0 0 142 53" fill="none">
+        <path d="M0.0500488 0H123.275L141.1 26.35L123.275 52.7H0.0500488V0Z" fill="url(#paint0_linear_103_80)" />
+        <defs>
+            <linearGradient id="paint0_linear_103_80" x1="0.0500494" y1="26.35" x2="141.1" y2="26.35" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#EDEDED" />
+                <stop offset="1" stop-color="white" />
+            </linearGradient>
+        </defs>
+        <text x="40" y="30" fill="blue" class="frame-location-text">Працівники</text>
+    </svg>
+</div>
+<div id="page-name-header">
+    <div class="page-name-header-frame">
+        <div class="page-name-header-greenbox"></div>
+        <div class="page-name-header-text">Працівники</div>
+    </div>
+</div>
+<div class="mian-frame">
+    <div class="mian-frame-frame">
+        <div class="main-text-frame">
+            <p class="main-text-frame-header">Вітаємо на сторінці "Працівники"</p>
+            <p class="main-text-frame-text">
+                На цій сторінці ви можете переглянути свою статистику щодо споживання газу.
+            </p>
+        </div>
+        <div class="mian-frame-line"></div>
+        <div class="main-btn-frame">
+            <a asp-action="AddEmployee" class="main-btn nav-link">Додати працівника</a>
+        </div>
+        <div class="main-table-frame">
+            <table class="rounded">
+                <thead>
+                    <tr>
+                        <th>ПІБ</th>
+                        <th>Відділ</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Surname @item.Name @item.Patronymic</td>
+                            <td>@item.Departement</td>
+                            <td>
+                                <div class="main-table-btn-frame">
+                                    <a asp-action="Detalis" class="main-btn-detalis nav-link" asp-route-id="@item.Id">Деталі</a>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="main-btn-cancel nav-link">Редагувати</a>
+                                    <form asp-action="Delete" method="post">
+                                        <button class="main-btn-del nav-link" name="id" value="@item.Id">Видалити</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

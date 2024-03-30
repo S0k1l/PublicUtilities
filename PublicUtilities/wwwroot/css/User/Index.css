@@ -1,0 +1,301 @@
+﻿@import '../Colors.css';
+
+p{
+    margin-bottom: 0;
+}
+
+/*----------=CHOOSE=----------*/
+.choose-frame {
+    display: flex;
+    width: 100%;
+    height: 55px;
+    padding: 0px 160px;
+    align-items: center;
+    gap: 23.25px;
+    flex-shrink: 0;
+    background: var(--Chinese-White);
+}
+
+.choose-green-btn {
+    display: flex;
+    padding: 7.75px 15.5px;
+    justify-content: center;
+    align-items: center;
+    gap: 7.75px;
+    border-radius: 7.75px;
+    background: var(--green-crayola);
+    color: var(--White);
+    font-family: Open Sans;
+    font-size: 15.5px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.31px;
+}
+
+.choose-gray-btn {
+    display: flex;
+    padding: 7.75px 15.5px;
+    justify-content: center;
+    align-items: center;
+    gap: 7.75px;
+    border-radius: 7.75px;
+    background: var(--Bright-Gray);
+    color: var(--Bright-Navy-Blue);
+    font-family: Open Sans;
+    font-size: 15.5px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.31px;
+    transition: 100ms ease-in-out;
+}
+
+    .choose-gray-btn:hover {
+        background: var(--Granite-Gray);
+        color: var(--Bright-Gray);
+    }
+
+
+/*----------=MAIN FRAME=----------*/
+/*TEXT*/
+.main-text-frame-text {
+    color: var(--Granite-Gray);
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.main-frame-text {
+    width: 80%;
+    color: var(--Granite-Gray);
+    text-align: right;
+    font-family: Open Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: -20px;
+}
+
+.graph-div {
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+}
+
+.graph {
+    padding: 15px;
+    background: var(--White);
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.10);
+}
+
+/*TABLE*/
+.main-table-frame {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: -0.775px;
+    width: 85%;
+    max-width: 1100px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 7.75px 0px rgba(0, 0, 0, 0.50);
+}
+
+table {
+    width: 100%;
+}
+
+th {
+    padding: 7.75px;
+    height: 45px;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    flex: 1 0 0;
+    align-self: stretch;
+    background: var(--green-crayola);
+    color: var(--White);
+    font-family: Open Sans;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+td {
+    padding: 10px 7.75px;
+    color: var(--Granite-Gray);
+    font-family: Open Sans;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.main-table-btn {
+    display: flex;
+    padding: 5px 5px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3.875px;
+    border: 2px solid var(--AuroMetalSaurus);
+    color: var(--AuroMetalSaurus);
+    font-family: Open Sans;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.558px;
+    transition: 100ms ease-in-out;
+}
+
+    .main-table-btn:hover {
+        background: var(--AuroMetalSaurus);
+        color: var(--Lotion);
+    }
+
+tr:nth-child(odd) {
+    background-color: var(--Anti-Flash-White);
+}
+
+/* top-left border-radius */
+table tr:first-child th:first-child {
+    border-top-left-radius: 5px;
+}
+
+/* top-right border-radius */
+table tr:first-child th:last-child {
+    border-top-right-radius: 5px;
+}
+
+/* bottom-left border-radius */
+table tr:last-child td:first-child {
+    border-bottom-left-radius: 5px;
+}
+
+/* bottom-right border-radius */
+table tr:last-child td:last-child {
+    border-bottom-right-radius: 5px;
+}
+
+/*BUTTON*/
+
+.main-btn-frame{
+    width: 85%;
+    display: flex;
+    align-items:flex-end;
+    flex-direction:column;
+}
+
+.main-btn {
+    display: flex;
+    padding: 9.625px 23.25px;
+    justify-content: center;
+    align-items: center;
+    gap: 7.75px;
+    border-radius: 5px;
+    margin-bottom: -15px;
+    border: 2px solid var(--green-crayola);
+    background: var(--green-crayola);
+    color: var(--White);
+    font-family: Open Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.511px;
+    transition: 100ms ease-in-out;
+}
+
+    .main-btn:hover {
+        border: 2px solid var(--AuroMetalSaurus);
+        background: var(--Bright-Gray);
+        color: var(--Granite-Gray);
+    }
+
+.main-btn-detalis {
+    display: flex;
+    padding: 9.625px 15.5px;
+    justify-content: center;
+    align-items: center;
+    gap: 7.75px;
+    border-radius: 5px;
+    border: 2px solid var(--green-crayola);
+    background: var(--green-crayola);
+    color: var(--White);
+    font-family: Open Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.511px;
+    transition: 100ms ease-in-out;
+}
+
+    .main-btn-detalis:hover {
+        border: 2px solid var(--AuroMetalSaurus);
+        background: var(--Bright-Gray);
+        color: var(--Granite-Gray);
+    }
+
+.main-btn-cancel {
+    display: flex;
+    padding: 9.625px 15.5px;
+    justify-content: center;
+    align-items: center;
+    gap: 7.75px;
+    border-radius: 5px;
+    border: 2px solid var(--AuroMetalSaurus);
+    color: var(--Lotion);
+    background: var(--AuroMetalSaurus);
+    font-family: Open Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.511px;
+    transition: 100ms ease-in-out;
+}
+
+    .main-btn-cancel:hover {
+        background: none;
+        color: var(--AuroMetalSaurus);
+    }
+
+.main-table-btn-frame {
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.main-btn-del {
+    display: flex;
+    padding: 9.625px 15.5px;
+    justify-content: center;
+    align-items: center;
+    gap: 7.75px;
+    border-radius: 5px;
+    background: none;
+    border: 2px solid var(--Boston-University-Red);
+    color: var(--Boston-University-Red);
+    font-family: Open Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.511px;
+    transition: 100ms ease-in-out;
+}
+
+    .main-btn-del:hover {
+        background: var(--Boston-University-Red);
+        color: var(--Lotion);
+    }
