@@ -46,5 +46,20 @@ namespace PublicUtilities.Repository
 
             return model;
         }
+
+        public async Task<ICollection<NotificationViewModel>> GetGlobalNotification()
+        {
+                var model = await _context.Notifications
+                    .Where(n => n.PlacesOfResidence == null)
+                    .Select(n => new NotificationViewModel
+                    {
+                        Text = n.Text,
+                        Header = n.Header,
+                        Date = n.Date.ToShortDateString(),
+                    })
+                    .ToListAsync();
+
+            return model;
+        }
     }
 }

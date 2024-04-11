@@ -7,5 +7,6 @@ namespace PublicUtilities.Interface
     {
         Task<ICollection<PlacesOfResidence>> GetUserPlacesOfResidencesByUserName(string userName);
         Task<ICollection<NotificationViewModel>> GetUserNotificationByUserPlacesOfResidences(ICollection<PlacesOfResidence> placesOfResidences);
+        Task<ICollection<NotificationViewModel>> GetGlobalNotification();
     }
 }

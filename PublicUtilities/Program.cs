@@ -7,11 +7,23 @@ using PublicUtilities.Interface;
 using PublicUtilities.Models;
 using PublicUtilities.Repository;
 using PublicUtilities.Services;
+using Quartz.Impl;
+using Quartz.Spi;
+using Quartz;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Add Quartz services
+builder.Services.AddSingleton<IJobFactory, SingletonJobFactory>();
+builder.Services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();
+builder.Services.AddSingleton<MyJob>(); // Register your job
+
+// Start Quartz.NET scheduler
+builder.Services.AddHostedService<QuartzHostedService>();
+
 builder.Services.AddScoped<IIndicatorsRepository, IndicatorsRepository>();
 builder.Services.AddScoped<IStatisticRepository, StatisticRepository>();
 builder.Services.AddScoped<IStatementsRepository, StatementsRepository>();

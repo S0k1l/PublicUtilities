@@ -48,7 +48,14 @@
             @foreach (var item in Model)
             {
                 <div class="main-section">
-                    <p class="main-text-header">@item.Street @item.Building @item.Apartment</p>
+                    @if (item.Street == null)
+                    {
+                        <p class="main-text-header">Увага!</p>
+                    }
+                    else
+                    {
+                        <p class="main-text-header">@item.Street @item.Building @item.Apartment</p>
+                    }
                     <div class="mian-frame-line"></div>
                     <div class="main-section-text-frame">
                         <p class="main-header">@item.Header</p>
