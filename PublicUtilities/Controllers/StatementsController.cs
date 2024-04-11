@@ -1,6 +1,7 @@
 ﻿using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using PublicUtilities.Data.Enum;
 using PublicUtilities.Interface;
 using PublicUtilities.Models;
 using PublicUtilities.Services;
@@ -81,7 +82,7 @@ namespace PublicUtilities.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> StatementsList(string alert = null)
+        public async Task<IActionResult> StatementsTypeList(string alert = null)
         {
             if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
 
@@ -173,10 +174,26 @@ namespace PublicUtilities.Controllers
             return RedirectToAction("MyStatements");
         }
 
+
         [HttpGet]
-        public async Task<IActionResult> UsersStatements()
+        public async Task<IActionResult> UsersStatements(string departament = "Відділ інфраструктури та обслуговування")
         {
-            return View();
+            var model = await _statementsRepository.GetSignedStatements(departament);
+
+            return View("StatementsList", model);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangeStatementStatus(int id, StatementsStatus status)
+        {
+            var statement = await _statementsRepository.GetStatementByStatementId(id);
+
+            statement.Status = status;
+
+            _statementsRepository.Update(statement);
+
+            return RedirectToAction("StatementDetails", new {id});
+        }
+        
     }
 }

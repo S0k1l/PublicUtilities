@@ -1,0 +1,109 @@
+﻿@using PublicUtilities.ViewModels
+@model ICollection<StatementsTypeListViewModel>
+
+@if (!string.IsNullOrEmpty(ViewBag.AlertMessage))
+{
+    <div id="myAlert" class="alert">
+        <svg class="alert-img" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+            <g clip-path="url(#clip0_174_565)">
+                <path d="M11.3037 0.0536537C8.38867 0.351505 5.73242 1.60639 3.67187 3.66205C-1.2207 8.54487 -1.2207 16.455 3.67187 21.3378C5.6543 23.3154 8.07129 24.5019 10.9619 24.9121C11.543 24.9951 13.4619 24.9902 14.0625 24.9072C16.8945 24.5165 19.3799 23.2958 21.333 21.333C23.5986 19.0527 24.8633 16.1523 24.9853 12.9394C25.1123 9.46772 23.8037 6.13764 21.3281 3.66205C19.4092 1.73822 16.9775 0.522404 14.2334 0.11713C13.6377 0.0292396 11.9043 -0.00982285 11.3037 0.0536537ZM14.3066 1.89936C16.5723 2.30951 18.501 3.31537 20.0928 4.90717C22.1387 6.95307 23.2422 9.6142 23.2422 12.4999C23.2422 16.6064 20.9521 20.288 17.2461 22.1386C15.7715 22.8759 14.1943 23.2421 12.5 23.2421C9.61914 23.2421 6.94824 22.1337 4.90723 20.0927C3.29102 18.4765 2.29004 16.5283 1.87012 14.1845C1.74805 13.4863 1.74805 11.5136 1.87012 10.8154C2.29004 8.47162 3.29102 6.52338 4.90723 4.90717C6.65039 3.16401 8.75976 2.1435 11.3037 1.80658C11.9043 1.72846 13.667 1.78217 14.3066 1.89936Z" fill="#curentcolor" />
+                <path d="M12.0947 6.61123C11.5479 6.7626 11.167 7.21181 11.167 7.70498C11.167 8.34463 11.6699 8.82803 12.3828 8.87685C13.1836 8.92568 13.8184 8.42275 13.8184 7.73428C13.8135 6.94814 12.9346 6.37197 12.0947 6.61123Z" fill="#curentcolor" />
+                <path d="M12.1143 10.4541C11.7725 10.5127 11.4844 10.6738 11.3428 10.8838L11.2305 11.0547L11.2402 14.3604L11.2549 17.6709L11.4209 17.8418C11.6846 18.1104 12.0117 18.2324 12.5 18.2373C12.876 18.2373 12.9492 18.2227 13.2422 18.0762C13.8135 17.793 13.7695 18.1201 13.7695 14.292V10.9912L13.6182 10.8203C13.3545 10.5176 12.6904 10.3564 12.1143 10.4541Z" fill="#curentcolor" />
+            </g>
+            <defs>
+                <clipPath id="clip0_174_565">
+                    <rect width="25" height="25" fill="white" />
+                </clipPath>
+            </defs>
+        </svg>
+        @ViewBag.AlertMessage
+    </div>
+    <script>
+        // Display the alert
+        document.getElementById("myAlert").style.display = "flex";
+
+        // Set a timeout to hide the alert after 3 seconds
+        setTimeout(function () {
+            document.getElementById("myAlert").style.display = "none";
+        }, 3000);
+
+    </script>
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/Statements/Index.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+<div id="frame-location">
+    <svg style="z-index: 2" xmlns="http://www.w3.org/2000/svg" width="170" height="53" viewBox="0 0 143 53" fill="none">
+        <path d="M0.934875 0.0260391H124.74L142.648 26.5L124.74 52.974H0.934875V0.0260391Z" fill="url(#paint0_linear_53_35)" />
+        <defs>
+            <linearGradient id="paint0_linear_53_35" x1="0.934876" y1="26.5" x2="142.648" y2="26.5" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#EDEDED" />
+                <stop offset="1" stop-color="white" />
+            </linearGradient>
+        </defs>
+        <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index" id="nav-item">
+            <text x="-15" y="30" fill="blue" class="frame-location-text">Комунальні послунги</text>
+        </a>
+    </svg>
+    <svg style="z-index: 1; margin-left: -50px;" xmlns="http://www.w3.org/2000/svg" width="142" height="53" viewBox="0 0 142 53" fill="none">
+        <path d="M0.0500488 0H123.275L141.1 26.35L123.275 52.7H0.0500488V0Z" fill="url(#paint0_linear_103_80)" />
+        <defs>
+            <linearGradient id="paint0_linear_103_80" x1="0.0500494" y1="26.35" x2="141.1" y2="26.35" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#EDEDED" />
+                <stop offset="1" stop-color="white" />
+            </linearGradient>
+        </defs>
+        <a class="nav-link " asp-area="" asp-controller="Statements" asp-action="MyStatements" id="nav-item">
+            <text x="50" y="30" fill="blue" class="frame-location-text">Мої заяви</text>
+        </a>
+    </svg>
+    <svg style="margin-left: -20px" xmlns="http://www.w3.org/2000/svg" width="142" height="53" viewBox="0 0 142 53" fill="none">
+        <path d="M0.0500488 0H123.275L141.1 26.35L123.275 52.7H0.0500488V0Z" fill="url(#paint0_linear_103_80)" />
+        <defs>
+            <linearGradient id="paint0_linear_103_80" x1="0.0500494" y1="26.35" x2="141.1" y2="26.35" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#EDEDED" />
+                <stop offset="1" stop-color="white" />
+            </linearGradient>
+        </defs>
+        <text x="35" y="30" fill="blue" class="frame-location-text">Нова заява</text>
+    </svg>
+</div>
+<div id="page-name-header">
+    <div class="page-name-header-frame">
+        <div class="page-name-header-greenbox"></div>
+        <div class="page-name-header-text">Нова заява</div>
+    </div>
+</div>
+<div class="choose-frame">
+    <a class="nav-link choose-gray-btn" asp-area="" asp-controller="Statements" asp-action="MyStatements">Мої заяви</a>
+    <div class="choose-green-btn">Подати нову заяву</div>
+</div>
+<div class="mian-frame">
+    <div class="mian-frame-frame">
+        <div class="main-text-frame">
+            <p class="main-text-frame-header">Вітаємо на сторінці “Мої заяви”</p>
+            <p class="main-text-frame-text">
+                На даній сторінці ви можете подавати нові заяви та переглядати вже подані. 
+                Ви побачите інформацію про тип заяви, її поточний статус та дату подання, 
+                а також матимете можливість переглянути її докладніше.
+            </p>
+        </div>
+        @foreach (var item in Model)
+        {
+            <div class="mian-frame-line"></div>
+            <p class="main-text-departaments">
+                <b>@item.DepartamentName</b>
+            </p>
+            <div class="main-btn-frame">
+                @foreach (var statements in item.StatementsInfos)
+                {
+                    <a class="main-statements-type-btn nav-link" asp-controller="Statements" asp-action="CreateStatement"
+                    asp-route-id="@statements.StatementId">@statements.StatementType</a>
+                }
+            </div>
+        }
+    </div>
+</div>

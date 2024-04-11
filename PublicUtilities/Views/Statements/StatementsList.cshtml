@@ -1,5 +1,11 @@
-﻿@using PublicUtilities.ViewModels
-@model ICollection<StatementsListViewModel>
+﻿@using PublicUtilities.Data.Enum
+@using PublicUtilities.ViewModels
+@model StatementsListViewModel
+
+<head>
+    <link rel="stylesheet" href="~/css/Statements/Index.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
 
 @if (!string.IsNullOrEmpty(ViewBag.AlertMessage))
 {
@@ -30,11 +36,6 @@
     </script>
 }
 
-<head>
-    <link rel="stylesheet" href="~/css/Statements/Index.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
-</head>
-
 <div id="frame-location">
     <svg style="z-index: 2" xmlns="http://www.w3.org/2000/svg" width="170" height="53" viewBox="0 0 143 53" fill="none">
         <path d="M0.934875 0.0260391H124.74L142.648 26.5L124.74 52.974H0.934875V0.0260391Z" fill="url(#paint0_linear_53_35)" />
@@ -56,54 +57,73 @@
                 <stop offset="1" stop-color="white" />
             </linearGradient>
         </defs>
-        <a class="nav-link " asp-area="" asp-controller="Statements" asp-action="MyStatements" id="nav-item">
-            <text x="50" y="30" fill="blue" class="frame-location-text">Мої заяви</text>
-        </a>
-    </svg>
-    <svg style="margin-left: -20px" xmlns="http://www.w3.org/2000/svg" width="142" height="53" viewBox="0 0 142 53" fill="none">
-        <path d="M0.0500488 0H123.275L141.1 26.35L123.275 52.7H0.0500488V0Z" fill="url(#paint0_linear_103_80)" />
-        <defs>
-            <linearGradient id="paint0_linear_103_80" x1="0.0500494" y1="26.35" x2="141.1" y2="26.35" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#EDEDED" />
-                <stop offset="1" stop-color="white" />
-            </linearGradient>
-        </defs>
-        <text x="35" y="30" fill="blue" class="frame-location-text">Нова заява</text>
+        <text x="50" y="30" fill="blue" class="frame-location-text">Мої заяви</text>
     </svg>
 </div>
 <div id="page-name-header">
     <div class="page-name-header-frame">
         <div class="page-name-header-greenbox"></div>
-        <div class="page-name-header-text">Нова заява</div>
+        <div class="page-name-header-text">Мої заяви</div>
     </div>
 </div>
 <div class="choose-frame">
-    <a class="nav-link choose-gray-btn" asp-area="" asp-controller="Statements" asp-action="MyStatements">Мої заяви</a>
-    <div class="choose-green-btn">Подати нову заяву</div>
+    <a class=@(Model.DepartamentName == "Відділ інфраструктури та обслуговування" ? "nav-link choose-green-btn" : "nav-link choose-gray-btn") asp-route-departament="Відділ інфраструктури та обслуговування" asp-action="UsersStatements">Відділ інфраструктури та обслуговування</a>
+    <a class=@(Model.DepartamentName == "Відділ адміністрації та фінансів" ? "nav-link choose-green-btn" : "nav-link choose-gray-btn") asp-route-departament="Відділ адміністрації та фінансів" asp-action="UsersStatements">Відділ адміністрації та фінансів</a>
+    <a class=@(Model.DepartamentName == "Відділ екології та охорони довкілля" ? "nav-link choose-green-btn" : "nav-link choose-gray-btn") asp-route-departament="Відділ екології та охорони довкілля" asp-action="UsersStatements">Відділ екології та охорони довкілля</a>
+    <a class=@(Model.DepartamentName == "Відділ зав’язків з громадськістю та комунікації" ? "nav-link choose-green-btn" : "nav-link choose-gray-btn") asp-route-departament="Відділ зав’язків з громадськістю та комунікації" asp-action="UsersStatements">Відділ зав’язків з громадськістю та комунікації</a>
 </div>
 <div class="mian-frame">
     <div class="mian-frame-frame">
         <div class="main-text-frame">
             <p class="main-text-frame-header">Вітаємо на сторінці “Мої заяви”</p>
             <p class="main-text-frame-text">
-                На даній сторінці ви можете подавати нові заяви та переглядати вже подані. 
-                Ви побачите інформацію про тип заяви, її поточний статус та дату подання, 
+                На даній сторінці ви можете подавати нові заяви та переглядати вже подані.
+                Ви побачите інформацію про тип заяви, її поточний статус та дату подання,
                 а також матимете можливість переглянути її докладніше.
             </p>
         </div>
-        @foreach (var item in Model)
-        {
-            <div class="mian-frame-line"></div>
-            <p class="main-text-departaments">
-                <b>@item.DepartamentName</b>
-            </p>
-            <div class="main-btn-frame">
-                @foreach (var statements in item.StatementsInfos)
-                {
-                    <a class="main-statements-type-btn nav-link" asp-controller="Statements" asp-action="CreateStatement"
-                    asp-route-id="@statements.StatementId">@statements.StatementType</a>
-                }
+        <div class="mian-frame-line"></div>
+            <p class="main-text-frame-text">@Model.DepartamentName</p>
+            <div class="main-table-frame">
+                <table class="rounded">
+                    <thead>
+                        <tr>
+                            <th width="250">ПІБ</th>
+                            <th width="150">Статус</th>
+                            <th width="150">Дата подання</th>
+                            <th width="100"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var statement in Model.StatementsInfos)
+                        {
+                            <tr>
+                                <td width="250">@statement.Surname @statement.Name @statement.Patronymic</td>
+                                <td width="150">
+                                    @switch (statement.Status)
+                                    {
+                                        case StatementsStatus.Відхилена:
+                                            <p style="color:red;">@statement.Status</p>
+                                            break;
+                                        case StatementsStatus.Розглядається:
+                                            <p style="color:deepskyblue;">@statement.Status</p>
+                                            break;
+                                        case StatementsStatus.Ухвалена:
+                                            <p style="color:limegreen;">@statement.Status</p>
+                                            break;
+                                        default:
+                                            <p>@statement.Status</p>
+                                            break;
+                                    }
+                                </td>
+                                <td width="150">@statement.Date.ToShortDateString()</td>
+                                <td width="100">
+                                    <a asp-action="StatementDetails" asp-controller="Statements" asp-route-id="@statement.Id" class="main-table-btn nav-link">Переглянути</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
-        }
     </div>
 </div>

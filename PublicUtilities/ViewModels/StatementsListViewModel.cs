@@ -1,14 +1,21 @@
-﻿namespace PublicUtilities.ViewModels
+﻿using PublicUtilities.Data.Enum;
+
+namespace PublicUtilities.ViewModels
 {
     public class StatementsListViewModel
     {
         public string DepartamentName { get; set; }
-        public ICollection<StatementsTyprInfo> StatementsInfos { get; set; }
+        public ICollection<StatementsList> StatementsInfos { get; set; }
+
     }
 
-    public class StatementsTyprInfo
+    public class StatementsList
     {
-        public int StatementId { get; set; }
-        public string StatementType { get; set; }
+        public int Id { get; set; }
+        public string Surname { get; set; }
+        public string Name { get; set; }
+        public string Patronymic { get; set; }
+        public StatementsStatus Status { get; set; }
+        public DateTime Date { get; set; }
     }
 }

@@ -34,10 +34,10 @@ namespace PublicUtilities.Repository
             return Save();
         }
 
-        public async Task<ICollection<StatementsListViewModel>> getAllStatements()
+        public async Task<ICollection<StatementsTypeListViewModel>> getAllStatements()
         {
             var depertaments = await _context.Departments.ToListAsync();
-            var statements = new List<StatementsListViewModel>();
+            var statements = new List<StatementsTypeListViewModel>();
 
             foreach (var item in depertaments)
             {
@@ -49,7 +49,7 @@ namespace PublicUtilities.Repository
                         StatementType = s.Type,
                     }).ToListAsync();
                 statements.Add(
-                    new StatementsListViewModel
+                    new StatementsTypeListViewModel
                     {
                         DepartamentName = item.Name,
                         StatementsInfos = statement,
@@ -113,6 +113,28 @@ namespace PublicUtilities.Repository
             }
 
             return myStatements;
+        }
+
+        public async Task<StatementsListViewModel> GetSignedStatements(string departament)
+        {
+                var statement = await _context.UsersStatements
+                    .Where(s => s.Statements.StatementsType.Department.Name == departament 
+                    && s.Statements.SignarureCount >= s.Statements.StatementsType.SignatureCount)
+                    .Select(s => new StatementsList
+                    {
+                        Id = s.Statements.Id,
+                        Status = s.Statements.Status,
+                        Date = s.Statements.Date,
+                        Surname = s.AppUser.Surname,
+                        Name = s.AppUser.Name,
+                        Patronymic = s.AppUser.Patronymic,
+                    }).ToListAsync();
+            var statements = new StatementsListViewModel
+                    {
+                        DepartamentName = departament,
+                        StatementsInfos = statement,
+                    };
+            return statements;
         }
 
         public async Task<Statements> GetStatementByStatementId(int id)
@@ -185,6 +207,12 @@ namespace PublicUtilities.Repository
         {
             var saved = _context.SaveChanges();
             return saved > 0 ? true : false;
+        }
+
+        public bool Update(Statements statements)
+        {
+            _context.Update(statements);
+            return Save();
         }
     }
 }

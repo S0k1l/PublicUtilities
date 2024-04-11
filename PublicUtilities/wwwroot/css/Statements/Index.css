@@ -35,7 +35,7 @@ p {
 .choose-frame {
     display: flex;
     width: 100%;
-    height: 55px;
+    height: 75px;
     padding: 0px 160px;
     align-items: center;
     gap: 23.25px;
@@ -59,24 +59,27 @@ p {
     line-height: normal;
     letter-spacing: -0.31px;
 }
+    .choose-green-btn:hover {
+        color: var(--White);
+    }
 
-.choose-gray-btn {
-    display: flex;
-    padding: 7.75px 15.5px;
-    justify-content: center;
-    align-items: center;
-    gap: 7.75px;
-    border-radius: 7.75px;
-    background: var(--Bright-Gray);
-    color: var(--Bright-Navy-Blue);
-    font-family: Open Sans;
-    font-size: 15.5px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: -0.31px;
-    transition: 100ms ease-in-out;
-}
+    .choose-gray-btn {
+        display: flex;
+        padding: 7.75px 15.5px;
+        justify-content: center;
+        align-items: center;
+        gap: 7.75px;
+        border-radius: 7.75px;
+        background: var(--Bright-Gray);
+        color: var(--Bright-Navy-Blue);
+        font-family: Open Sans;
+        font-size: 15.5px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: -0.31px;
+        transition: 100ms ease-in-out;
+    }
 
     .choose-gray-btn:hover {
         background: var(--Granite-Gray);
