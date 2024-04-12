@@ -7,6 +7,7 @@ namespace PublicUtilities.Interface
     {
         Task<ICollection<PaymentViewModel>> GetUserPaymentByUserName(string userName , string service);
         Task<Indicators> GetUserPaymentById(int id);
+        Task<ICollection<PaymentListViewModel>> GetPaymentList();
         bool PeymetntOperation(Indicators indicators);
         bool Save();
     }

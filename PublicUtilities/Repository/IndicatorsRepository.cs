@@ -42,7 +42,7 @@ namespace PublicUtilities.Repository
                 {
                     var newIndicator = await _context.Indicators
                         .Join(_context.Utilities, i => i.UtilitiesId, u => u.Id, (i, u) => new { i, u })
-                        .Where(x => x.i.PlacesOfResidenceId == item.Id && x.u.Name == utilityType.Name && x.i.Paid == false)
+                        .Where(x => x.i.PlacesOfResidenceId == item.Id && x.u.Name == utilityType.Name && x.i.isPaid == false)
                         .OrderByDescending(x => x.i.Date)
                         .Select(x => new UserIndicators
                         {

@@ -66,5 +66,12 @@ namespace PublicUtilities.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> PaymentList()
+        {
+            var model = await _paymentRepository.GetPaymentList();
+            return View(model);
+        }
     }
 }
