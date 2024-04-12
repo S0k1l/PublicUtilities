@@ -43,7 +43,7 @@ namespace PublicUtilities.Controllers
                 Indicator = indicator,
                 Date = DateTime.Now,
                 Price = price,
-                Paid = false,
+                isPaid = false,
                 Consumed = consumed,
             };
 
