@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Security;
 using System.Security.Cryptography.Xml;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace PublicUtilities.Data
 {
@@ -544,7 +545,7 @@ namespace PublicUtilities.Data
             int consumed;
 
             //waterUtilities
-            for (int i = 11; i >= 1; i--)
+            for (int i = 13; i >= 1; i--)
             {
                 consumed = rand.Next(5, 5);
 
@@ -557,8 +558,9 @@ namespace PublicUtilities.Data
                 {
                     Indicator = idicator.ToString(),
                     Date = DateTime.Now.AddMonths(-i),
+                    PaymentDate = DateTime.Now.AddMonths(-i).AddDays(5),
                     Price = consumed * waterUtilities.Price,
-                    Paid = true,
+                    isPaid = true,
                     Utilities = waterUtilities,
                     Consumed = consumed.ToString(),
                 });
@@ -572,7 +574,7 @@ namespace PublicUtilities.Data
                 Indicator = idicator.ToString(),
                 Date = DateTime.Now,
                 Price = consumed * waterUtilities.Price,
-                Paid = false,
+                isPaid = false,
                 Utilities = waterUtilities,
                 Consumed = consumed.ToString(),
             });
@@ -580,7 +582,7 @@ namespace PublicUtilities.Data
             idicator = 0;
 
             //gasUtilities
-            for (int i = 11; i >= 1; i--)
+            for (int i = 13; i >= 1; i--)
             {
                 consumed = rand.Next(21, 31);
 
@@ -593,8 +595,9 @@ namespace PublicUtilities.Data
                 {
                     Indicator = idicator.ToString(),
                     Date = DateTime.Now.AddMonths(-i),
+                    PaymentDate = DateTime.Now.AddMonths(-i).AddDays(5),
                     Price = consumed * gasUtilities.Price,
-                    Paid = true,
+                    isPaid = true,
                     Utilities = gasUtilities,
                     Consumed = consumed.ToString(),
                 });
@@ -608,14 +611,14 @@ namespace PublicUtilities.Data
                 Indicator = idicator.ToString(),
                 Date = DateTime.Now,
                 Price = consumed * gasUtilities.Price,
-                Paid = false,
+                isPaid = false,
                 Utilities = gasUtilities,
                 Consumed = consumed.ToString(),
             });
 
             idicator = 0;
             //electricityUtilities
-            for (int i = 11; i >= 1; i--)
+            for (int i = 13; i >= 1; i--)
             {
                 consumed = rand.Next(332, 382);
 
@@ -628,8 +631,9 @@ namespace PublicUtilities.Data
                 {
                     Indicator = idicator.ToString(),
                     Date = DateTime.Now.AddMonths(-i),
+                    PaymentDate = DateTime.Now.AddMonths(-i).AddDays(5),
                     Price = consumed * electricityUtilities.Price,
-                    Paid = true,
+                    isPaid = true,
                     Utilities = electricityUtilities,
                     Consumed = consumed.ToString(),
                 });
@@ -643,7 +647,7 @@ namespace PublicUtilities.Data
                 Indicator = idicator.ToString(),
                 Date = DateTime.Now,
                 Price = consumed * electricityUtilities.Price,
-                Paid = false,
+                isPaid = false,
                 Utilities = electricityUtilities,
                 Consumed = consumed.ToString(),
             });
