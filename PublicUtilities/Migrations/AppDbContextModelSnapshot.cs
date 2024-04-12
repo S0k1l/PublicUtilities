@@ -271,8 +271,8 @@ namespace PublicUtilities.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Paid")
-                        .HasColumnType("bit");
+                    b.Property<DateTime?>("PaymentDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("PlacesOfResidenceId")
                         .HasColumnType("int");
@@ -282,6 +282,9 @@ namespace PublicUtilities.Migrations
 
                     b.Property<int>("UtilitiesId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("isPaid")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 

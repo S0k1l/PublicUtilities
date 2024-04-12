@@ -12,7 +12,7 @@ using PublicUtilities.Data;
 namespace PublicUtilities.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240214083032_InitialCreate")]
+    [Migration("20240412161937_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -274,8 +274,8 @@ namespace PublicUtilities.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Paid")
-                        .HasColumnType("bit");
+                    b.Property<DateTime?>("PaymentDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("PlacesOfResidenceId")
                         .HasColumnType("int");
@@ -285,6 +285,9 @@ namespace PublicUtilities.Migrations
 
                     b.Property<int>("UtilitiesId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("isPaid")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -338,7 +341,7 @@ namespace PublicUtilities.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PlacesOfResidenceId")
+                    b.Property<int?>("PlacesOfResidenceId")
                         .HasColumnType("int");
 
                     b.Property<string>("Text")
@@ -590,9 +593,7 @@ namespace PublicUtilities.Migrations
                 {
                     b.HasOne("PublicUtilities.Models.PlacesOfResidence", "PlacesOfResidence")
                         .WithMany("Notifications")
-                        .HasForeignKey("PlacesOfResidenceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PlacesOfResidenceId");
 
                     b.Navigation("PlacesOfResidence");
                 });

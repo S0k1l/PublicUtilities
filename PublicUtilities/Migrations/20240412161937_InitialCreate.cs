@@ -298,7 +298,8 @@ namespace PublicUtilities.Migrations
                     Consumed = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Paid = table.Column<bool>(type: "bit", nullable: false)
+                    isPaid = table.Column<bool>(type: "bit", nullable: false),
+                    PaymentDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -323,7 +324,7 @@ namespace PublicUtilities.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PlacesOfResidenceId = table.Column<int>(type: "int", nullable: false),
+                    PlacesOfResidenceId = table.Column<int>(type: "int", nullable: true),
                     Header = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -335,8 +336,7 @@ namespace PublicUtilities.Migrations
                         name: "FK_Notifications_PlacesOfResidence_PlacesOfResidenceId",
                         column: x => x.PlacesOfResidenceId,
                         principalTable: "PlacesOfResidence",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(

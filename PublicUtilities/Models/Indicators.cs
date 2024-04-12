@@ -16,6 +16,7 @@ namespace PublicUtilities.Models
         public string Consumed { get; set; }
         public DateTime Date { get; set; }
         public decimal Price { get; set; }
-        public bool Paid { get; set; }
+        public bool isPaid { get; set; }
+        public DateTime? PaymentDate { get; set; }
     }
 }
