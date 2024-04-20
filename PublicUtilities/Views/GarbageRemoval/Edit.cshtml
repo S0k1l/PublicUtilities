@@ -36,14 +36,34 @@
     </div>
 </div>
 <div class="mian-frame">
-    <div class="mian-frame-frame">
+    <form asp-action="edit" method="post" class="mian-frame-frame">
         <div class="main-text-frame">
             <div class="main-text-frame-header">Вітаємо на сторінці графіку вивозу сміття</div>
             <div class="main-text-frame-text">На цій сторінці ви можете переглянути графік вивозу сміття</div>
         </div>
         <div class="mian-frame-line"></div>
-        <div class="schedule">
-            <p>@Model.Text</p>
+        <textarea asp-for="Text" class="schedule main-input-field" required>@Model.Text</textarea>
+        <div class="main-btn-frame">
+            <input type="submit" class="main-btn-sigin" value="Зберегти" />
+            <div class="main-btn-cancel">Назад</div>
         </div>
-    </div>
+    </form>
 </div>
+
+<script>
+  const textarea = document.getElementById('myTextarea');
+
+  textarea.addEventListener('keydown', function(event) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      const start = this.selectionStart;
+      const end = this.selectionEnd;
+
+      // Insert tab character
+      this.value = this.value.substring(0, start) + '\t' + this.value.substring(end);
+
+      // Put cursor after the inserted tab
+      this.selectionStart = this.selectionEnd = start + 1;
+    }
+  });
+</script>

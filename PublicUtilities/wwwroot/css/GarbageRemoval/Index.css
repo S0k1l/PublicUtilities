@@ -1,5 +1,17 @@
 ﻿@import '../Colors.css';
 
+p {
+    color: var(--Granite-Gray);
+    text-align: justify;
+    font-family: Open Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    white-space: pre;
+    line-height: 150%;
+}
+
 li {
     color: var(--Granite-Gray);
     text-align: justify;
@@ -31,6 +43,81 @@ ul {
     line-height: normal;
 }
 
-.schedule{
+.schedule {
     width: 80%;
 }
+
+.main-input-field {
+    height: 600px;
+    padding: 0 10px;
+    border-radius: 3.875px;
+    border: 1.55px solid var(--Granite-Gray, #676866);
+    background: var(--White, #FFF);
+    box-shadow: 0px 0px 3.1px 0px rgba(0, 0, 0, 0.10) inset;
+    color: var(--Granite-Gray);
+    text-align: justify;
+    font-family: Open Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    white-space: pre;
+    line-height: 150%;
+}
+
+/*BUTTONS*/
+.main-btn-frame {
+    margin-top: -10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 34.875px;
+}
+
+.main-btn-sigin {
+    display: flex;
+    padding: 9.625px 23.25px;
+    justify-content: center;
+    align-items: center;
+    gap: 7.75px;
+    border-radius: 5px;
+    border: 2px solid var(--green-crayola);
+    background: var(--green-crayola);
+    color: var(--White);
+    font-family: Open Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.511px;
+    transition: 100ms ease-in-out;
+}
+
+    .main-btn-sigin:hover {
+        border: 2px solid var(--Bright-Gray);
+        background: var(--Bright-Gray);
+        color: var(--Granite-Gray);
+    }
+
+.main-btn-cancel {
+    display: flex;
+    padding: 9.625px 15.5px;
+    justify-content: center;
+    align-items: center;
+    gap: 7.75px;
+    border-radius: 5px;
+    border: 2px solid var(--AuroMetalSaurus);
+    color: var(--AuroMetalSaurus, #718183);
+    font-family: Open Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.511px;
+    transition: 100ms ease-in-out;
+}
+
+    .main-btn-cancel:hover {
+        background: var(--AuroMetalSaurus);
+        color: var(--Lotion);
+    }
