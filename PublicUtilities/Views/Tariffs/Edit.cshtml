@@ -36,7 +36,7 @@
     </div>
 </div>
 <div class="mian-frame">
-    <div class="mian-frame-frame">
+    <form asp-action="edit" method="post" class="mian-frame-frame">
         <div class="main-text-frame">
             <p class="main-text-frame-header">Вітаємо на сторінці тарифів</p>
             <p class="main-text-frame-text">
@@ -44,19 +44,26 @@
             </p>
         </div>
         <div class="mian-frame-line"></div>
-        <div class="main-table-frame">
-            <table class="rounded">
-                <tr>
-                    <th>Вода</th>
-                    <th>Газ</th>
-                    <th>Електроенергія</th>
-                </tr>
-                <tr>
-                    <td>@Model.WaterPrice грн/м<sup>3</sup></td>
-                    <td>@Model.GasPrice грн/м<sup>3</sup></td>
-                    <td>@Model.ElectricityPrice грн/кВт-год</td>
-                </tr>
-            </table>
+        <div class="main-frame-input">
+            <div class="main-input">
+                <label class="main-input-header">Вода</label>
+                <input type="number" asp-for="WaterPrice" class=" main-input-field" min="0" step="0.01">
+                <span asp-validation-for="WaterPrice" class=" text-danger"></span>
+            </div>
+            <div class="main-input">
+                <label class="main-input-header">Газ</label>
+                <input type="number" asp-for="GasPrice" class=" main-input-field" min="0" step="0.01">
+                <span asp-validation-for="GasPrice" class=" text-danger"></span>
+            </div>
+            <div class="main-input">
+                <label class="main-input-header">Електроенергія</label>
+                <input type="number" asp-for="ElectricityPrice" class=" main-input-field" min="0" step="0.01">
+                <span asp-validation-for="ElectricityPrice" class=" text-danger"></span>
+            </div>
         </div>
-    </div>
+        <div class="main-btn-frame">
+            <input type="submit" class="main-btn-sigin" value="Зберегти" />
+            <div class="main-btn-cancel">Назад</div>
+        </div>
+    </form>
 </div>
