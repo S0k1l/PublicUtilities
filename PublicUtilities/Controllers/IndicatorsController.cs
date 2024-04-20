@@ -31,15 +31,16 @@ namespace PublicUtilities.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(int placesOfResidenceId, int utilitiesId, string indicator, string consumed)
+        public async Task<IActionResult> Index(int placesOfResidenceId, string utilitiesName, string indicator, string consumed)
         {
-            var utilitiesPrice = await _indicatorsRepository.GetUtilitiesPriceById(utilitiesId);
-            var price = utilitiesPrice * int.Parse(consumed);
+            var utilities = await _indicatorsRepository.GetUtilities(utilitiesName);
+            var price = utilities.Price * int.Parse(consumed);
 
             var newIndicartor = new Indicators
             {
                 PlacesOfResidenceId = placesOfResidenceId,
-                UtilitiesId = utilitiesId,
+                UtilitiesId = utilities.Id,
+                Utilities = utilities,
                 Indicator = indicator,
                 Date = DateTime.Now,
                 Price = price,
