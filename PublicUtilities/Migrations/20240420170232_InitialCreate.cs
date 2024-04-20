@@ -68,6 +68,19 @@ namespace PublicUtilities.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "GarbageRemoval",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Text = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GarbageRemoval", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "News",
                 columns: table => new
                 {
@@ -484,6 +497,9 @@ namespace PublicUtilities.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "GarbageRemoval");
 
             migrationBuilder.DropTable(
                 name: "Indicators");

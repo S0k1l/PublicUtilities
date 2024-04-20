@@ -12,7 +12,7 @@ using PublicUtilities.Data;
 namespace PublicUtilities.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240412161937_InitialCreate")]
+    [Migration("20240420170232_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -253,6 +253,23 @@ namespace PublicUtilities.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Departments");
+                });
+
+            modelBuilder.Entity("PublicUtilities.Models.GarbageRemoval", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("GarbageRemoval");
                 });
 
             modelBuilder.Entity("PublicUtilities.Models.Indicators", b =>

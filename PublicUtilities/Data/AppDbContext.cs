@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 using PublicUtilities.Models;
 
 namespace PublicUtilities.Data
@@ -8,6 +10,19 @@ namespace PublicUtilities.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
+            try
+            {
+                var databaseCreator = Database.GetService<IDatabaseCreator>() as RelationalDatabaseCreator;
+                if (databaseCreator != null)
+                {
+                    if (!databaseCreator.CanConnect()) databaseCreator.Create();
+                    if (!databaseCreator.HasTables()) databaseCreator.CreateTables();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public DbSet<News> News { get; set; }
@@ -21,6 +36,7 @@ namespace PublicUtilities.Data
         public DbSet<Statements> Statements { get; set; }
         public DbSet<UsersPlacesOfResidence> UsersPlacesOfResidence { get; set; }
         public DbSet<UsersStatements> UsersStatements { get; set; }
+        public DbSet<GarbageRemoval> GarbageRemoval { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Indicators>()

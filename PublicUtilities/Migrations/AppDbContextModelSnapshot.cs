@@ -252,6 +252,23 @@ namespace PublicUtilities.Migrations
                     b.ToTable("Departments");
                 });
 
+            modelBuilder.Entity("PublicUtilities.Models.GarbageRemoval", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("GarbageRemoval");
+                });
+
             modelBuilder.Entity("PublicUtilities.Models.Indicators", b =>
                 {
                     b.Property<int>("Id")
