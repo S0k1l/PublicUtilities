@@ -7,6 +7,8 @@ namespace PublicUtilities.Interface
     {
         Task<ICollection<IndicatorsViewModel>> GetIndeicatorsByUserName(string userName);
         Task<Utilities> GetUtilities(string utilitiesName);
+        Task<ICollection<IndicatorsListViewModel>> GetThoseWhoDontUploadIndicators();
+        Task<PlacesOfResidence> GetPlacesOfResidence(int id);
         bool AddIndicator(Indicators indicators);
         bool Save();
 

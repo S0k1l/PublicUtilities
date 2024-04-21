@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using PublicUtilities.Interface;
 using PublicUtilities.Models;
+using PublicUtilities.ViewModels;
 
 namespace PublicUtilities.Controllers
 {
@@ -54,6 +55,14 @@ namespace PublicUtilities.Controllers
             }
 
             return RedirectToAction("Index", new { alert = "Показники успішно поданні!" });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> IndicatorsList()
+        {
+            var model = await _indicatorsRepository.GetThoseWhoDontUploadIndicators();
+
+            return View(model);
         }
     }
 }

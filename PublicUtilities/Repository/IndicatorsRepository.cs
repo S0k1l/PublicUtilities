@@ -83,5 +83,51 @@ namespace PublicUtilities.Repository
             var saved = _context.SaveChanges();
             return saved > 0 ? true : false;
         }
+
+        public async Task<ICollection<IndicatorsListViewModel>> GetThoseWhoDontUploadIndicators()
+        {
+            var currYear = DateTime.Now.Year;
+            var prevMonth = DateTime.Now.Month -1;
+
+            DateTime startDate = new DateTime(currYear, prevMonth, DateTime.DaysInMonth(currYear, prevMonth) - 2);
+                        
+            var porsId = await _context.PlacesOfResidence.Select(por => por.Id).ToListAsync();
+
+            var model = new List<IndicatorsListViewModel>();
+
+            foreach (var porId in porsId)
+            {
+                var asd = await _context.Indicators
+                    .Where(i => i.PlacesOfResidenceId == porId)
+                    .GroupBy(i => i.UtilitiesId)
+                    .Select(g => new
+                    {
+                        PlacesOfResidenceId = g.Key,
+                        LatestUploadDate = g.Max(i => i.Date),
+                        UtilitiesName = g.Select(g => g.Utilities.Name).FirstOrDefault(),
+                        Street = g.Select(g => g.PlacesOfResidence.Streets.Name).FirstOrDefault(),
+                        House = g.Select(g => g.PlacesOfResidence.House).FirstOrDefault(),
+                        Apartment = g.Select(g => g.PlacesOfResidence.Apartment).FirstOrDefault(),
+                    })
+                    .Where(i => i.LatestUploadDate < startDate)
+                    .Select(i => new IndicatorsListViewModel
+                    {
+                        PlacesOfResidenceId = i.PlacesOfResidenceId,
+                        UtilitiesName = i.UtilitiesName,
+                        PlacesOfResidence = $"Вул. {i.Street}, буд. {i.House}, кв. {i.Apartment}",
+                        LastUploaded = i.LatestUploadDate.ToShortDateString()
+                    })
+                    .ToListAsync();
+
+                model.AddRange(asd);
+            }
+
+            return model;
+        }
+
+        public async Task<PlacesOfResidence> GetPlacesOfResidence(int id)
+        {
+            return await _context.PlacesOfResidence.FirstOrDefaultAsync(por => por.Id == id);
+        }
     }
 }
