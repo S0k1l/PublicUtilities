@@ -1,0 +1,106 @@
+﻿@model PublicUtilities.ViewModels.CreateNotificationViewModel
+
+<head>
+    <link rel="stylesheet" href="~/css/News/Index.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+<div id="frame-location">
+    <svg style="z-index: 4" xmlns="http://www.w3.org/2000/svg" width="170" height="53" viewBox="0 0 143 53" fill="none">
+        <path d="M0.934875 0.0260391H124.74L142.648 26.5L124.74 52.974H0.934875V0.0260391Z" fill="url(#paint0_linear_53_35)" />
+        <defs>
+            <linearGradient id="paint0_linear_53_35" x1="0.934876" y1="26.5" x2="142.648" y2="26.5" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#EDEDED" />
+                <stop offset="1" stop-color="white" />
+            </linearGradient>
+        </defs>
+        <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index" id="nav-item">
+            <text x="-15" y="30" fill="blue" class="frame-location-text">Комунальні послунги</text>
+        </a>
+    </svg>
+    <svg style="z-index: 3; margin-left: -50px;" xmlns="http://www.w3.org/2000/svg" width="142" height="53" viewBox="0 0 142 53" fill="none">
+        <path d="M0.0500488 0H123.275L141.1 26.35L123.275 52.7H0.0500488V0Z" fill="url(#paint0_linear_103_80)" />
+        <defs>
+            <linearGradient id="paint0_linear_103_80" x1="0.0500494" y1="26.35" x2="141.1" y2="26.35" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#EDEDED" />
+                <stop offset="1" stop-color="white" />
+            </linearGradient>
+        </defs>
+        <a class="nav-link " asp-area="" asp-controller="Statements" asp-action="MyStatements" id="nav-item">
+            <text x="50" y="30" fill="blue" class="frame-location-text">Мої заяви</text>
+        </a>
+    </svg>
+    <svg style="margin-left: -20px; z-index: 2" xmlns="http://www.w3.org/2000/svg" width="142" height="53" viewBox="0 0 142 53" fill="none">
+        <path d="M0.0500488 0H123.275L141.1 26.35L123.275 52.7H0.0500488V0Z" fill="url(#paint0_linear_103_80)" />
+        <defs>
+            <linearGradient id="paint0_linear_103_80" x1="0.0500494" y1="26.35" x2="141.1" y2="26.35" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#EDEDED" />
+                <stop offset="1" stop-color="white" />
+            </linearGradient>
+        </defs>
+        <a class="nav-link " asp-area="" asp-controller="Statements" asp-action="StatementsList" id="nav-item">
+            <text x="35" y="30" fill="blue" class="frame-location-text">Нова заява</text>
+        </a>
+    </svg>
+    <svg style="margin-left: 10px; z-index: 1" xmlns="http://www.w3.org/2000/svg" width="142" height="53" viewBox="0 0 142 53" fill="none">
+        <path d="M0.0500488 0H123.275L141.1 26.35L123.275 52.7H0.0500488V0Z" fill="url(#paint0_linear_103_80)" />
+        <defs>
+            <linearGradient id="paint0_linear_103_80" x1="0.0500494" y1="26.35" x2="141.1" y2="26.35" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#EDEDED" />
+                <stop offset="1" stop-color="white" />
+            </linearGradient>
+        </defs>
+        <text x="5" y="30" fill="blue" class="frame-location-text">Створення заяви</text>
+    </svg>
+</div>
+<div id="page-name-header">
+    <div class="page-name-header-frame">
+        <div class="page-name-header-greenbox"></div>
+        <div class="page-name-header-text">Створення заяви</div>
+    </div>
+</div>
+<form asp-action="Create" method="post" class="mian-frame" enctype="multipart/form-data">
+    <div class="mian-frame-frame">
+        <div class="main-text-frame">
+            <p class="main-text-frame-header">Вітаємо на сторінці створення заяви</p>
+            <p class="main-text-frame-text">
+                На даній сторінці ви можете створити нову заяву
+            </p>
+        </div>
+        <div class="mian-frame-line"></div>
+        <div class="main-table-frame">
+            <div class="main-frame-input">
+                <div class="main-input">
+                    <label class="main-input-header">Вулиця</label>
+                    <input asp-for="Street" class="form-control">
+                    <span asp-validation-for="Street" class="text-danger"></span>
+                </div>
+                <div class="main-input">
+                    <label class="main-input-header">Будинок</label>
+                    <input asp-for="Building" class="form-control">
+                    <span asp-validation-for="Building" class="text-danger"></span>
+                </div>
+                <div class="main-input">
+                    <label class="main-input-header">Квартира</label>
+                    <input asp-for="Apartment" class="form-control">
+                    <span asp-validation-for="Apartment" class="text-danger"></span>
+                </div>
+                <div class="main-input">
+                    <label class="main-input-header">Вкажіть заголовок</label>
+                    <input asp-for="Header" class="main-input-field" />
+                    <span asp-validation-for="Header" class="text-danger"></span>
+                </div>
+                <div class="main-input">
+                    <label class="main-input-header">Вкажіть текст</label>
+                    <textarea asp-for="Text" rows="5" class="main-input-textarea"></textarea>
+                    <span asp-validation-for="Text" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="main-btn-frame">
+                    <input type="submit" class="main-btn-sigin" value="Зберегти" />
+                    <a asp-action="Index" class="main-btn-cancel nav-link">Назад</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

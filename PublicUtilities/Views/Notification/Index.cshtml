@@ -1,9 +1,11 @@
-﻿@using PublicUtilities.ViewModels
-@model ICollection<NotificationViewModel>
+﻿@model ICollection<Notifications>
 
 <head>
     <link rel="stylesheet" href="~/css/Notification/Index.css" />
 </head>
+@{ 
+    bool isAdmin = User.IsInRole(PublicUtilities.Data.UserRoles.Admin);
+}
 
 <div id="frame-location">
     <svg style="z-index: 2" xmlns="http://www.w3.org/2000/svg" width="170" height="53" viewBox="0 0 143 53" fill="none">
@@ -44,27 +46,64 @@
             </p>
         </div>
         <div class="mian-frame-line"></div>
+        @if (isAdmin)
+        {
+            <div class="main-btn-frame">
+                <a asp-action="Create" class="main-btn-sigin nav-link">Створити сповіщення</a>
+            </div>
+        }
         <div class="main-frame">
-            @foreach (var item in Model)
+            @if (isAdmin)
             {
-                <div class="main-section">
-                    @if (item.Street == null)
-                    {
-                        <p class="main-text-header">Увага!</p>
-                    }
-                    else
-                    {
-                        <p class="main-text-header">@item.Street @item.Building @item.Apartment</p>
-                    }
-                    <div class="mian-frame-line"></div>
-                    <div class="main-section-text-frame">
-                        <p class="main-header">@item.Header</p>
-                        <p class="main-text-date">Дата: @item.Date</p>
+
+                @foreach (var item in Model)
+                {
+                    <div class="main-section">
+                        @if (item.Streets == null)
+                        {
+                            <p class="main-text-header">Увага!</p>
+                        }
+                        else
+                        {
+                            <p class="main-text-header">@item.Streets @item.House @item.Apartment</p>
+                        }
+                        <div class="mian-frame-line"></div>
+                        <div class="main-section-text-frame">
+                            <p class="main-header">@item.Header</p>
+                            <p class="main-text-date">Дата: @item.Date.ToShortDateString()</p>
+                        </div>
+                        <div class="main-section-text-frame">
+                            <p class="main-text">@item.Text</p>
+                        </div>
+                        <div class="main-btn-frame">
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="main-btn-sigin nav-link">Редагувати</a>
+                        </div>
                     </div>
-                    <div class="main-section-text-frame">
-                        <p class="main-text">@item.Text</p>
+                }
+            }
+            else
+            {
+                @foreach (var item in Model)
+                {
+                    <div class="main-section">
+                        @if (item.Streets == null)
+                        {
+                            <p class="main-text-header">Увага!</p>
+                        }
+                        else
+                        {
+                            <p class="main-text-header">@item.Streets @item.House @item.Apartment</p>
+                        }
+                        <div class="mian-frame-line"></div>
+                        <div class="main-section-text-frame">
+                            <p class="main-header">@item.Header</p>
+                            <p class="main-text-date">Дата: @item.Date.ToShortDateString()</p>
+                        </div>
+                        <div class="main-section-text-frame">
+                            <p class="main-text">@item.Text</p>
+                        </div>
                     </div>
-                </div>
+                }
             }
         </div>
     </div>

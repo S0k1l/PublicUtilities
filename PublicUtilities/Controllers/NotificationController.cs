@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PublicUtilities.Data;
 using PublicUtilities.Interface;
+using PublicUtilities.Models;
 using PublicUtilities.ViewModels;
 
 namespace PublicUtilities.Controllers
@@ -12,12 +14,17 @@ namespace PublicUtilities.Controllers
         {
             _notificationRepository = notificationRepository;
         }
-
-        //TODO: Rework way to get notifications  
+  
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var model = new List<NotificationViewModel>();
+            if (User.IsInRole(UserRoles.Admin))
+            {
+                var adminModel = await _notificationRepository.GetAllNotifications();
+                return View(adminModel.OrderByDescending(m => m.Date).ToList());
+            }
+
+            var model = new List<Notifications>();
 
             var userPlacesOfResidence = await _notificationRepository.GetUserPlacesOfResidencesByUserName(User.Identity.Name);
 
@@ -34,6 +41,81 @@ namespace PublicUtilities.Controllers
             model.AddRange(globalNotifications);
 
             return View(model.OrderByDescending(m => m.Date).ToList());
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(CreateNotificationViewModel model)
+        {
+            if (!ModelState.IsValid) { return View(model); }
+
+            var notification = new Notifications
+            {
+                Apartment = model.Apartment,
+                House = model.Building,
+                Streets = model.Street,
+                Header = model.Header,
+                Text = model.Text,
+                Date = DateTime.Now,
+            };
+
+            if (_notificationRepository.Add(notification)) { return RedirectToAction("Edit", new { id = notification.Id }); }
+
+            ModelState.AddModelError("", "Щось пішло не так при збережені");
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var notifiction = await _notificationRepository.GetNotification(id);
+            var model = new EditNotificationsViewModel
+            {
+                Id = id,
+                Street = notifiction.Streets,
+                Building = notifiction.House,
+                Apartment = notifiction.Apartment,
+                Header = notifiction.Header,
+                Text = notifiction.Text,
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditNotificationsViewModel model)
+        {
+            if (ModelState.IsValid) { return View(model); }
+
+            var notification = await _notificationRepository.GetNotification(model.Id);
+
+            notification.Streets = model.Street;
+            notification.House = model.Building;
+            notification.Apartment = model.Apartment;
+            notification.Header = model.Header;
+            notification.Text = model.Text;
+
+            if (_notificationRepository.Update(notification)) { return RedirectToAction("Edit", new { id = notification.Id }); }
+
+            ModelState.AddModelError("", "Щось пішло не так при збережені");
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+
+            var notification = await _notificationRepository.GetNotification(id);
+
+            if (_notificationRepository.Remove(notification)) { return RedirectToAction("Index"); }
+
+            ModelState.AddModelError("", "Щось пішло не так при збережені");
+            return RedirectToAction("Edit", new { id = notification.Id });
         }
     }
 }
