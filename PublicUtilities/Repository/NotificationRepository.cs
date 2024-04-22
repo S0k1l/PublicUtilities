@@ -18,26 +18,40 @@ namespace PublicUtilities.Repository
         public async Task<ICollection<PlacesOfResidence>> GetUserPlacesOfResidencesByUserName(string userName)
         {
             return await _context.UsersPlacesOfResidence
+                .Include(upor => upor.PlacesOfResidence.Streets)
                 .Where(upor => upor.AppUser.UserName == userName)
                 .Select(upor => upor.PlacesOfResidence)
                 .ToListAsync();
         }
 
-        public async Task<ICollection<NotificationViewModel>> GetUserNotificationByUserPlacesOfResidences(ICollection<PlacesOfResidence> placesOfResidences)
+        public async Task<ICollection<NotificationViewModel>> GetGlobalNotification()
+        {
+            var model = await _context.Notifications
+                .Where(n => n.Streets == null)
+                .Select(n => new NotificationViewModel
+                {
+                    Text = n.Text,
+                    Header = n.Header,
+                    Date = n.Date.ToShortDateString(),
+                })
+                .ToListAsync();
+
+            return model;
+        }
+
+        public async Task<ICollection<NotificationViewModel>> GetStreetNotifications(ICollection<PlacesOfResidence> placesOfResidences)
         {
             var model = new List<NotificationViewModel>();
             foreach (var item in placesOfResidences)
             {
                 var notifications = await _context.Notifications
-                    .Where(n => n.PlacesOfResidenceId == item.Id)
+                    .Where(n => n.Streets == item.Streets.Name && n.House == null && n.Apartment == null)
                     .Select(n => new NotificationViewModel
                     {
+                        Street = $"Вул. {item.Streets.Name}",
                         Text = n.Text,
                         Header = n.Header,
                         Date = n.Date.ToShortDateString(),
-                        Street = $"Вул. {n.PlacesOfResidence.Streets.Name}",
-                        Building = $", буд. {n.PlacesOfResidence.House}",
-                        Apartment = $", кв. {n.PlacesOfResidence.Apartment}",
                     })
                     .ToListAsync();
 
@@ -47,17 +61,49 @@ namespace PublicUtilities.Repository
             return model;
         }
 
-        public async Task<ICollection<NotificationViewModel>> GetGlobalNotification()
+        public async Task<ICollection<NotificationViewModel>> GetHouseNotifications(ICollection<PlacesOfResidence> placesOfResidences)
         {
-                var model = await _context.Notifications
-                    .Where(n => n.PlacesOfResidence == null)
+            var model = new List<NotificationViewModel>();
+            foreach (var item in placesOfResidences)
+            {
+                var notifications = await _context.Notifications
+                    .Where(n => n.Streets == item.Streets.Name && n.House == item.House && n.Apartment == null)
                     .Select(n => new NotificationViewModel
                     {
+                        Street = $"Вул. {item.Streets.Name}",
+                        Building = $"буд. {item.House}",
                         Text = n.Text,
                         Header = n.Header,
                         Date = n.Date.ToShortDateString(),
                     })
                     .ToListAsync();
+
+                model.AddRange(notifications);
+            }
+
+            return model;
+        }
+
+        public async Task<ICollection<NotificationViewModel>> GetDirectNotifications(ICollection<PlacesOfResidence> placesOfResidences)
+        {
+            var model = new List<NotificationViewModel>();
+            foreach (var item in placesOfResidences)
+            {
+                var notifications = await _context.Notifications
+                    .Where(n => n.Streets == item.Streets.Name && n.House == item.House && n.Apartment == item.Apartment)
+                    .Select(n => new NotificationViewModel
+                    {
+                        Street = $"Вул. {item.Streets.Name}",
+                        Building = $"буд. {item.House}",
+                        Apartment = $"кв. {item.Apartment}",
+                        Text = n.Text,
+                        Header = n.Header,
+                        Date = n.Date.ToShortDateString(),
+                    })
+                    .ToListAsync();
+
+                model.AddRange(notifications);
+            }
 
             return model;
         }

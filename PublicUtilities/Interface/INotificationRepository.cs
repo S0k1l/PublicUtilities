@@ -6,7 +6,9 @@ namespace PublicUtilities.Interface
     public interface INotificationRepository
     {
         Task<ICollection<PlacesOfResidence>> GetUserPlacesOfResidencesByUserName(string userName);
-        Task<ICollection<NotificationViewModel>> GetUserNotificationByUserPlacesOfResidences(ICollection<PlacesOfResidence> placesOfResidences);
+        Task<ICollection<NotificationViewModel>> GetStreetNotifications(ICollection<PlacesOfResidence> placesOfResidences);
+        Task<ICollection<NotificationViewModel>> GetHouseNotifications(ICollection<PlacesOfResidence> placesOfResidences);
+        Task<ICollection<NotificationViewModel>> GetDirectNotifications(ICollection<PlacesOfResidence> placesOfResidences);
         Task<ICollection<NotificationViewModel>> GetGlobalNotification();
     }
 }

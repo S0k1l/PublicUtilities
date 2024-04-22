@@ -21,11 +21,17 @@ namespace PublicUtilities.Controllers
 
             var userPlacesOfResidence = await _notificationRepository.GetUserPlacesOfResidencesByUserName(User.Identity.Name);
 
-            var notification = await _notificationRepository.GetUserNotificationByUserPlacesOfResidences(userPlacesOfResidence);
-            model.AddRange(notification);
-            
-            var globalNotification = await _notificationRepository.GetGlobalNotification();
-            model.AddRange(globalNotification);
+            var streetNotifications = await _notificationRepository.GetStreetNotifications(userPlacesOfResidence);
+            model.AddRange(streetNotifications);
+
+            var houeseNotifications = await _notificationRepository.GetHouseNotifications(userPlacesOfResidence);
+            model.AddRange(houeseNotifications);
+
+            var directNotifications = await _notificationRepository.GetDirectNotifications(userPlacesOfResidence);
+            model.AddRange(directNotifications);
+
+            var globalNotifications = await _notificationRepository.GetGlobalNotification();
+            model.AddRange(globalNotifications);
 
             return View(model.OrderByDescending(m => m.Date).ToList());
         }
