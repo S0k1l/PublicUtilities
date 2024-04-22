@@ -12,7 +12,6 @@ namespace PublicUtilities.Models
         public string House { get; set; }
         public string Apartment { get; set; }
         public ICollection<UsersPlacesOfResidence> UsersPlacesOfResidence { get; set; }
-        public ICollection<Notifications> Notifications { get; set; }
         public ICollection<Indicators> Indicators { get; set; }
     }
 }

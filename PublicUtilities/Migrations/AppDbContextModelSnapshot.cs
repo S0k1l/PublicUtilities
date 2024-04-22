@@ -348,6 +348,9 @@ namespace PublicUtilities.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Apartment")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
@@ -355,16 +358,17 @@ namespace PublicUtilities.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PlacesOfResidenceId")
-                        .HasColumnType("int");
+                    b.Property<string>("House")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Streets")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PlacesOfResidenceId");
 
                     b.ToTable("Notifications");
                 });
@@ -603,15 +607,6 @@ namespace PublicUtilities.Migrations
                     b.Navigation("Utilities");
                 });
 
-            modelBuilder.Entity("PublicUtilities.Models.Notifications", b =>
-                {
-                    b.HasOne("PublicUtilities.Models.PlacesOfResidence", "PlacesOfResidence")
-                        .WithMany("Notifications")
-                        .HasForeignKey("PlacesOfResidenceId");
-
-                    b.Navigation("PlacesOfResidence");
-                });
-
             modelBuilder.Entity("PublicUtilities.Models.PlacesOfResidence", b =>
                 {
                     b.HasOne("PublicUtilities.Models.Streets", "Streets")
@@ -698,8 +693,6 @@ namespace PublicUtilities.Migrations
             modelBuilder.Entity("PublicUtilities.Models.PlacesOfResidence", b =>
                 {
                     b.Navigation("Indicators");
-
-                    b.Navigation("Notifications");
 
                     b.Navigation("UsersPlacesOfResidence");
                 });

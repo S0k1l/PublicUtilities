@@ -97,6 +97,24 @@ namespace PublicUtilities.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Notifications",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Streets = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    House = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Apartment = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Header = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Notifications", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Streets",
                 columns: table => new
                 {
@@ -332,27 +350,6 @@ namespace PublicUtilities.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Notifications",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PlacesOfResidenceId = table.Column<int>(type: "int", nullable: true),
-                    Header = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Notifications", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Notifications_PlacesOfResidence_PlacesOfResidenceId",
-                        column: x => x.PlacesOfResidenceId,
-                        principalTable: "PlacesOfResidence",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "UsersPlacesOfResidence",
                 columns: table => new
                 {
@@ -448,11 +445,6 @@ namespace PublicUtilities.Migrations
                 name: "IX_Indicators_UtilitiesId",
                 table: "Indicators",
                 column: "UtilitiesId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Notifications_PlacesOfResidenceId",
-                table: "Notifications",
-                column: "PlacesOfResidenceId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PlacesOfResidence_StreetsId",

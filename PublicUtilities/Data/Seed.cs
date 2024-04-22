@@ -330,21 +330,6 @@ namespace PublicUtilities.Data
                                     Apartment = "5",
                                     House = "10",
                                     Streets = new Streets{ Name = "За Рудкою"},
-                                    Notifications = new List<Notifications>
-                                    {
-                                        new Notifications
-                                        {
-                                            Header = "Планове відключення водопостачання",
-                                            Text = "У зв'язку з плановими ремонтними роботами, буде припинено подачу води у вашому районі з 15/02/2024 до 18/02/2024. Просимо зробити необхідні запаси.",
-                                            Date = DateTime.ParseExact("10/02/2024", "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None),
-                                        },
-                                        new Notifications
-                                        {
-                                            Header = "Тимчасове обмеження руху на вулиці Шевченка",
-                                            Text = "У зв'язку з аварійним ремонтом дорожнього покриття, буде тимчасово обмежено рух на вулиці Шевченка з 10/02/2024 до 12/02/2024. Просимо водіїв врахувати це при плануванні маршруту.",
-                                            Date = DateTime.ParseExact("08/02/2024", "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None),
-                                        },
-                                    },
                                     Indicators = indicators,
                                 }
                             },
@@ -356,15 +341,6 @@ namespace PublicUtilities.Data
                                     House = "1",
                                     Streets = new Streets{ Name = "Львівська"},
                                     Indicators = indicators2,
-                                    Notifications  = new List<Notifications>
-                                    {
-                                        new Notifications
-                                        {
-                                            Header = "Планове відключення електроенергії",
-                                            Text = "У зв'язку з плановими технічними роботами, буде припинено подачу електроенергії в вашому районі з 20/02/2024 08:00 до 21/02/2024 18:00. Просимо вибачення за незручності.",
-                                            Date = DateTime.ParseExact("15/02/2024", "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None),
-                                        },
-                                    }
                                 }
                             }
                         },
@@ -405,29 +381,6 @@ namespace PublicUtilities.Data
                                     Apartment = "10",
                                     House = "7",
                                     Streets = new Streets { Name = "Володимира Лучаковського" },
-                                    Notifications = new List<Notifications>
-                                    {
-                                        new Notifications
-                                        {
-                                            Header = "Нові графіки сміттєвозів",
-                                            Text = "Шановні мешканці! Нагадуємо, що з 25/02/2024 змінюється графік вивезення сміття. Будь ласка, перегляньте новий графік на нашому веб-сайті або зверніться до міської адміністрації для отримання додаткової інформації.",
-                                            Date = DateTime.ParseExact("20/02/2024", "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None),
-                                        },
-
-                                        new Notifications
-                                        {
-                                            Header = "Ремонт водопровідної мережі",
-                                            Text = "У зв'язку з аварійною ситуацією, буде проводитися ремонт водопровідної мережі на вулиці Пушкіна. Роботи заплановані з 10/02/2024 до 12/02/2024. Просимо вибачення за тимчасові незручності.",
-                                            Date = DateTime.ParseExact("05/02/2024", "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None),
-                                        },
-
-                                        new Notifications
-                                        {
-                                            Header = "Тимчасове припинення роботи трамваїв",
-                                            Text = "У зв'язку з ремонтними роботами на колії, трамваї №3 тимчасово не курсуватимуть з 15/02/2024 до 20/02/2024. Просимо вибачення за тимчасові незручності та користуватися альтернативними маршрутами.",
-                                            Date = DateTime.ParseExact("12/02/2024", "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None),
-                                        }
-                                    },
                                     Indicators = indicators3,
                                 }
                             },
@@ -556,6 +509,98 @@ namespace PublicUtilities.Data
                                     "\t- Підготовка до свят: Збільшення частоти вивозу на тиждень до свят.\r\n" +
                                     "\t- Екологічні заходи: Додатковий вивіз під час масових прибирань."
                     });
+
+                    context.AddRange(
+                        new Notifications
+                        {
+                            Apartment = "5",
+                            House = "10",
+                            Streets =  "За Рудкою",
+                            Header = "Планове відключення водопостачання",
+                            Text = "У зв'язку з плановими ремонтними роботами, буде припинено подачу води у вашому районі з 15/02/2024 до 18/02/2024. Просимо зробити необхідні запаси.",
+                            Date = DateTime.ParseExact("10/02/2024", "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None),
+                        },
+                        new Notifications
+                        {
+                            Apartment = "5",
+                            House = "10",
+                            Streets = "За Рудкою",
+                            Header = "Тимчасове обмеження руху на вулиці Шевченка",
+                            Text = "У зв'язку з аварійним ремонтом дорожнього покриття, буде тимчасово обмежено рух на вулиці Шевченка з 10/02/2024 до 12/02/2024. Просимо водіїв врахувати це при плануванні маршруту.",
+                            Date = DateTime.ParseExact("08/02/2024", "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None),
+                        },
+                        new Notifications
+                        {
+                            Apartment = "29",
+                            House = "1",
+                            Streets = "Львівська",
+                            Header = "Планове відключення електроенергії",
+                            Text = "У зв'язку з плановими технічними роботами, буде припинено подачу електроенергії в вашому районі з 20/02/2024 08:00 до 21/02/2024 18:00. Просимо вибачення за незручності.",
+                            Date = DateTime.ParseExact("15/02/2024", "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None),
+                        },
+                        new Notifications
+                        {
+                            Apartment = "10",
+                            House = "7",
+                            Streets = "Володимира Лучаковського",
+                            Header = "Нові графіки сміттєвозів",
+                            Text = "Шановні мешканці! Нагадуємо, що з 25/02/2024 змінюється графік вивезення сміття. Будь ласка, перегляньте новий графік на нашому веб-сайті або зверніться до міської адміністрації для отримання додаткової інформації.",
+                            Date = DateTime.ParseExact("20/02/2024", "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None),
+                        },
+                        new Notifications
+                        {
+                            Apartment = "10",
+                            House = "7",
+                            Streets = "Володимира Лучаковського",
+                            Header = "Ремонт водопровідної мережі",
+                            Text = "У зв'язку з аварійною ситуацією, буде проводитися ремонт водопровідної мережі на вулиці Пушкіна. Роботи заплановані з 10/02/2024 до 12/02/2024. Просимо вибачення за тимчасові незручності.",
+                            Date = DateTime.ParseExact("05/02/2024", "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None),
+                        },
+                        new Notifications
+                        {
+                            Apartment = "10",
+                            House = "7",
+                            Streets = "Володимира Лучаковського",
+                            Header = "Тимчасове припинення роботи трамваїв",
+                            Text = "У зв'язку з ремонтними роботами на колії, трамваї №3 тимчасово не курсуватимуть з 15/02/2024 до 20/02/2024. Просимо вибачення за тимчасові незручності та користуватися альтернативними маршрутами.",
+                            Date = DateTime.ParseExact("12/02/2024", "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None),
+                        },
+                        new Notifications
+                        {
+                            Apartment = null,
+                            House = null,
+                            Streets = null,
+                            Header = "Тестове сповіщення 0",
+                            Text = "Сповіщення всім жителям.",
+                            Date = DateTime.Now,
+                        },
+                        new Notifications
+                        {
+                            Apartment = null,
+                            House = null,
+                            Streets = "Володимира Лучаковського",
+                            Header = "Тестове сповіщення 1",
+                            Text = "Сповіщення всім жителям вул. Володимира Лучаковського.",
+                            Date = DateTime.Now,
+                        },
+                        new Notifications
+                        {
+                            Apartment = null,
+                            House = "7",
+                            Streets = "Володимира Лучаковського",
+                            Header = "Тестове сповіщення 2",
+                            Text = "Сповіщення всім жителям вул. Володимира Лучаковського, буд. 7.",
+                            Date = DateTime.Now,
+                        },
+                        new Notifications
+                        {
+                            Apartment = "10",
+                            House = "7",
+                            Streets = "Володимира Лучаковського",
+                            Header = "Тестове сповіщення 3",
+                            Text = "Сповіщення всім жителям вул. Володимира Лучаковського, буд. 7, кв. 10",
+                            Date = DateTime.Now,
+                        });
 
                     context.SaveChanges();
                 }
