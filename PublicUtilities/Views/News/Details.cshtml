@@ -49,11 +49,21 @@
 
 <div class="mian-frame">
     <div class="mian-frame-frame">
+        @if (User.IsInRole(PublicUtilities.Data.UserRoles.Admin))
+        {
+            <div class="main-btn-frame">
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="main-btn-sigin nav-link">Редагувати</a>
+                <form asp-action="Delete">
+                    <input name="id" value="@Model.Id" hidden/>
+                    <input type="submit" class="main-btn-remove" value="Видалити" />
+                </form>
+            </div>
+        }
         <p class="news-header">@Model.Header</p>
         <p class="news-date">Опубліковано: @Model.Date.ToShortDateString() о @Model.Date.ToShortTimeString()</p>
-        <div class="news-box"> 
+        <div class="news-box">
             <figure>
-            <img src="@Model.ImageUrl" class="news-image" alt="image" />
+                <img src="@Model.ImageUrl" class="news-image" alt="image" />
                 <figcaption class="news-text">@Model.Text</figcaption>
             </figure>
         </div>

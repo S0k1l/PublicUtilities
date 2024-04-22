@@ -53,6 +53,12 @@
 </div>
 <div class="mian-frame">
     <div class="mian-frame-frame">
+        @if (User.IsInRole(PublicUtilities.Data.UserRoles.Admin))
+        {
+            <div class="main-btn-frame">
+                <a asp-action="Create" class="main-btn-sigin nav-link">Опублікувати новину</a>
+            </div>
+        }
         @foreach (var item in Model.Items)
         {
             <a asp-action="Details" asp-route-id="@item.Id" class="news-box nav-link">
@@ -75,7 +81,7 @@
 
             @for (var i = startPage; i <= endPage; i++)
             {
-                if(i == Model.PageNumber)
+                if (i == Model.PageNumber)
                 {
                     <a href="@Url.Action("Index", new { page = i })" class="active-page nav-link"><u>@i</u></a>
 

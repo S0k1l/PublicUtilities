@@ -77,3 +77,61 @@ p {
     line-height: 1.7em;
     text-indent: 50px;
 }
+
+/*BUTTONS*/
+.main-btn-frame {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 34.875px;
+}
+
+.main-btn-sigin {
+    display: flex;
+    padding: 9.625px 23.25px;
+    justify-content: center;
+    align-items: center;
+    gap: 7.75px;
+    border-radius: 5px;
+    border: 2px solid var(--green-crayola);
+    background: var(--green-crayola);
+    color: var(--White);
+    font-family: Open Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.511px;
+    transition: 100ms ease-in-out;
+}
+
+    .main-btn-sigin:hover {
+        border: 2px solid var(--Bright-Gray);
+        background: var(--Bright-Gray);
+        color: var(--Granite-Gray);
+    }
+
+
+.main-btn-remove {
+    display: flex;
+    padding: 9.625px 15.5px;
+    justify-content: center;
+    align-items: center;
+    gap: 7.75px;
+    border-radius: 5px;
+    border: 2px solid var(--Boston-University-Red);
+    background: none;
+    color: var(--Boston-University-Red);
+    font-family: Open Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.511px;
+    transition: 100ms ease-in-out;
+}
+
+    .main-btn-remove:hover {
+        background: var(--Boston-University-Red);
+        color: var(--Lotion);
+    }

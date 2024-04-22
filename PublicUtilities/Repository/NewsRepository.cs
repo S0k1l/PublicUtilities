@@ -14,6 +14,19 @@ namespace PublicUtilities.Repository
         {
             _context = context;
         }
+
+        public bool Add(News news)
+        {
+            _context.Add(news);
+            return Save();
+        }
+
+        public bool Delete(News news)
+        {
+            _context.Remove(news);
+            return Save();
+        }
+
         public async Task<NewsViewModel> GetAllNews(int page)
         {
             int pageSize = 5;
@@ -39,6 +52,18 @@ namespace PublicUtilities.Repository
         public async Task<News> GetNewsById(int id)
         {
             return await _context.News.FirstOrDefaultAsync(n => n.Id == id);
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
+        }
+
+        public bool Update(News news)
+        {
+            _context.Update(news);
+            return Save();
         }
     }
 }
