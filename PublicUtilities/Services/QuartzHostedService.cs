@@ -28,7 +28,9 @@ namespace PublicUtilities.Services
                     Header = "Нагадування",
                     Text = "Не забудьте передати показники лічильників!",
                     Date = DateTime.Now,
-                    PlacesOfResidence = null,
+                    Streets = null,
+                    Apartment = null,
+                    House = null,
                 };
 
                 dbContext.Add(notification);
