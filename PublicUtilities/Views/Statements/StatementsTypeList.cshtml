@@ -1,6 +1,10 @@
 ﻿@using PublicUtilities.ViewModels
 @model ICollection<StatementsTypeListViewModel>
 
+@{
+    ViewData["Title"] = "Statement types list";
+}
+
 @if (!string.IsNullOrEmpty(ViewBag.AlertMessage))
 {
     <div id="myAlert" class="alert">
@@ -86,8 +90,8 @@
         <div class="main-text-frame">
             <p class="main-text-frame-header">Вітаємо на сторінці “Мої заяви”</p>
             <p class="main-text-frame-text">
-                На даній сторінці ви можете подавати нові заяви та переглядати вже подані. 
-                Ви побачите інформацію про тип заяви, її поточний статус та дату подання, 
+                На даній сторінці ви можете подавати нові заяви та переглядати вже подані.
+                Ви побачите інформацію про тип заяви, її поточний статус та дату подання,
                 а також матимете можливість переглянути її докладніше.
             </p>
         </div>
@@ -101,7 +105,7 @@
                 @foreach (var statements in item.StatementsInfos)
                 {
                     <a class="main-statements-type-btn nav-link" asp-controller="Statements" asp-action="CreateStatement"
-                    asp-route-id="@statements.StatementId">@statements.StatementType</a>
+                       asp-route-id="@statements.StatementId">@statements.StatementType</a>
                 }
             </div>
         }

@@ -1,6 +1,10 @@
 ﻿@using PublicUtilities.ViewModels
 @model ICollection<PaymentListViewModel>
 
+@{
+    ViewData["Title"] = "Payment list";
+}
+
 <head>
     <link rel="stylesheet" href="~/css/Payment/PaymentList.css" />
     <link rel="stylesheet" href="~/css/site.css" />
@@ -80,11 +84,11 @@
             <table class="rounded">
                 <thead>
                     <tr>
-                        <th >Місце проживання</th>
-                        <th >Послуга</th>
-                        <th >Статус</th>
-                        <th >Дата</th>
-                        <th ></th>
+                        <th>Місце проживання</th>
+                        <th>Послуга</th>
+                        <th>Статус</th>
+                        <th>Дата</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -104,7 +108,7 @@
                                 }
                             </td>
                             <td>
-                                    <p>@item.Date.ToShortDateString() </p>
+                                <p>@item.Date.ToShortDateString() </p>
                             </td>
                             <td>
                                 <a asp-action="" asp-controller="" asp-route-id="@item.PlaceOfResidenceId" class="main-table-btn nav-link">Переглянути</a>

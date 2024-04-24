@@ -1,6 +1,10 @@
 ﻿@using PublicUtilities.ViewModels
 @model ICollection<IndicatorsListViewModel>
 
+@{
+    ViewData["Title"] = "Indicators list";
+}
+
 <head>
     <link rel="stylesheet" href="~/css/Payment/PaymentList.css" />
     <link rel="stylesheet" href="~/css/site.css" />
@@ -80,10 +84,10 @@
             <table class="rounded">
                 <thead>
                     <tr>
-                        <th >Місце проживання</th>
-                        <th >Послуга</th>
-                        <th >Остання дата подання</th>
-                        <th ></th>
+                        <th>Місце проживання</th>
+                        <th>Послуга</th>
+                        <th>Остання дата подання</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>

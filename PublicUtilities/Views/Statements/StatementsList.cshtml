@@ -2,6 +2,10 @@
 @using PublicUtilities.ViewModels
 @model StatementsListViewModel
 
+@{
+    ViewData["Title"] = "Statement list";
+}
+
 <head>
     <link rel="stylesheet" href="~/css/Statements/Index.css" />
     <link rel="stylesheet" href="~/css/site.css" />
@@ -83,47 +87,47 @@
             </p>
         </div>
         <div class="mian-frame-line"></div>
-            <p class="main-text-frame-text">@Model.DepartamentName</p>
-            <div class="main-table-frame">
-                <table class="rounded">
-                    <thead>
+        <p class="main-text-frame-text">@Model.DepartamentName</p>
+        <div class="main-table-frame">
+            <table class="rounded">
+                <thead>
+                    <tr>
+                        <th width="250">ПІБ</th>
+                        <th width="150">Статус</th>
+                        <th width="150">Дата подання</th>
+                        <th width="100"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var statement in Model.StatementsInfos)
+                    {
                         <tr>
-                            <th width="250">ПІБ</th>
-                            <th width="150">Статус</th>
-                            <th width="150">Дата подання</th>
-                            <th width="100"></th>
+                            <td width="250">@statement.Surname @statement.Name @statement.Patronymic</td>
+                            <td width="150">
+                                @switch (statement.Status)
+                                {
+                                    case StatementsStatus.Відхилена:
+                                        <p style="color:red;">@statement.Status</p>
+                                        break;
+                                    case StatementsStatus.Розглядається:
+                                        <p style="color:deepskyblue;">@statement.Status</p>
+                                        break;
+                                    case StatementsStatus.Ухвалена:
+                                        <p style="color:limegreen;">@statement.Status</p>
+                                        break;
+                                    default:
+                                        <p>@statement.Status</p>
+                                        break;
+                                }
+                            </td>
+                            <td width="150">@statement.Date.ToShortDateString()</td>
+                            <td width="100">
+                                <a asp-action="StatementDetails" asp-controller="Statements" asp-route-id="@statement.Id" class="main-table-btn nav-link">Переглянути</a>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var statement in Model.StatementsInfos)
-                        {
-                            <tr>
-                                <td width="250">@statement.Surname @statement.Name @statement.Patronymic</td>
-                                <td width="150">
-                                    @switch (statement.Status)
-                                    {
-                                        case StatementsStatus.Відхилена:
-                                            <p style="color:red;">@statement.Status</p>
-                                            break;
-                                        case StatementsStatus.Розглядається:
-                                            <p style="color:deepskyblue;">@statement.Status</p>
-                                            break;
-                                        case StatementsStatus.Ухвалена:
-                                            <p style="color:limegreen;">@statement.Status</p>
-                                            break;
-                                        default:
-                                            <p>@statement.Status</p>
-                                            break;
-                                    }
-                                </td>
-                                <td width="150">@statement.Date.ToShortDateString()</td>
-                                <td width="100">
-                                    <a asp-action="StatementDetails" asp-controller="Statements" asp-route-id="@statement.Id" class="main-table-btn nav-link">Переглянути</a>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

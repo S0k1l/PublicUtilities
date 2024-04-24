@@ -1,6 +1,10 @@
 ﻿@using PublicUtilities.ViewModels
 @model EmployeeEditViewModel
 
+@{
+    ViewData["Title"] = "Editing employee";
+}
+
 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "field-validation-error" })
 
 

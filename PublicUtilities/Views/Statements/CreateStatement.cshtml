@@ -1,6 +1,10 @@
 ﻿@using PublicUtilities.ViewModels
 @model CreateStatementViewModel
 
+@{
+    ViewData["Title"] = "Creating statement";
+}
+
 <head>
     <link rel="stylesheet" href="~/css/Statements/CreateStatement.css" />
     <link rel="stylesheet" href="~/css/site.css" />
@@ -62,9 +66,9 @@
 </div>
 <form asp-controller="Statements" asp-action="CreateStatement" method="post" class="mian-frame" enctype="multipart/form-data">
     <input asp-for="StatementId" hidden />
-    <input asp-for="StatementType" hidden/>
-    <input asp-for="isStreetNeeded" hidden/>
-    <input asp-for="isPhotoNeeded" hidden/>
+    <input asp-for="StatementType" hidden />
+    <input asp-for="isStreetNeeded" hidden />
+    <input asp-for="isPhotoNeeded" hidden />
     <div class="mian-frame-frame">
         <div class="main-text-frame">
             <p class="main-text-frame-header">Вітаємо на сторінці створення заяви</p>
@@ -77,7 +81,7 @@
             <p class="main-text-frame-text">
                 <b>@Model.StatementType</b>
             </p>
-            @if(Model.SignatureCount > 1)
+            @if (Model.SignatureCount > 1)
             {
                 <p class="main-text-frame-secondary-text">
                     *Ця заява потребує @Model.SignatureCount підписів
@@ -89,7 +93,7 @@
                 {
                     <div class="main-input">
                         <label class="main-input-header">Вкажіть вулицю</label>
-                        <input asp-for="Street" class="main-input-field" required/>
+                        <input asp-for="Street" class="main-input-field" required />
                         <span asp-validation-for="Street" class="text-danger"></span>
                     </div>
                 }

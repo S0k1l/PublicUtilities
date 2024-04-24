@@ -1,9 +1,13 @@
 ﻿@model ICollection<Notifications>
 
+@{
+    ViewData["Title"] = "Notifications List";
+}
+
 <head>
     <link rel="stylesheet" href="~/css/Notification/Index.css" />
 </head>
-@{ 
+@{
     bool isAdmin = User.IsInRole(PublicUtilities.Data.UserRoles.Admin);
 }
 

@@ -1,6 +1,10 @@
 ﻿@using PublicUtilities.ViewModels
 @model EmployeeDetalisViewModel
 
+@{
+    ViewData["Title"] = "Employee";
+}
+
 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "field-validation-error" })
 
 
@@ -49,39 +53,39 @@
         <div class="main-frame-input">
             <div class="main-input">
                 <label class="main-input-header">Електрона пошта</label>
-                <input asp-for="Email" class=" main-input-field" readonly/>
+                <input asp-for="Email" class=" main-input-field" readonly />
                 <span asp-validation-for="Email" class=" text-danger"></span>
             </div>
             <div class="main-input">
                 <label class="main-input-header">Номер телефону</label>
-                <input asp-for="PhoneNumber" class="main-input-field" readonly/>
+                <input asp-for="PhoneNumber" class="main-input-field" readonly />
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
             <div class="main-input">
                 <label class="main-input-header">Прізвище</label>
-                <input asp-for="Surname" class="main-input-field" readonly/>
+                <input asp-for="Surname" class="main-input-field" readonly />
                 <span asp-validation-for="Surname" class="text-danger"></span>
             </div>
             <div class="main-input">
                 <label class="main-input-header">Ім'я</label>
-                <input asp-for="Name" class="main-input-field" readonly/>
+                <input asp-for="Name" class="main-input-field" readonly />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="main-input">
                 <label class="main-input-header">По батькові</label>
-                <input asp-for="Patronymic" class="main-input-field" readonly/>
+                <input asp-for="Patronymic" class="main-input-field" readonly />
                 <span asp-validation-for="Patronymic" class="text-danger"></span>
             </div>
             <div class="main-input">
                 <label asp-for="Departement" class="main-input-header">Відділ</label>
-                <input asp-for="Departement" class="main-input-field" readonly/>
+                <input asp-for="Departement" class="main-input-field" readonly />
                 <span asp-validation-for="Departement" class="text-danger"></span>
             </div>
         </div>
         @*         <div class="main-text-link">Вже зареєстровані? Тоді увійдіть</div>*@
-    <div class="main-btn-frame">
-        <a asp-action="Edit" asp-route-id="@Model.Id" class="main-btn-sigin nav-link">Редагувати</a>
-        <a asp-action="Index" class="main-btn-cancel nav-link">Назад</a>
-    </div>
+        <div class="main-btn-frame">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="main-btn-sigin nav-link">Редагувати</a>
+            <a asp-action="Index" class="main-btn-cancel nav-link">Назад</a>
+        </div>
     </div>
 </form>

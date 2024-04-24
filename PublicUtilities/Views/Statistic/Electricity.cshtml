@@ -1,11 +1,14 @@
 ﻿@using PublicUtilities.ViewModels
 @model List<StatisticViewModel>
 
+@{
+    ViewData["Title"] = "Statistic electricity";
+}
+
 <head>
     <link rel="stylesheet" href="~/css/Statistic/Index.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 </head>
 
 <script>
@@ -21,7 +24,7 @@
             var dataPoints = model[i].dataPoints;
             var dataset = {
                 label: model[i].placesOfResidence,
-                data: [], 
+                data: [],
                 backgroundColor: color,
                 borderColor: color,
                 pointRadius: 2,
@@ -150,7 +153,7 @@
                 <canvas id="myChart" width="800" height="250"></canvas>
             </div>
         </div>
-        <div class="mian-frame-line"></div>        
+        <div class="mian-frame-line"></div>
 
         @foreach (var item in Model)
         {

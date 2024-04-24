@@ -1,6 +1,10 @@
 ﻿@using PublicUtilities.ViewModels
 @model EditNewsViewModel
 
+@{
+    ViewData["Title"] = "Editing news";
+}
+
 <head>
     <link rel="stylesheet" href="~/css/News/Index.css" />
     <link rel="stylesheet" href="~/css/site.css" />
@@ -61,7 +65,7 @@
     </div>
 </div>
 <form asp-action="Edit" method="post" class="mian-frame" enctype="multipart/form-data">
-    <input asp-for="Id" value="@Model.Id" class="main-input-field" hidden/>
+    <input asp-for="Id" value="@Model.Id" class="main-input-field" hidden />
     <div class="mian-frame-frame">
         <div class="main-text-frame">
             <p class="main-text-frame-header">Вітаємо на сторінці створення заяви</p>

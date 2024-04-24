@@ -1,6 +1,10 @@
 ﻿@using PublicUtilities.ViewModels
 @model ICollection<PaymentViewModel>
 
+@{
+    ViewData["Title"] = "Payment water";
+}
+
 <head>
     <link rel="stylesheet" href="~/css/Payment/Water.css" />
 </head>
@@ -75,8 +79,8 @@
                     </div>
                     <div class="mian-frame-line"></div>
                     <a asp-action="PaymentType" asp-route-id="@item.Id" asp-route-placeOfResidence="@item.PlaceOfResidence"
-                            asp-route-date="@item.Date" asp-route-price="@item.Price"
-                            class="main-btn-submit nav-link" >Оплатити</a>
+                       asp-route-date="@item.Date" asp-route-price="@item.Price"
+                       class="main-btn-submit nav-link">Оплатити</a>
                 </div>
             }
         </div>

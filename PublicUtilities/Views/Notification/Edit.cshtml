@@ -1,5 +1,9 @@
 ﻿@model PublicUtilities.ViewModels.EditNotificationsViewModel
 
+@{
+    ViewData["Title"] = "Editing notification";
+}
+
 <head>
     <link rel="stylesheet" href="~/css/Notification/Index.css" />
     <link rel="stylesheet" href="~/css/site.css" />
@@ -103,7 +107,7 @@
                 </div>
             </form>
             <form asp-action="Delete" method="post" style="padding-top:10px;" class="main-btn-frame">
-                <input value="@Model.Id" name="id" hidden/>
+                <input value="@Model.Id" name="id" hidden />
                 <input type="submit" class="main-btn-remove" value="Видалити" />
             </form>
         </div>

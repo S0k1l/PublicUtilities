@@ -2,6 +2,10 @@
 @using PublicUtilities.ViewModels
 @model MyStatementsViewModel
 
+@{
+    ViewData["Title"] = "My statements";
+}
+
 <head>
     <link rel="stylesheet" href="~/css/Statements/Index.css" />
     <link rel="stylesheet" href="~/css/site.css" />
@@ -75,8 +79,8 @@
         <div class="main-text-frame">
             <p class="main-text-frame-header">Вітаємо на сторінці “Мої заяви”</p>
             <p class="main-text-frame-text">
-                На даній сторінці ви можете подавати нові заяви та переглядати вже подані. 
-                Ви побачите інформацію про тип заяви, її поточний статус та дату подання, 
+                На даній сторінці ви можете подавати нові заяви та переглядати вже подані.
+                Ви побачите інформацію про тип заяви, її поточний статус та дату подання,
                 а також матимете можливість переглянути її докладніше.
             </p>
         </div>
@@ -85,10 +89,10 @@
             <table class="rounded">
                 <thead>
                     <tr>
-                        <th >Тип</th>
+                        <th>Тип</th>
                         <th width="150">Статус</th>
                         <th width="150">Дата подання</th>
-                        <th width ="150"></th>
+                        <th width="150"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -122,8 +126,8 @@
                 </tbody>
             </table>
         </div>
-        
-        @if(Model.OthersStatements != null)
+
+        @if (Model.OthersStatements != null)
         {
             <div class="main-table-frame">
                 <table class="rounded">

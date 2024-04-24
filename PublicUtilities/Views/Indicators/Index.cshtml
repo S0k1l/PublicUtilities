@@ -1,6 +1,10 @@
 ﻿@using PublicUtilities.ViewModels
 @model ICollection<IndicatorsViewModel>
 
+@{
+    ViewData["Title"] = "Indicators";
+}
+
 @if (!string.IsNullOrEmpty(ViewBag.AlertMessage))
 {
     <div id="myAlert" class="alert">
@@ -71,7 +75,7 @@
         <div class="main-text-frame">
             <p class="main-text-frame-header">Вітаємо на сторінці подання показників</p>
             <p class="main-text-frame-text">
-                На цій сторінці ви можете вказати показники лічильника, 
+                На цій сторінці ви можете вказати показники лічильника,
                 обравши тип показника та введучи дані в поле "Поточні".
                 Також вам буде показано попередній показник і різниця між ним та введеним вами значенням.
             </p>
@@ -102,11 +106,11 @@
                                         <div>
                                             <div class="main-details-seccond-row">
                                                 <input asp-for="@indicators.Indicator" name="indicator" id="num1_@indicators.Id" required
-                                                min="0" type="number" class="main-details-input-field"
-                                                onkeypress="return isNumberKey(event)" oninput="updateResult(@indicators.Id)" />
+                                                       min="0" type="number" class="main-details-input-field"
+                                                       onkeypress="return isNumberKey(event)" oninput="updateResult(@indicators.Id)" />
                                                 <input class="main-details-text-field" id="num2_@indicators.Id"
-                                                value="@indicators.Indicator" readonly/>
-                                                <input id="result_@indicators.Id" name="consumed" placeholder="0" class="main-details-text-field"/>
+                                                       value="@indicators.Indicator" readonly />
+                                                <input id="result_@indicators.Id" name="consumed" placeholder="0" class="main-details-text-field" />
                                             </div>
                                         </div>
                                         <div class="main-btn-frame">
@@ -115,11 +119,11 @@
 
                                     </details>
                                 </form>
-                            }                                        
+                            }
                         </div>
                     </details>
                 </div>
-            }           
+            }
         </div>
     </div>
 </div>

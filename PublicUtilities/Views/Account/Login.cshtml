@@ -1,6 +1,10 @@
 ﻿@using PublicUtilities.ViewModels
 @model LoginViewModel
 
+@{
+    ViewData["Title"] = "Login";
+}
+
 <head>
     <link rel="stylesheet" href="~/css/Account/Login.css" />
     <link rel="stylesheet" href="~/css/site.css" />
@@ -51,7 +55,7 @@
             </div>
             <div class="main-input">
                 <label class="main-input-header">Пароль</label>
-                <input asp-for ="Password" class="main-input-field" />
+                <input asp-for="Password" class="main-input-field" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <a class="nav-link main-text-link" asp-area="" asp-controller="Account" asp-action="Registration">
@@ -59,7 +63,7 @@
             </a>
         </div>
         <div class="main-btn-frame">
-            <input type="submit" class="main-btn-sigin" value="Увійти"/>
+            <input type="submit" class="main-btn-sigin" value="Увійти" />
             <div class="main-btn-cancel">Назад</div>
         </div>
     </div>

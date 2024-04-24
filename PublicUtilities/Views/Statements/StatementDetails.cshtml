@@ -2,6 +2,10 @@
 @using PublicUtilities.ViewModels
 @model StatementDetailsViewModel
 
+@{
+    ViewData["Title"] = "Statement";
+}
+
 <head>
     <link rel="stylesheet" href="~/css/Statements/StatementDetails.css" />
     <link rel="stylesheet" href="~/css/site.css" />
@@ -65,68 +69,68 @@
             <p class="main-text-frame-text">
                 <b>@Model.StatementsType</b>
             </p><br />
-                <div class="main-frame-input">
-                    @if (Model.Street != null)
-                    {
-                        <div class="main-input">
-                            <label class="main-input-header">Вулиця</label>
-                            <input asp-for="Street" class="main-input-field" readonly />
-                            <span asp-validation-for="Street" class="text-danger"></span>
-                        </div>
-                    }
+            <div class="main-frame-input">
+                @if (Model.Street != null)
+                {
                     <div class="main-input">
-                        <label class="main-input-header">Вміст заяви</label>
-                        <textarea asp-for="Text" rows="5" class="main-input-textarea" readonly></textarea>
-                        <span asp-validation-for="Text" class="text-danger"></span>
+                        <label class="main-input-header">Вулиця</label>
+                        <input asp-for="Street" class="main-input-field" readonly />
+                        <span asp-validation-for="Street" class="text-danger"></span>
                     </div>
-                    @if (Model.StatementUrl != null)
-                    {
-                        <div class="main-input">
-                            <label class="main-input-header">Прикріплене фото</label>
-                            <img class="img-fluid" src="@Model.StatementUrl" alt="">
-                        </div>
-                    }
-                    <div class="main-input-header">Дата подання: @Model.Date</div>
-                    <div class="main-input-header">
-                        Статус:
-                        @switch (Model.Status)
-                        {
-                            case StatementsStatus.Відхилена:
-                                <p style="color:red;">@Model.Status</p>
-                                break;
-                            case StatementsStatus.Розглядається:
-                                <p style="color:deepskyblue;">@Model.Status</p>
-                                break;
-                            case StatementsStatus.Ухвалена:
-                                <p style="color:limegreen;">@Model.Status</p>
-                                break;
-                            default:
-                                <p>@Model.Status</p>
-                                break;
-                        }
-                    </div><br />
-                    @if (User.IsInRole(PublicUtilities.Data.UserRoles.User))
-                    {
-                        <form asp-action="DeleteUserStatement" asp-route-id="@Model.Id" method="post" class="main-btn-frame">
-                            <input type="submit" class="main-btn-del" value="Видалити" />
-                            <a asp-action="MyStatements" asp-controller="Statements" class="main-btn-cancel nav-link">Назад</a>
-                        </form>
-                    }
-                    @if (User.IsInRole(PublicUtilities.Data.UserRoles.Admin) || User.IsInRole(PublicUtilities.Data.UserRoles.Employee))
-                    {
-                        <form asp-action="ChangeStatementStatus" asp-route-id="@Model.Id" method="post" style="display:flex; flex-direction:column; gap:20px;">
-                            <div>
-                                <label asp-for="Status">Змінити статус</label>
-                                <select asp-for="Status" name="status" asp-items="@Html.GetEnumSelectList<StatementsStatus>()" class="form-select"></select>
-                            </div>
-                            <div class="main-btn-frame">
-                                <input type="submit" class="main-btn-submit" value="Зберегти" />
-                                <a asp-action="UsersStatements" asp-controller="Statements" class="main-btn-cancel nav-link">Назад</a>
-                            </div>
-
-                        </form>
-                    }
+                }
+                <div class="main-input">
+                    <label class="main-input-header">Вміст заяви</label>
+                    <textarea asp-for="Text" rows="5" class="main-input-textarea" readonly></textarea>
+                    <span asp-validation-for="Text" class="text-danger"></span>
                 </div>
+                @if (Model.StatementUrl != null)
+                {
+                    <div class="main-input">
+                        <label class="main-input-header">Прикріплене фото</label>
+                        <img class="img-fluid" src="@Model.StatementUrl" alt="">
+                    </div>
+                }
+                <div class="main-input-header">Дата подання: @Model.Date</div>
+                <div class="main-input-header">
+                    Статус:
+                    @switch (Model.Status)
+                    {
+                        case StatementsStatus.Відхилена:
+                            <p style="color:red;">@Model.Status</p>
+                            break;
+                        case StatementsStatus.Розглядається:
+                            <p style="color:deepskyblue;">@Model.Status</p>
+                            break;
+                        case StatementsStatus.Ухвалена:
+                            <p style="color:limegreen;">@Model.Status</p>
+                            break;
+                        default:
+                            <p>@Model.Status</p>
+                            break;
+                    }
+                </div><br />
+                @if (User.IsInRole(PublicUtilities.Data.UserRoles.User))
+                {
+                    <form asp-action="DeleteUserStatement" asp-route-id="@Model.Id" method="post" class="main-btn-frame">
+                        <input type="submit" class="main-btn-del" value="Видалити" />
+                        <a asp-action="MyStatements" asp-controller="Statements" class="main-btn-cancel nav-link">Назад</a>
+                    </form>
+                }
+                @if (User.IsInRole(PublicUtilities.Data.UserRoles.Admin) || User.IsInRole(PublicUtilities.Data.UserRoles.Employee))
+                {
+                    <form asp-action="ChangeStatementStatus" asp-route-id="@Model.Id" method="post" style="display:flex; flex-direction:column; gap:20px;">
+                        <div>
+                            <label asp-for="Status">Змінити статус</label>
+                            <select asp-for="Status" name="status" asp-items="@Html.GetEnumSelectList<StatementsStatus>()" class="form-select"></select>
+                        </div>
+                        <div class="main-btn-frame">
+                            <input type="submit" class="main-btn-submit" value="Зберегти" />
+                            <a asp-action="UsersStatements" asp-controller="Statements" class="main-btn-cancel nav-link">Назад</a>
+                        </div>
+
+                    </form>
+                }
+            </div>
 
         </div>
         <div class="mian-frame-line"></div>

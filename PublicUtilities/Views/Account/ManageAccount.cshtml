@@ -3,6 +3,9 @@
 
 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "field-validation-error" })
 
+@{
+    ViewData["Title"] = "Managing account";
+}
 
 <head>
     <link rel="stylesheet" href="~/css/Account/ManageAccount.css" />
@@ -114,7 +117,7 @@
                                 </form>
                             </td>
                         </tr>
-                    }  
+                    }
                 </tbody>
             </table>
         </div>
