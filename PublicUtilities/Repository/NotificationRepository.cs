@@ -15,7 +15,7 @@ namespace PublicUtilities.Repository
             _context = context;
         }
 
-        public async Task<ICollection<PlacesOfResidence>> GetUserPlacesOfResidencesByUserName(string userName)
+        public async Task<ICollection<PlacesOfResidence>> GetUserPlacesOfResidences(string userName)
         {
             return await _context.UsersPlacesOfResidence
                 .Include(upor => upor.PlacesOfResidence.Streets)
@@ -110,6 +110,13 @@ namespace PublicUtilities.Repository
         public async Task<ICollection<Notifications>> GetAllNotifications()
         {
             return await _context.Notifications.ToListAsync();
+        }
+
+        public async Task<PlacesOfResidence> GetUserPlaceOfResidences(int placesOfResidencesId)
+        {
+            return await _context.PlacesOfResidence.Include(por => por.Streets)
+                .Where(por => por.Id == placesOfResidencesId)
+                .FirstOrDefaultAsync();
         }
     }
 }

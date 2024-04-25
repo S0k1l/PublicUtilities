@@ -26,7 +26,7 @@ namespace PublicUtilities.Controllers
 
             var model = new List<Notifications>();
 
-            var userPlacesOfResidence = await _notificationRepository.GetUserPlacesOfResidencesByUserName(User.Identity.Name);
+            var userPlacesOfResidence = await _notificationRepository.GetUserPlacesOfResidences(User.Identity.Name);
 
             var streetNotifications = await _notificationRepository.GetStreetNotifications(userPlacesOfResidence);
             model.AddRange(streetNotifications);
@@ -44,9 +44,22 @@ namespace PublicUtilities.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create(int placesOfResidenceId, string header, string text)
         {
-            return View();
+            if (placesOfResidenceId == 0) { return View(); }
+            
+            var por = await _notificationRepository.GetUserPlaceOfResidences(placesOfResidenceId);
+
+            var model = new CreateNotificationViewModel
+            {
+                Apartment = por.Apartment,
+                Building = por.House,
+                Street = por.Streets.Name,
+                Header = header,
+                Text = text,
+            };
+
+            return View(model);
         }
 
         [HttpPost]
