@@ -3,6 +3,8 @@
 
 @{
     ViewData["Title"] = "Payment list";
+    string header = "Увага!";
+    string text = "Нагадуємо вам про неоплачені комунальні послуги. Будь ласка, забезпечте своєчасну оплату, щоб уникнути припинення послуг та додаткових штрафів. Діяти зараз, щоб уникнути неприємностей у майбутньому.";
 }
 
 <head>
@@ -111,7 +113,7 @@
                                 <p>@item.Date.ToShortDateString() </p>
                             </td>
                             <td>
-                                <a asp-action="" asp-controller="" asp-route-id="@item.PlaceOfResidenceId" class="main-table-btn nav-link">Переглянути</a>
+                                <a asp-action="Create" asp-controller="Notification" asp-route-placesOfResidenceId="@item.PlaceOfResidenceId" asp-route-text="@text" asp-route-header="@header" class="main-table-btn nav-link">Попередження</a>
                             </td>
                         </tr>
                     }
