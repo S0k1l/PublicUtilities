@@ -103,7 +103,7 @@ namespace PublicUtilities.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(EditNotificationsViewModel model)
         {
-            if (ModelState.IsValid) { return View(model); }
+            if (!ModelState.IsValid) { return View(model); }
 
             var notification = await _notificationRepository.GetNotification(model.Id);
 
