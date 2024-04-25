@@ -3,6 +3,8 @@
 
 @{
     ViewData["Title"] = "Indicators list";
+    string header = "Увага!";
+    string text = "Ми не отримали ваші показники лічильника. Не забувайте, це важливо для точного розрахунку ваших витрат. Будь ласка, надішліть їх якнайшвидше, щоб уникнути можливих непорозумінь і штрафних санкцій.";
 }
 
 <head>
@@ -98,7 +100,7 @@
                             <td>@item.UtilitiesName</td>
                             <td>@item.LastUploaded</td>
                             <td>
-                                <a asp-action="" asp-controller="" asp-route-id="@item.PlacesOfResidenceId" class="main-table-btn nav-link">Переглянути</a>
+                                <a asp-action="Create" asp-controller="Notification" asp-route-placesOfResidenceId="@item.PlacesOfResidenceId" asp-route-text="@text" asp-route-header="@header" class="main-table-btn nav-link">Попередження</a>
                             </td>
                         </tr>
                     }
