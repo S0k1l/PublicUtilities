@@ -48,7 +48,6 @@ namespace PublicUtilities.Test.Controllers
             //Arrange
             var model = new RegisterViewModel { PhoneNumber = "1234567890", Image = A.Fake<IFormFile>() };
             var imgResult = A.Fake<ImageUploadResult>();
-            var a = new Url("asd");
 
             A.CallTo(() => _userManager.FindByEmailAsync(A<string>._)).Returns((AppUser)null);
             A.CallTo(() => _photoService.AddPhotoAsync(A<IFormFile>._))
