@@ -102,7 +102,7 @@ namespace PublicUtilities.Repository
                     .GroupBy(i => i.UtilitiesId)
                     .Select(g => new
                     {
-                        PlacesOfResidenceId = g.Key,
+                        PlacesOfResidenceId = g.Select(g => g.PlacesOfResidenceId).FirstOrDefault(),
                         LatestUploadDate = g.Max(i => i.Date),
                         UtilitiesName = g.Select(g => g.Utilities.Name).FirstOrDefault(),
                         Street = g.Select(g => g.PlacesOfResidence.Streets.Name).FirstOrDefault(),
