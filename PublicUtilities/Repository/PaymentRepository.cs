@@ -26,7 +26,7 @@ namespace PublicUtilities.Repository
                 previousMonth = 12;
             }
 
-            var model = await _context.Indicators.Where(i =>i.Date.Year == currentYear && i.Date.Month == currentMonth || i.isPaid == false)
+            var model = await _context.Indicators.Where(i =>i.Date.Year == currentYear && i.Date.Month == currentMonth && i.isPaid == false)
             .Select(i => new PaymentListViewModel
             {
                 PlaceOfResidenceId = i.PlacesOfResidenceId,
