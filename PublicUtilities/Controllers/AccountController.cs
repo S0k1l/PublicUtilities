@@ -41,7 +41,7 @@ namespace PublicUtilities.Controllers
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user != null)
             {
-                ModelState.AddModelError("Email", "Користувач з тикою електроною почтою вже існує");
+                ModelState.AddModelError("Email", "Користувач з такою електронною поштою вже існує");
                 return View(model);
             }
 
@@ -80,7 +80,7 @@ namespace PublicUtilities.Controllers
 
             if (newUserResponse.Succeeded)
             {
-                //await _userManager.AddToRoleAsync(newUser, UserRoles.User);
+                await _userManager.AddToRoleAsync(newUser, UserRoles.User);
                 var result = await _signInManager.PasswordSignInAsync(newUser, model.Password, false, false);
                 if (result.Succeeded)
                 {
